@@ -141,7 +141,7 @@ export default function App() {
          </p>,
          <p>&nbsp;</p>,
          <p className="othercardsub">
-            <a href="https://rsu-suba.github.io/school_schedule/" target="_blank">
+            <a href="https://github.com/rsu-Suba/school_schedule" target="_blank">
                Repository
             </a>
          </p>,
