@@ -16,8 +16,9 @@ function App() {
    let tomorrowText = `${tomorrowDate.getMonth() + 1}/${tomorrowDate.getDate()}/${expday(tomorrowDate.getDay())}曜日`;
    let nowtime = `${String(date.getHours()).padStart(2, "0")}${String(date.getMinutes()).padStart(2, "0")}`;
 
-   //recentNum = 5;
+   //recentNum = 6;
    //nowtime = 1440;
+   
    return (
       <>
          <div className="mainCanvas">

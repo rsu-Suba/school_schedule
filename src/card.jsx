@@ -69,7 +69,7 @@ export default function card(props) {
          );
       }
    }
-   if (props.pos == "top" && cardtext.length == 0) {
+   if (cardtext.length == 0) {
       let day = props.num;
       if (((props.num == 0 || props.num == 6) && nowTime > 1600) || (props.num != 0 && props.num != 6)) {
          day++;
