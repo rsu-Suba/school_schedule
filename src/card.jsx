@@ -22,6 +22,9 @@ export default function card(props) {
       }
       if (props.pos == "top") {
          let classTime = Number(`${json.time[timeList][i].slice(-5, -3)}${json.time[timeList][i].slice(-2)}`);
+         if (`${json.time[timeList][i].slice(-5, -3)}${json.time[timeList][i].slice(-2)}`.slice(0, 1) == "~") {
+            classTime = `${json.time[timeList][i].slice(-5, -3)}${json.time[timeList][i].slice(-2)}`.slice(-3);
+         }
          if (classTime < nowTime) {
             continue;
          } else {
