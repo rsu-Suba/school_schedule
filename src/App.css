@@ -258,6 +258,8 @@ a {
    position: relative;
    border-radius: 3vh;
    height: auto !important;
+   width: 100% !important;
+   min-width: 320px !important;
    max-height: none !important;
    border: solid #aaa 1px;
    transition: 0.3s;
@@ -329,6 +331,7 @@ a {
 }
 
 .scheDiv {
+   width: 80%;
    padding: 10% 0 0;
    display: flex;
    flex-direction: column;
@@ -356,7 +359,7 @@ a {
    background-color: #7e63df;
 }
 
-.others {
+.others, .othersMenu {
    position: relative;
    display: flex;
    flex-direction: column;
@@ -422,4 +425,76 @@ a {
 .othercardtext p {
    white-space: normal !important;
    overflow-wrap: anywhere;
+}
+
+.MuiPaper-root:before {
+   content: "";
+   position: absolute;
+   top: -10%;
+   left: -10%;
+   width: 120%;
+   height: 120%;
+   filter: blur(6vh);
+   z-index: -1;
+   background-image: conic-gradient(
+      from 20deg,
+      rgb(244, 255, 180) 18deg,
+      rgb(122, 229, 248) 68deg,
+      rgb(209, 157, 240) 151deg,
+      rgba(177, 151, 223, 1) 223deg,
+      rgb(149, 227, 247) 285deg,
+      rgb(154, 217, 236) 360deg
+   );
+}
+
+.MuiPaper-root{
+   overflow-x: hidden;
+}
+
+@media screen and (orientation:landscape) {
+   .Digit {
+      font-size: min(2vw, max(2.5vh));
+   }
+
+   .subProp, .textbook, .card h4 {
+      font-size: min(4vw, max(1.4vh));
+   }
+
+   .PCCanvas {
+      width: calc(calc(95% / 3)*2);
+      max-width: 90vh;
+      height: 100%;
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      margin: 0 auto;
+      right: 0;
+      left: 0;
+   }
+
+   .main, .sche, .others{
+      width: calc(95% / 2);
+   }
+
+   .mainCards, .scheDiv {
+      width: 90% !important;
+      padding: 10% 5% !important;
+   }
+   
+   .card, .MuiDayCalendar-root {
+      border-radius: 2vh;
+   }
+
+   .menubutton {
+      aspect-ratio: 1;
+      background-color: rgba(0, 0, 0, 0) !important;
+      color: black !important;
+      box-shadow: none !important;
+      width: 3% !important;
+      position: absolute !important;
+      right: 0;
+      padding: 0 !important;
+      min-width: 0 !important;
+   }
 }

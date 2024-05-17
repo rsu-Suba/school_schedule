@@ -5,6 +5,7 @@ import Bottom from "./bottom.jsx";
 import Card from "./card.jsx";
 import Calendar from "./calendar.jsx";
 import Other from "./other.jsx";
+import Menu from "./menu.jsx";
 
 function App() {
    let date = new Date();
@@ -18,35 +19,59 @@ function App() {
 
    //recentNum = 6;
    //nowtime = 1440;
-   
-   return (
-      <>
-         <div className="mainCanvas">
-            <div className="canvas" id="canvas">
-               <div className="main" id="main">
-                  <div className="mainCards">
-                     <Clock />
-                     <Card key={"card1"} card={"Up Next"} num={recentNum} pos={"top"} nowtime={nowtime} />
-                     <Card key={"card2"} card={todayText} num={todayNum} pos={"mid"} />
-                     <Card key={"card3"} card={tomorrowText} num={tomorrowNum} pos={"bottom"} />
-                     <div className="blankCard"></div>
+
+   if (window.innerHeight > window.innerWidth) {
+      return (
+         <>
+            <div className="mainCanvas">
+               <div className="canvas" id="canvas">
+                  <div className="main" id="main">
+                     <div className="mainCards">
+                        <Clock />
+                        <Card key={"card1"} card={"Up Next"} num={recentNum} pos={"top"} nowtime={nowtime} />
+                        <Card key={"card2"} card={todayText} num={todayNum} pos={"mid"} />
+                        <Card key={"card3"} card={tomorrowText} num={tomorrowNum} pos={"bottom"} />
+                        <div className="blankCard"></div>
+                     </div>
+                  </div>
+                  <div className="sche" id="sche">
+                     <Calendar />
+                  </div>
+                  <div className="others" id="others">
+                     <div className="otherCards">
+                        <Other />
+                     </div>
                   </div>
                </div>
-               <div className="sche" id="sche">
-                  <Calendar />
+               <div className="bottomCanvas">
+                  <Bottom />
                </div>
-               <div className="others" id="others">
-                  <div className="otherCards">
-                     <Other />
+            </div>
+         </>
+      );
+   } else {
+      return (
+         <>
+            <div className="mainCanvas">
+               <div className="PCCanvas">
+                  <div className="main" id="main">
+                     <div className="mainCards">
+                        <Clock />
+                        <Card key={"card1"} card={"Up Next"} num={recentNum} pos={"top"} nowtime={nowtime} />
+                        <Card key={"card2"} card={todayText} num={todayNum} pos={"mid"} />
+                        <Card key={"card3"} card={tomorrowText} num={tomorrowNum} pos={"bottom"} />
+                        <div className="blankCard"></div>
+                     </div>
+                  </div>
+                  <div className="sche" id="sche">
+                     <Calendar />
                   </div>
                </div>
+               <Menu />
             </div>
-            <div className="bottomCanvas">
-               <Bottom />
-            </div>
-         </div>
-      </>
-   );
+         </>
+      );
+   }
 }
 
 export default App;

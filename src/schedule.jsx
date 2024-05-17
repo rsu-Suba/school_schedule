@@ -14,25 +14,23 @@ export default function card(props) {
    let scheDate = "";
    console.log(dates, props.date);
    for (let i = 0; i < dates.length; i++) {
-    cardtext.push(
-     <List>
-        <ListItem>
-           <div className="cardRight">
-              <p className="scheText">
-                 {scheContext}&ensp;/&ensp;{scheDate}
-              </p>
-           </div>
-           <ListItemText />
-        </ListItem>
-     </List>
-     );
-    }
+      cardtext.push(
+         <List>
+            <ListItem>
+               <div className="cardRight">
+                  <p className="scheText">
+                     {scheContext}&ensp;/&ensp;{scheDate}
+                  </p>
+               </div>
+               <ListItemText />
+            </ListItem>
+         </List>
+      );
+   }
 
    return (
       <div className="carddiv cardLast">
-         <div className="card">
-            {cardtext}
-         </div>
+         <div className="card">{cardtext}</div>
       </div>
    );
 }
