@@ -4,6 +4,16 @@ html {
    overflow: hidden;
 }
 
+.mainCards::-webkit-scrollbar, .scheDiv::-webkit-scrollbar{
+   width: 10px;
+}
+.mainCards::-webkit-scrollbar-track, .scheDiv::-webkit-scrollbar-track{
+   background-color: rgba(0, 0, 0, 0);
+}
+.mainCards::-webkit-scrollbar-thumb, .scheDiv::-webkit-scrollbar-track{
+   background-color: rgba(0, 0, 0, 0);
+}
+
 #root {
    text-align: center;
    overflow: hidden;
