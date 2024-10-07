@@ -38,7 +38,7 @@ function cardMake(title, prop, isLast) {
 
 let howtotext = [];
 const timesubs = [
-   `-Timetable tab-`,
+   `-Timetable Tab-`,
    `
    <p class="othercardsub">上から順に次の授業, 当日の時間割, 翌日の時間割のブロック</p>
    <p>&nbsp;</p>
@@ -81,7 +81,7 @@ export default function App() {
             <div>
                <div className="howtouseTop">
                   <p className="chapter" id="chapter">
-                     -Timetable tab-
+                     -Timetable Tab-
                   </p>
                   <div className="howtouseTopButtons">
                      <IconButton
@@ -124,7 +124,6 @@ export default function App() {
       cardMake(
          "Planned Features",
          [
-            <p className="othercardsub">時間割変更対応</p>,
             <p className="othercardsub">予定変更対応</p>,
             <p className="othercardsub">課題リスト</p>,
          ],
@@ -153,7 +152,7 @@ export default function App() {
             <a href="https://mui.com/" target="_blank">
                Material UI
             </a>
-            , JavaScript
+            , JavaScript, Google Apps Script, ChatGPT
          </p>,
          <p className="subName">
             Made by{" "}

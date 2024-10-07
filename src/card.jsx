@@ -1,4 +1,3 @@
-import * as React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -7,6 +6,9 @@ import Avatar from "@mui/material/Avatar";
 import "./App.css";
 import json from "./assets/main.json";
 import Iconselect from "./iconselect";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import React, { useState } from 'react';
 
 export default function card(props) {
    let cardtext = [];
@@ -14,10 +16,12 @@ export default function card(props) {
    let loop = json[props.num].class;
    if (json[props.num].class == 5) timeList = 2;
    if (json[props.num].class == 5) loop--;
+
+
    let nowTime = Number(props.nowtime);
    for (let i = 1; i <= loop; i++) {
-      let link = <a className="linkButton" href={json[props.num][i].syllabus} target="_blank"></a>;
-      if (json[props.num][i].syllabus === "") {
+      let link = <a className="linkButton" href={json.sub[json[props.num][i]].syllabus} target="_blank"></a>;
+      if (json.sub[json[props.num][i]].syllabus === "") {
          link = "";
       }
       if (props.pos == "top") {
@@ -33,15 +37,15 @@ export default function card(props) {
                   <ListItem>
                      <ListItemAvatar>
                         <Avatar>
-                           <Iconselect icon={json[props.num][i].icon} />
+                           <Iconselect icon={json.sub[json[props.num][i]].icon} />
                         </Avatar>
                      </ListItemAvatar>
                      <div className="cardRight">
                         <div className="subProp">
-                           <p className="subName">{json[props.num][i].sub}</p>
+                           <p className="subName">{json.sub[json[props.num][i]].sub}</p>
                            <p className="time">{json.time[timeList][i]}</p>
                         </div>
-                        <p className="textbook">{json[props.num][i].textbook}</p>
+                        <p className="textbook">{json.sub[json[props.num][i]].textbook}</p>
                      </div>
                      <ListItemText />
                      {link}
@@ -55,15 +59,15 @@ export default function card(props) {
                <ListItem>
                   <ListItemAvatar>
                      <Avatar>
-                        <Iconselect icon={json[props.num][i].icon} />
+                        <Iconselect icon={json.sub[json[props.num][i]].icon} />
                      </Avatar>
                   </ListItemAvatar>
                   <div className="cardRight">
                      <div className="subProp">
-                        <p className="subName">{json[props.num][i].sub}</p>
+                        <p className="subName">{json.sub[json[props.num][i]].sub}</p>
                         <p className="time">{json.time[timeList][i]}</p>
                      </div>
-                     <p className="textbook">{json[props.num][i].textbook}</p>
+                     <p className="textbook">{json.sub[json[props.num][i]].textbook}</p>
                   </div>
                   <ListItemText />
                   {link}
@@ -87,7 +91,8 @@ export default function card(props) {
          if (json[day].class == 5) timeList = 2;
          if (json[day].class == 5) loop--;
          for (let m = 1; m <= loop; m++) {
-            let link = <a className="linkButton" href={json[day][m].syllabus} target="_blank"></a>;
+            console.log(json[day][m]);
+            let link = <a className="linkButton" href={json.sub[json[day][m]].syllabus} target="_blank"></a>;
             if (json[day][m].syllabus === "") {
                link = "";
             }
@@ -96,15 +101,15 @@ export default function card(props) {
                   <ListItem>
                      <ListItemAvatar>
                         <Avatar>
-                           <Iconselect icon={json[day][m].icon} />
+                           <Iconselect icon={json.sub[json[day][m]].icon} />
                         </Avatar>
                      </ListItemAvatar>
                      <div className="cardRight">
                         <div className="subProp">
-                           <p className="subName">{json[day][m].sub}</p>
+                           <p className="subName">{json.sub[json[day][m]].sub}</p>
                            <p className="time">{json.time[timeList][m]}</p>
                         </div>
-                        <p className="textbook">{json[day][m].textbook}</p>
+                        <p className="textbook">{json.sub[json[day][m]].textbook}</p>
                      </div>
                      <ListItemText />
                      {link}
@@ -115,21 +120,12 @@ export default function card(props) {
       }
    }
 
-   if (props.pos != "bottom") {
       return (
-         <div className="carddiv">
+         <div className="carddiv" >
             <p className="cardtex">{props.card}</p>
-            <div className="card" id="card">
+            <div className="card" id="card" key={props.key}>
                {cardtext}
             </div>
          </div>
-      );
-   } else if (props.pos == "bottom") {
-      return (
-         <div className="carddiv cardLast">
-            <p className="cardtex">{props.card}</p>
-            <div className="card">{cardtext}</div>
-         </div>
-      );
+      )
    }
-}

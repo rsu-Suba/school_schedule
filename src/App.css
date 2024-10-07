@@ -192,6 +192,17 @@ a {
    padding: 0 !important;
 }
 
+input {
+   text-align: center !important;
+}
+
+.datepicker {
+   background-color: rgba(0, 0, 0, 0);
+   color: black;
+   border: solid 0.5px #777;
+   border-radius: 9999px;
+}
+
 .card p,
 .card a {
    white-space: nowrap;
@@ -507,4 +518,66 @@ a {
       padding: 0 !important;
       min-width: 0 !important;
    }
+}
+
+.changeSelect, .cardChanged select, .datepicker {
+   background-color: rgba(255, 255, 255, 0.6);
+   color: black;
+   border: solid #aaa 1px;
+   box-shadow: rgba(0, 0, 0, 0.38) 0 0 0.5vh;
+   border-radius: 9999px;
+   text-align: center;
+   padding: 4px;
+   font-size: 75%;
+}
+
+.datepicker {
+   font-size: 85%;
+   width: 100%;
+   position: relative;
+   display: flex;
+}
+
+.subButton, .changedSub {
+   width: 100%;
+   display: flex;
+   justify-content: space-between !important;
+}
+
+.cardCh {
+   padding: 5% !important;
+   display: flex;
+   flex-direction: column;
+   gap: 5px 0;
+}
+
+.react-datepicker {
+   z-index: 1 !important;
+}
+
+.changeTime {
+   width: 80%;
+   right: 0;
+}
+
+.changedButton {
+   display: flex;
+   flex-direction: row;
+   text-align: center;
+   justify-content: space-between;
+}
+
+.changedButton div {
+   background-color: rgba(255, 255, 255, 0.6);
+   color: black;
+   border: solid #aaa 1px;
+   border-radius: 9999px;
+   text-align: center;
+   padding: 4px;
+   font-size: 110%;
+   width: 35%;
+}
+
+.changeCard {
+   width: 100%;
 }

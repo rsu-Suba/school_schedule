@@ -226,7 +226,7 @@ export default function DateCalendarServerRequest() {
             />
          </LocalizationProvider>
          {selectScheContainer}
-         <div className="carddiv cardLast">{cardtextContainer}</div>
+         <div className="carddiv cardLast" key={"calendarkey"}>{cardtextContainer}</div>
       </div>
    );
 }
