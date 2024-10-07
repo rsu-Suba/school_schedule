@@ -518,6 +518,10 @@ input {
       padding: 0 !important;
       min-width: 0 !important;
    }
+
+   .datepicker {
+      width: 145% !important;
+   }
 }
 
 .changeSelect, .cardChanged select, .datepicker {
@@ -533,7 +537,7 @@ input {
 
 .datepicker {
    font-size: 85%;
-   width: 100%;
+   width: 95%;
    position: relative;
    display: flex;
 }
