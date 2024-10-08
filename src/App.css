@@ -29,7 +29,9 @@ p,
 h4,
 div,
 button,
-span {
+span,
+input,
+select {
    font-family: "Outfit", "Zen Kaku Gothic New", sans-serif !important;
 }
 
@@ -520,19 +522,24 @@ input {
    }
 
    .datepicker {
-      width: 145% !important;
+      width: 100% !important;
    }
 }
 
-.changeSelect, .cardChanged select, .datepicker {
+.changeSelect, .cardChanged select, .datepicker, .workInput {
    background-color: rgba(255, 255, 255, 0.6);
    color: black;
    border: solid #aaa 1px;
    box-shadow: rgba(0, 0, 0, 0.38) 0 0 0.5vh;
    border-radius: 9999px;
    text-align: center;
-   padding: 4px;
+   padding: 6px;
+   margin: 2px 0;
    font-size: 75%;
+}
+
+.workInput {
+   font-size: 85%;
 }
 
 .datepicker {
@@ -569,6 +576,7 @@ input {
    flex-direction: row;
    text-align: center;
    justify-content: space-between;
+   margin-top: 8px;
 }
 
 .changedButton div {
