@@ -124,8 +124,7 @@ export default function App() {
       cardMake(
          "Planned Features",
          [
-            <p className="othercardsub">予定変更対応</p>,
-            <p className="othercardsub">課題リスト</p>,
+            <p className="othercardsub">予定変更対応</p>
          ],
          0
       )

@@ -9,6 +9,8 @@ import Iconselect from "./iconselect";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useState } from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 export default function card(props) {
    let cardtext = [];
@@ -121,7 +123,7 @@ export default function card(props) {
    }
 
       return (
-         <div className="carddiv" >
+         <div className="carddiv">
             <p className="cardtex">{props.card}</p>
             <div className="card" id="card" key={props.key}>
                {cardtext}
