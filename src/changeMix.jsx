@@ -127,6 +127,9 @@ const ChangeMix = (props) => {
          .then((fetchedData) => {
             setIsPosting(false);
             setIsWorkPosting(false);
+            if (mode == 1) {
+               setWorkText("");
+            }
             get();
          })
          .catch((err) => {
@@ -140,9 +143,10 @@ const ChangeMix = (props) => {
    }, []);
 
    const homework = (data) => {
+      works = [{ value: "0", label: "0" }];
       let num = 0;
       for (let i = 0; i < data.length; i++) {
-         for (let j = 0; j < data[i].length / 2; j++) {
+         for (let j = 0; j < data[i][1].length; j++) {
             num++;
             works.push({ value: num.toString(), label: num.toString() });
          }
