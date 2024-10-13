@@ -112,6 +112,7 @@ const ChangeMix = (props) => {
                value: textWork,
             }),
          };
+         setTimeWorkState("");
       } else if (mode == 2) {
          setIsWorkPosting(true);
          options = {
@@ -251,7 +252,7 @@ const ChangeMix = (props) => {
                         ))}
                      </div>
                   ) : (
-                     <List className="card scheCard" style={{ zIndex: -99 }}>
+                     <List className="card scheCard">
                         <ListItem>
                            <p>データなし</p>
                         </ListItem>
@@ -290,6 +291,7 @@ const ChangeMix = (props) => {
                   </div>
                   {timeWorkState == 0 && (
                      <input
+                        id="timeWorkId"
                         className="workInput"
                         type="text"
                         value={textWork}
