@@ -15,7 +15,7 @@
     "@mui/icons-material": "^5.15.15",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.15",
-    "@mui/x-date-pickers": "^7.2.0",
+    "@mui/x-date-pickers": "^7.19.0",
     "dayjs": "^1.11.10",
     "react": "^18.2.0",
     "react-datepicker": "^7.4.0",

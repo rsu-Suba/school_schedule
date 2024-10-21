@@ -1,16 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kosugi&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kosugi&display=swap");
 
 html {
    overflow: hidden;
 }
 
-.mainCards::-webkit-scrollbar, .scheDiv::-webkit-scrollbar{
+.mainCards::-webkit-scrollbar,
+.scheDiv::-webkit-scrollbar {
    width: 10px;
 }
-.mainCards::-webkit-scrollbar-track, .scheDiv::-webkit-scrollbar-track{
+.mainCards::-webkit-scrollbar-track,
+.scheDiv::-webkit-scrollbar-track {
    background-color: rgba(0, 0, 0, 0);
 }
-.mainCards::-webkit-scrollbar-thumb, .scheDiv::-webkit-scrollbar-track{
+.mainCards::-webkit-scrollbar-thumb,
+.scheDiv::-webkit-scrollbar-track {
    background-color: rgba(0, 0, 0, 0);
 }
 
@@ -43,7 +46,7 @@ select {
 }
 
 a {
-   color: #266AFF !important;
+   color: #266aff !important;
 }
 
 .logo {
@@ -58,7 +61,6 @@ a {
 .logo.react:hover {
    filter: drop-shadow(0 0 2em #61dafbaa);
 }
-
 
 .card {
    padding: 2em;
@@ -366,7 +368,8 @@ input {
    background-color: #7e63df;
 }
 
-.others, .othersMenu {
+.others,
+.othersMenu {
    position: relative;
    display: flex;
    flex-direction: column;
@@ -409,7 +412,8 @@ input {
    text-align: center;
 }
 
-.othercardsub, .othercardarrow {
+.othercardsub,
+.othercardarrow {
    display: grid;
    grid-template-columns: 2.5vh 1fr;
 }
@@ -454,21 +458,23 @@ input {
    );
 }
 
-.MuiPaper-root{
+.MuiPaper-root {
    overflow-x: hidden;
 }
 
-@media screen and (orientation:landscape) {
+@media screen and (orientation: landscape) {
    .Digit {
       font-size: min(2vw, max(2.5vh));
    }
 
-   .subProp, .textbook, .card h4 {
+   .subProp,
+   .textbook,
+   .card h4 {
       font-size: min(4vw, max(1.4vh));
    }
 
    .PCCanvas {
-      width: calc(calc(95% / 3)*2);
+      width: calc(calc(95% / 3) * 2);
       max-width: 90vh;
       height: 100%;
       position: absolute;
@@ -480,16 +486,20 @@ input {
       left: 0;
    }
 
-   .main, .sche, .others{
+   .main,
+   .sche,
+   .others {
       width: calc(95% / 2);
    }
 
-   .mainCards, .scheDiv {
+   .mainCards,
+   .scheDiv {
       width: 90% !important;
       padding: 10% 5% !important;
    }
-   
-   .card, .MuiDayCalendar-root {
+
+   .card,
+   .MuiDayCalendar-root {
       border-radius: 2vh;
    }
 
@@ -506,7 +516,10 @@ input {
    }
 }
 
-.changeSelect, .cardChanged select, .datepicker, .workInput {
+.changeSelect,
+.cardChanged select,
+.datepicker,
+.workInput {
    background-color: rgba(255, 255, 255, 0.6);
    color: black;
    border: solid #aaa 1px;
@@ -533,7 +546,8 @@ input {
    display: flex;
 }
 
-.subButton, .changedSub {
+.subButton,
+.changedSub {
    width: 100%;
    display: flex;
    justify-content: space-between !important;
