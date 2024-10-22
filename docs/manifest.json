@@ -1,16 +1,26 @@
 {
-    "name": "PWA Test",
-    "short_name": "PWA",
-    "background_color": "#266AFF",
-  "theme_color": "#266AFF",
+    "short_name": "React App",
+    "name": "Create React App Sample",
     "icons": [
       {
-        "src": "./src/assets/apple-touch-icon.png",
-        "sizes": "180x180",
-        "type": "image/png"
+        "src": "favicon.ico",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "type": "image/x-icon"
+      },
+      {
+        "src": "logo192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "logo512.png",
+        "type": "image/png",
+        "sizes": "512x512"
       }
-      ],
-      "start_url": "/school_schedule/",
-    "display": "standalone"
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
   }
   
