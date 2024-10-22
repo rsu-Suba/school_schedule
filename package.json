@@ -1,5 +1,5 @@
 {
-  "name": "vite-react",
+  "name": "school-schedule-antd",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,19 +10,32 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui/icons-material": "^5.15.15",
-    "@mui/lab": "^5.0.0-alpha.170",
-    "@mui/material": "^5.15.15",
-    "@mui/x-date-pickers": "^7.19.0",
-    "dayjs": "^1.11.10",
+    "@ant-design/icons": "^5.5.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.4",
+    "@mui/material": "^6.1.4",
+    "@mui/styled-engine": "^6.1.4",
+    "antd": "^5.21.4",
+    "dayjs": "^1.11.13",
     "react": "^18.2.0",
-    "react-datepicker": "^7.4.0",
     "react-dom": "^18.2.0",
-    "react-select": "^5.8.1"
+    "styled-components": "^6.0.0-rc.3",
+    "workbox-background-sync": "^6.6.0",
+    "workbox-broadcast-update": "^6.6.0",
+    "workbox-cacheable-response": "^6.6.0",
+    "workbox-core": "^6.6.0",
+    "workbox-expiration": "^6.6.0",
+    "workbox-google-analytics": "^6.6.1",
+    "workbox-navigation-preload": "^6.6.0",
+    "workbox-precaching": "^6.6.0",
+    "workbox-range-requests": "^6.6.0",
+    "workbox-routing": "^6.6.0",
+    "workbox-strategies": "^6.6.0",
+    "workbox-streams": "^6.6.0"
   },
   "devDependencies": {
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
@@ -30,6 +43,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-pwa": "^0.20.5"
   }
 }
