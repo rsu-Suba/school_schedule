@@ -198,7 +198,7 @@ const ChangeMix = (props) => {
                      ))}
                   </div>
                ) : (
-                  <List className="card scheCard" style={{ zIndex: -99 }}>
+                  <List className="card scheCard">
                      <ListItem>
                         <p>データなし</p>
                      </ListItem>

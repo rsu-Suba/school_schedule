@@ -2,19 +2,28 @@
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
-      <meta name="theme-color" content="#266AFF"/>
-      <link rel="icon" href="./src/assets/favicon.ico">
-      <link rel="apple-touch-icon" href="./src/assets/apple-touch-icon.png" sizes="180x180">
+      <meta name="theme-color" content="#266AFF" />
+      <link rel="icon" href="./src/assets/favicon.ico" />
+      <link rel="apple-touch-icon" href="./src/assets/apple-touch-icon.png" sizes="180x180" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       <title>Schedule Hub</title>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FVL9LZ1MS"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-      
-        gtag('config', 'G-5FVL9LZ1MS');
+      <link rel="manifest" href="./manifest.json" />
+      <script type="text/javascript">
+         // service workerが有効なら、service-worker.js を登録する
+         if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("./service-worker.js").then(function () {
+               console.log("Service Worker Registered");
+            });
+         }
       </script>
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+      <meta name="apple-mobile-web-app-title" content="PWA TEST" />
+      <link
+         rel="apple-touch-startup-image"
+         href="./src/assets/apple-touch-icon.png"
+         media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+      />
    </head>
    <body>
       <div id="root"></div>
