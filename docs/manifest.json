@@ -2,6 +2,7 @@
     "name": "PWA Test",
     "short_name": "PWA",
     "background_color": "#266AFF",
+  "theme_color": "#266AFF",
     "icons": [
       {
         "src": "./src/assets/apple-touch-icon.png",
@@ -9,7 +10,7 @@
         "type": "image/png"
       }
       ],
-    "start_url": "./?utm_source=homescreen",
+      "start_url": "/school_schedule/",
     "display": "standalone"
   }
   
