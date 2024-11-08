@@ -1,13 +1,6 @@
 import * as React from "react";
 import dayjs from "dayjs";
-import Badge from "@mui/material/Badge";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { PickersDay } from "@mui/x-date-pickers/PickersDay";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { DayCalendarSkeleton } from "@mui/x-date-pickers/DayCalendarSkeleton";
+import { Calendar, List, Badge } from "antd";
 import json from "./assets/schedule.json";
 
 let dates = [];
@@ -53,10 +46,17 @@ function dateSelect(date) {
    }
    selectScheContainer.push(
       <div className="carddiv">
-         <p>{`${String(date.$M + 1)}/${String(date.$D)}/${date.$y}`}</p>
+         <div className="cardTitle">
+            <p className="cardtex">
+               <span style={{ color: "#1677ff" }}>
+                  {`${String(date.$M + 1)}/${String(date.$D)}/${date.$y}`.slice(0, 1)}
+               </span>
+               <span>{`${String(date.$M + 1)}/${String(date.$D)}/${date.$y}`.slice(1)}</span>
+            </p>
+         </div>
          <div className="card scheCard">
             <List className="scheCardContent">
-               <ListItem>{cardtext}</ListItem>
+               <List.Item>{cardtext}</List.Item>
             </List>
          </div>
       </div>
@@ -91,12 +91,12 @@ function fakeFetch(date, { signal }) {
             }
             let scheCard = (
                <List className="scheCardContent">
-                  <ListItem>
+                  <List.Item>
                      <div className="subProp">
                         <p className="scheText">{scheContext}</p>
                         <p className="scheText">{scheDate}</p>
                      </div>
-                  </ListItem>
+                  </List.Item>
                </List>
             );
             if (dayNum != dayNumCache && dayNumFirst == 1) {
@@ -141,23 +141,11 @@ function fakeFetch(date, { signal }) {
 const initialValue = dayjs();
 let dateValue = dayjs();
 
-function ServerDay(props) {
-   const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
-
-   const isSelected = !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.date()) >= 0;
-   const badge = <span className="badgeSpan"></span>;
-
-   return (
-      <Badge key={props.day.toString()} overlap="circular" badgeContent={isSelected ? badge : undefined}>
-         <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
-      </Badge>
-   );
-}
-
 export default function DateCalendarServerRequest() {
    const requestAbortController = React.useRef(null);
    const [isLoading, setIsLoading] = React.useState(false);
    const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
+   const [today, setToday] = React.useState();
 
    const fetchHighlightedDays = (date) => {
       const controller = new AbortController();
@@ -200,33 +188,58 @@ export default function DateCalendarServerRequest() {
       dateValue = selectDate;
       dateSelect(selectDate);
       fetchHighlightedDays(selectDate);
+      setToday(date);
+      dateCellRender(date);
+   };
+
+   const dateCellRender = (value) => {
+      const day = value.date();
+      const outsideCurrentMonth = dayjs(today).month();
+      const isSelected = outsideCurrentMonth == value.month() && highlightedDays.indexOf(day) >= 0 ? true : false;
+      const isToday = dayjs(`${value.year()}-${value.month() + 1}-${value.date()}`).isSame(
+         `${dayjs(today).year()}-${dayjs(today).month() + 1}-${dayjs(today).date()}`
+      );
+      const isThisMonth = dayjs(value).isBefore(dayjs());
+      if (isSelected || isToday) {
+         return (
+            <div>
+               <Badge count={isSelected ? " " : null} size="small" color="blue">
+                  <div
+                     style={isThisMonth && !isToday ? { color: "rgba(0, 0, 0, 0.25" } : {}}
+                     className="ant-picker-cell-inner"
+                  >
+                     {day}
+                  </div>
+               </Badge>
+            </div>
+         );
+      } else {
+         return (
+            <div>
+               <div className="ant-picker-cell-inner">{day}</div>
+            </div>
+         );
+      }
    };
 
    return (
       <div className="scheDiv">
-         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateCalendar
-               views={["day"]}
-               minDate={dayjs()}
-               maxDate={dayjs("2025-03-31")}
-               defaultValue={initialValue}
-               value={dateValue}
-               loading={isLoading}
-               onMonthChange={handleMonthChange}
-               renderLoading={() => <DayCalendarSkeleton />}
-               onChange={(newValue) => dateChange(newValue)}
-               slots={{
-                  day: ServerDay,
-               }}
-               slotProps={{
-                  day: {
-                     highlightedDays,
-                  },
-               }}
-            />
-         </LocalizationProvider>
+         <Calendar
+            dateFullCellRender={dateCellRender}
+            className="carddiv"
+            fullscreen={false}
+            views={["day"]}
+            validRange={[dayjs().subtract(1, "day"), dayjs("2025-03-31")]}
+            defaultValue={initialValue}
+            value={dateValue}
+            loading={isLoading}
+            onPanelChange={handleMonthChange}
+            onChange={(newValue) => dateChange(newValue)}
+         />
          {selectScheContainer}
-         <div className="carddiv cardLast" key={"calendarkey"}>{cardtextContainer}</div>
+         <div className="carddiv cardLast" key={"calendarkey"}>
+            {cardtextContainer}
+         </div>
       </div>
    );
 }

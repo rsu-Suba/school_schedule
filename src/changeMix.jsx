@@ -1,30 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { fetchData } from "./changeGet";
 import json from "./assets/main.json";
-import DatePicker from "react-datepicker";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-
-let time = 1;
-let sub = 1;
+import { List, Select, Input, DatePicker, Space, Button, ConfigProvider, Skeleton } from "antd";
+import dayjs from "dayjs";
+import "dayjs/locale/ja";
 
 const ChangeMix = (props) => {
-   // 初期状態として1つのデータを設定
+   const Today = new Date();
+   console.log(props);
    const [data, setData] = useState([]);
-
+   const [dataWork, setWorkData] = useState([]);
+   const [dataWorkOpt, setWorkOpt] = useState([{ value: "0", label: "0" }]);
    const [isFetching, setIsFetching] = useState(false);
    const [isPosting, setIsPosting] = useState(false);
-   const [error, setError] = useState(null); // エラーメッセージ用のState
-
-   const Today = new Date();
-   const [date, setDate] = React.useState(Today);
-
+   const [isWorkPosting, setIsWorkPosting] = useState(false);
+   const [textWork, setWorkText] = useState("");
+   const [error, setError] = useState(null);
+   const [timeWorkState, setTimeWorkState] = useState(0);
+   const [date, setDate] = React.useState(null);
+   const [dateWork, setDateWork] = React.useState(null);
+   const [time, setTime] = useState(1);
+   const [sub, setSub] = useState(0);
    const times = [
       { value: "1", label: "1" },
       { value: "2", label: "2" },
       { value: "3", label: "3" },
       { value: "4", label: "4" },
    ];
+   let works = [{ value: "0", label: "0" }];
    const subsListOpt = [
       { value: "1", label: "コンピューターシステムII" },
       { value: "2", label: "プログラミングII" },
@@ -71,34 +74,60 @@ const ChangeMix = (props) => {
       const options = {
          method: "GET",
       };
-      const url = `https://script.google.com/macros/s/AKfycbxrHb3CB2P2fhTsF6YtCggz8pKiu9bJ1NFPF7i6yZ8YGgpt9Djx00G7c3_5pfA-uvqO/exec?sheetName=sheet1`;
-      fetchData(url, options)
+      fetchData(options)
          .then((fetchedData) => {
-            setData(fetchedData);
+            setData(fetchedData[0]);
+            setWorkData(fetchedData[1]);
+            homework(fetchedData[1]);
             setIsFetching(false);
          })
          .catch((err) => {
             setError("Failed to fetch data");
+            console.log(err);
             setIsFetching(false);
          });
    };
 
-   const post = () => {
-      setIsPosting(true);
-      const url =
-         "https://script.google.com/macros/s/AKfycbxrHb3CB2P2fhTsF6YtCggz8pKiu9bJ1NFPF7i6yZ8YGgpt9Djx00G7c3_5pfA-uvqO/exec";
-      const options = {
-         method: "POST",
-         body: JSON.stringify({
-            sheet: "sheet1",
-            date: document.getElementById("datepicker").value,
-            time: time,
-            value: sub,
-         }),
-      };
-      fetchData(url, options)
+   const post = (mode) => {
+      let options = {};
+      if (mode == 0) {
+         setIsPosting(true);
+         options = {
+            method: "POST",
+            body: JSON.stringify({
+               date: document.getElementById("datepicker").value,
+               time: time,
+               value: sub + 1,
+            }),
+         };
+      } else if (mode == 1) {
+         setIsWorkPosting(true);
+         options = {
+            method: "POST",
+            body: JSON.stringify({
+               date: document.getElementById("datepickerWork").value,
+               time: 5,
+               value: textWork,
+            }),
+         };
+      } else if (mode == 2) {
+         setIsWorkPosting(true);
+         options = {
+            method: "POST",
+            body: JSON.stringify({
+               date: 0,
+               time: 5,
+               value: timeWorkState,
+            }),
+         };
+      }
+      fetchData(options)
          .then((fetchedData) => {
             setIsPosting(false);
+            setIsWorkPosting(false);
+            if (mode == 1) {
+               setWorkText("");
+            }
             get();
          })
          .catch((err) => {
@@ -109,103 +138,267 @@ const ChangeMix = (props) => {
 
    useEffect(() => {
       get();
+      setDate(dayjs());
+      setDateWork(dayjs());
    }, []);
 
+   const homework = (data) => {
+      works = [{ value: "0", label: "0" }];
+      let num = 0;
+      for (let i = 0; i < data.length; i++) {
+         for (let j = 0; j < data[i][1].length; j++) {
+            num++;
+            works.push({ value: num.toString(), label: num.toString() });
+         }
+      }
+      setWorkOpt(works);
+   };
+
    const handleChangeTime = (e) => {
-      time = e.target.value;
+      setTime(e);
    };
    const handleChangeSub = (e) => {
-      sub = e.target.value;
+      setSub(e - 1);
+   };
+   const handleChangeWorkTime = (e) => {
+      setTimeWorkState(e);
    };
 
-   const selectTime = times.map((time) => {
-      return (
-         <option value={time.value} key={time.label}>
-            {time.label}
-         </option>
-      );
-   });
-   const selectSub = subsListOpt.map((sub) => {
-      return (
-         <option value={sub.value} key={sub.label}>
-            {sub.label}
-         </option>
-      );
-   });
-
    return (
-      <div className="carddiv">
-         <p className="cardtex">{props.card}</p>
-         <div className="cardChanged" id="card">
-            <div className="card cardCh">
-               <div className="changedSub">
-                  <DatePicker
-                     portalId="root-portal"
-                     id="datepicker"
-                     onChange={(selectedDate) => {
-                        setDate(selectedDate || Today);
-                     }}
-                     dateFormat="yyyy/MM/dd"
-                     selected={date}
-                     minDate={Today}
-                     className="datepicker"
-                     popperClassName="calendar-popout"
-                     popperPlacement="top-end"
-                     popperModifiers={{
-                        offset: { enabled: true, offset: "5px, 10px" },
-                        preventOverflow: {
-                           enabled: true,
-                           escapeWithReference: false,
-                           boundariesElement: "viewport",
-                        },
-                     }}
-                  />
-                  <select onChange={handleChangeTime}>{selectTime}</select>
+      <div>
+         <ConfigProvider>
+            <div className="carddiv">
+               <div className="cardTitle">
+                  <p className="cardtex">
+                     <span style={{ color: "#1677ff" }}>{props.card.slice(0, 1)}</span>
+                     <span>{props.card.slice(1)}</span>
+                  </p>
                </div>
-               <select className="subButton" onChange={handleChangeSub} required>
-                  {selectSub}
-               </select>
-               <div className="changedButton">
-                  <div onClick={get} disabled={isFetching}>
-                     更新
+               <div className="cardChanged" id="card">
+                  <div className="card cardCh">
+                     <Space direction="vertical" className="changeSpace1">
+                        <Space direction="horizontal" className="changeSpace2">
+                           <DatePicker
+                              id="datepicker"
+                              className="datePicker"
+                              views={["year", "month", "day"]}
+                              value={date}
+                              minDate={dayjs()}
+                              maxDate={dayjs("2025-03-31")}
+                              onChange={(selectedDate) => {
+                                 setDate(selectedDate);
+                              }}
+                              size="large"
+                           />
+                           <Select
+                              labelId="Label-Time"
+                              value={time}
+                              label="Time"
+                              onChange={handleChangeTime}
+                              options={times}
+                              size="large"
+                           />
+                        </Space>
+                        <Select
+                           className="subSelect"
+                           labelId="Label-Sub"
+                           value={subsList[sub]}
+                           label="Subject"
+                           onChange={handleChangeSub}
+                           options={subsListOpt}
+                           size="large"
+                        />
+                        <div className="changedButton">
+                           <Button
+                              color="primary"
+                              variant="outlined"
+                              size="large"
+                              shape="round"
+                              style={{ cursor: "pointer" }}
+                              onClick={() => get(0)}
+                              disabled={isFetching || isPosting}
+                              loading={isFetching}
+                           >
+                              更新
+                           </Button>
+                           <Button
+                              color="primary"
+                              variant="solid"
+                              size="large"
+                              shape="round"
+                              style={{ cursor: "pointer" }}
+                              onClick={() => post(0)}
+                              loading={isPosting}
+                           >
+                              変更
+                           </Button>
+                        </div>
+                     </Space>
                   </div>
-                  <div onClick={post}>変更</div>
-               </div>
-               {isFetching && <p>データ更新中</p>}
-               {isPosting && <p>データ送信中</p>}
-            </div>
-            <div>
-               {error ? (
-                  <p style={{ color: "red" }}>{error}</p>
-               ) : data[0] ? (
                   <div>
-                     {data.map((date, index) => (
+                     {isFetching ? (
                         <List className="card scheCard">
-                           <ListItem>
-                              <div key={index} className="changeCard">
-                                 <p className="scheText">
-                                    {new Date(date[0]).getMonth() + 1}/{new Date(date[0]).getDate()}
-                                 </p>
-                                 {date[1].map((val, ind) => (
-                                    <div className="subProp">
-                                       <p className="scheText">{subsList[val[1] - 1]}</p>
-                                       <p className="scheText">{json.time[1][val[0]]}</p>
-                                    </div>
-                                 ))}
-                              </div>
-                           </ListItem>
+                           <List.Item>
+                              <Skeleton active round paragraph={{ rows: 2 }} title={false} />
+                           </List.Item>
                         </List>
-                     ))}
+                     ) : error ? (
+                        <p style={{ color: "red" }}>{error}</p>
+                     ) : data[0] ? (
+                        <div>
+                           {data.map((date, index) => (
+                              <List className="card scheCard">
+                                 <List.Item>
+                                    <div key={index} className="changeCard">
+                                       <p className="scheText">
+                                          {new Date(date[0]).getMonth() + 1}/{new Date(date[0]).getDate()}
+                                       </p>
+                                       {date[1].map((val, ind) => (
+                                          <div className="subProp">
+                                             <p className="scheText">{subsList[val[1] - 1]}</p>
+                                             <p className="time">{json.time[1][val[0]]}</p>
+                                          </div>
+                                       ))}
+                                    </div>
+                                 </List.Item>
+                              </List>
+                           ))}
+                        </div>
+                     ) : (
+                        <List className="card scheCard">
+                           <List.Item>
+                              <p>データなし</p>
+                           </List.Item>
+                        </List>
+                     )}
                   </div>
-               ) : (
-                  <List className="card scheCard">
-                     <ListItem>
-                        <p>データなし</p>
-                     </ListItem>
-                  </List>
-               )}
+               </div>
             </div>
-         </div>
+            <div className="carddiv">
+               <div className="cardTitle">
+                  <p className="cardtex">
+                     <span style={{ color: "#1677ff" }}>H</span>
+                     <span>omework</span>
+                  </p>
+               </div>
+               <div className="cardChanged" id="card">
+                  <div className="card cardCh">
+                     <Space direction="vertical" className="changeSpace1">
+                        <Space direction="horizontal" className="changeSpace2">
+                           <DatePicker
+                              id="datepickerWork"
+                              className="datePicker"
+                              views={["year", "month", "day"]}
+                              label="Date"
+                              value={dateWork}
+                              minDate={dayjs()}
+                              maxDate={dayjs("2025-03-31")}
+                              defaultValue={dayjs()}
+                              onChange={(selectedDate) => {
+                                 setDateWork(selectedDate);
+                              }}
+                              size="large"
+                           />
+                           <Select
+                              labelId="Label-WorkTime"
+                              value={timeWorkState}
+                              label="Time"
+                              onChange={handleChangeWorkTime}
+                              options={dataWorkOpt}
+                              size="large"
+                           />
+                        </Space>
+                        {timeWorkState == 0 && (
+                           <Input
+                              id="outlined-basic"
+                              placeholder="Homework Title"
+                              value={textWork}
+                              onChange={(event) => setWorkText(event.target.value)}
+                              size="large"
+                           />
+                        )}
+                     </Space>
+                     <div className="changedButton">
+                        <Button
+                           color="primary"
+                           variant="outlined"
+                           size="large"
+                           shape="round"
+                           style={{ cursor: "pointer" }}
+                           onClick={() => get(1)}
+                           disabled={isFetching || isWorkPosting}
+                           loading={isFetching}
+                        >
+                           更新
+                        </Button>
+                        {timeWorkState != 0 && (
+                           <Button
+                              color="primary"
+                              variant="solid"
+                              size="large"
+                              shape="round"
+                              style={{ cursor: "pointer" }}
+                              onClick={() => post(2)}
+                              loading={isWorkPosting}
+                           >
+                              削除
+                           </Button>
+                        )}
+                        {timeWorkState == 0 && (
+                           <Button
+                              color="primary"
+                              variant="solid"
+                              size="large"
+                              shape="round"
+                              style={{ cursor: "pointer" }}
+                              onClick={() => post(1)}
+                              loading={isWorkPosting}
+                           >
+                              登録
+                           </Button>
+                        )}
+                     </div>
+                  </div>
+                  <div>
+                     {isFetching ? (
+                        <List className="card scheCard">
+                           <List.Item>
+                              <Skeleton active round paragraph={{ rows: 2 }} title={false} />
+                           </List.Item>
+                        </List>
+                     ) : error ? (
+                        <p style={{ color: "red" }}>{error}</p>
+                     ) : dataWork[0] ? (
+                        <div>
+                           {dataWork.map((date, index) => (
+                              <List className="card scheCard">
+                                 <List.Item>
+                                    <div key={index} className="changeCard">
+                                       <p className="scheText">
+                                          {new Date(date[0]).getMonth() + 1}/{new Date(date[0]).getDate()}
+                                       </p>
+                                       {date[1].map((val, ind) => (
+                                          <div className="subProp">
+                                             <p className="scheText">{val[0]}</p>
+                                             <p className="scheText">{val[1]}</p>
+                                          </div>
+                                       ))}
+                                    </div>
+                                 </List.Item>
+                              </List>
+                           ))}
+                        </div>
+                     ) : (
+                        <List className="card scheCard">
+                           <List.Item>
+                              <p>データなし</p>
+                           </List.Item>
+                        </List>
+                     )}
+                  </div>
+               </div>
+            </div>
+         </ConfigProvider>
       </div>
    );
 };

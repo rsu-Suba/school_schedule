@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Clock, expday } from "./clock.jsx";
 import Bottom from "./bottom.jsx";
@@ -7,6 +7,8 @@ import Calendar from "./calendar.jsx";
 import Other from "./other.jsx";
 import Menu from "./menu.jsx";
 import ChangeMix from "./changeMix.jsx";
+import Tabs from "./tabs.jsx";
+import { fetchData } from "./changeGet";
 
 function App() {
    let date = new Date();
@@ -22,7 +24,7 @@ function App() {
    recentNum = 2;
    todayNum = recentNum;
    tomorrowNum = recentNum++;
-   nowtime = 1440;
+   nowtime = 910;
    */
 
    if (window.innerHeight > window.innerWidth) {
@@ -33,10 +35,16 @@ function App() {
                   <div className="main" id="main">
                      <div className="mainCards">
                         <Clock />
-                        <Card key={"card1"} card={"Up Next"} num={recentNum} pos={"top"} nowtime={nowtime} />
+                        <Card
+                           key={"card1"}
+                           card={"Up Next"}
+                           num={recentNum}
+                           pos={"top"}
+                           nowtime={nowtime}
+                           mode={"main"}
+                        />
                         <ChangeMix card="Change" />
-                        <Card key={"card2"} card={todayText} num={todayNum} pos={"mid"} />
-                        <Card key={"card3"} card={tomorrowText} num={tomorrowNum} pos={"mid"} />
+                        <Tabs key={"cardTimes"} num={todayNum} />
                         <div className="blankCard"></div>
                      </div>
                   </div>
@@ -63,10 +71,16 @@ function App() {
                   <div className="main" id="main">
                      <div className="mainCards">
                         <Clock />
-                        <Card key={"card1"} card={"Up Next"} num={recentNum} pos={"top"} nowtime={nowtime} />
-                        <ChangeMix card="Change" />
-                        <Card key={"card2"} card={todayText} num={todayNum} pos={"mid"} />
-                        <Card key={"card3"} card={tomorrowText} num={tomorrowNum} pos={"mid"} />
+                        <Card
+                           key={"card1"}
+                           card={"Up Next"}
+                           num={recentNum}
+                           pos={"top"}
+                           nowtime={nowtime}
+                           mode={"main"}
+                        />
+                           <ChangeMix card="Change"/>
+                        <Tabs key={"cardTimes"} num={todayNum} />
                         <div className="blankCard"></div>
                      </div>
                   </div>

@@ -11,7 +11,6 @@ import TerminalOutlinedIcon from '@mui/icons-material/TerminalOutlined';
 import ScienceOutlinedIcon from '@mui/icons-material/ScienceOutlined';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import HotelOutlinedIcon from '@mui/icons-material/HotelOutlined';
-import json from "./assets/main.json";
 
 function App(props) {
    if (props.icon == "CalculateOutlinedIcon") { return (<CalculateOutlinedIcon/>); }

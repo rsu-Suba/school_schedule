@@ -34,7 +34,8 @@ div,
 button,
 span,
 input,
-select {
+select,
+Button {
    font-family: "Inter", "Kosugi", sans-serif !important;
    font-weight: 400;
 }
@@ -49,25 +50,8 @@ a {
    color: #266aff !important;
 }
 
-.logo {
-   height: 6em;
-   padding: 1.5em;
-   will-change: filter;
-   transition: filter 300ms;
-}
-.logo:hover {
-   filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-   filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
 .card {
    padding: 2em;
-}
-
-.read-the-docs {
-   color: #888;
 }
 
 .mainCanvas {
@@ -76,26 +60,7 @@ a {
    height: 100%;
    top: 0;
    overflow: hidden;
-}
-
-.mainCanvas:before {
-   content: "";
-   position: absolute;
-   top: -10%;
-   left: -10%;
-   width: 120%;
-   height: 120%;
-   filter: blur(3vh);
-   z-index: -1;
-   background-image: conic-gradient(
-      from 20deg,
-      rgb(245, 189, 189) 18deg,
-      rgb(183, 231, 215) 68deg,
-      rgba(108, 199, 221, 1) 151deg,
-      rgba(177, 151, 223, 1) 223deg,
-      rgb(149, 227, 247) 285deg,
-      rgb(245, 192, 192) 360deg
-   );
+   background-color: #f4f7fc;
 }
 
 .canvas {
@@ -154,41 +119,46 @@ a {
    text-align: center;
 }
 
-.cardtex {
-   text-align: center;
+.cardtex span,
+.time {
    font-weight: 500;
+}
+
+.cardTitle,
+.ant-picker-calendar-header {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   margin: 0 2em -3% 2em;
+   white-space: nowrap;
 }
 
 .carddiv {
    width: 100% !important;
-   background-color: rgba(255, 255, 255, 0.3);
+   background-color: rgba(255, 255, 255, 1);
    position: relative;
    border-radius: 3vh;
-   border: solid #aaa 1px;
-   box-shadow: rgba(0, 0, 0, 0.38) 0 0 2vh;
+   border: solid #aaa 0.5px;
+   box-shadow: rgba(0, 0, 0, 0.38) 0 0 1.5vh;
    margin: 5% 0;
-   color: #333;
+   color: #000;
 }
 
-.card {
+.card,
+.scheDiv > div > .ant-picker-panel {
    border: none;
-   background-color: rgba(255, 255, 255, 0.5);
+   background-color: rgba(0, 0, 0, 0);
    border-radius: calc(3vh - 1.5vw);
-   border: solid #bbb 1px;
-   box-shadow: inset #fff 0 0 1vh 0.5vh;
+   border: solid #bbb 0.5px !important;
+   box-shadow: inset #ddd 0 0 0.7vh 0.2vh !important;
    margin: 3% !important;
    padding: 0 !important;
+   border-radius: 2vh !important;
 }
 
 input {
    text-align: center !important;
-}
-
-.datepicker {
-   background-color: rgba(0, 0, 0, 0);
-   color: black;
-   border: solid 0.5px #777;
-   border-radius: 9999px;
 }
 
 .card p,
@@ -197,7 +167,8 @@ input {
    margin: 0 !important;
 }
 
-.subProp .time {
+.subProp .time1,
+.time2 {
    font-weight: 500;
 }
 
@@ -217,6 +188,8 @@ input {
    left: 0;
    background-color: #fff !important;
    border-top: solid 1px #888;
+   display: flex;
+   justify-content: space-evenly;
 }
 .cardRight {
    display: flex;
@@ -263,76 +236,6 @@ input {
    transition: 0.3s;
 }
 
-.calendar,
-.MuiDateCalendar-root {
-   background-color: rgba(255, 255, 255, 0.25);
-   position: relative;
-   border-radius: 3vh;
-   height: auto !important;
-   width: 100% !important;
-   min-width: 320px !important;
-   max-height: none !important;
-   border: solid #aaa 1px;
-   transition: 0.3s;
-   margin: 0 0 5% !important;
-   box-shadow: rgba(0, 0, 0, 0.38) 0 0 2vh;
-}
-
-.MuiDayCalendar-root {
-   border: none;
-   background-color: rgba(255, 255, 255, 0.5);
-   border-radius: calc(3vh - 1.5vw);
-   border: solid #bbb 1px;
-   box-shadow: inset #fff 0 0 1vh 0.5vh;
-   margin: 3% !important;
-   padding: 0 !important;
-   transition: 0.3s;
-}
-
-.MuiPickersCalendarHeader-root {
-   margin-bottom: 0 !important;
-}
-
-.css-2jurxj-MuiDayCalendar-slideTransition {
-   min-height: 0 !important;
-}
-
-.css-innj4t-MuiPickersYear-yearButton.Mui-selected {
-   color: #fff !important;
-}
-
-.MuiPickersCalendarHeader-label,
-.css-innj4t-MuiPickersYear-yearButton,
-.css-1386ez6-MuiMonthCalendar-root {
-   color: rgba(0, 0, 0, 0.87) !important;
-}
-
-.css-innj4t-MuiPickersYear-yearButton.Mui-disabled {
-   color: rgba(0, 0, 0, 0.38) !important;
-}
-
-.css-dplwbx-MuiPickersCalendarHeader-label {
-   user-select: none;
-}
-
-.css-1386ez6-MuiMonthCalendar-root {
-   margin-bottom: 2vh;
-}
-
-.MuiDayCalendar-loadingContainer {
-   height: auto !important;
-   min-height: 0 !important;
-}
-
-.MuiPickersSlideTransition-root {
-   min-height: 0 !important;
-   height: auto !important;
-}
-
-.MuiPickersSlideTransition-root > * {
-   position: relative !important;
-}
-
 .scheCardContent {
    display: flex;
    width: 100% !important;
@@ -358,14 +261,6 @@ input {
    width: 90%;
    margin: 0 5%;
    position: relative;
-}
-
-.badgeSpan {
-   width: 60%;
-   aspect-ratio: 1;
-   border-radius: 9999px;
-   position: absolute;
-   background-color: #7e63df;
 }
 
 .others,
@@ -438,28 +333,8 @@ input {
    overflow-wrap: anywhere;
 }
 
-.MuiPaper-root:before {
-   content: "";
-   position: absolute;
-   top: -10%;
-   left: -10%;
-   width: 120%;
-   height: 120%;
-   filter: blur(6vh);
-   z-index: -1;
-   background-image: conic-gradient(
-      from 20deg,
-      rgb(244, 255, 180) 18deg,
-      rgb(122, 229, 248) 68deg,
-      rgb(209, 157, 240) 151deg,
-      rgba(177, 151, 223, 1) 223deg,
-      rgb(149, 227, 247) 285deg,
-      rgb(154, 217, 236) 360deg
-   );
-}
-
-.MuiPaper-root {
-   overflow-x: hidden;
+.digit {
+   font-weight: 500;
 }
 
 @media screen and (orientation: landscape) {
@@ -504,15 +379,15 @@ input {
    }
 
    .menubutton {
-      aspect-ratio: 1;
       background-color: rgba(0, 0, 0, 0) !important;
       color: black !important;
       box-shadow: none !important;
-      width: 3% !important;
       position: absolute !important;
       right: 0;
       padding: 0 !important;
-      min-width: 0 !important;
+      min-width: 3% !important;
+      aspect-ratio: 1 !important;
+      height: auto !important;
    }
 }
 
@@ -560,14 +435,6 @@ input {
    gap: 5px 0;
 }
 
-.react-datepicker {
-   z-index: 1 !important;
-}
-
-.react-datepicker-wrapper {
-   width: 78%;
-}
-
 .changeTime {
    width: 80%;
    right: 0;
@@ -581,9 +448,7 @@ input {
    margin-top: 8px;
 }
 
-.changedButton div {
-   background-color: rgba(255, 255, 255, 0.6);
-   color: black;
+.changedButton Button {
    border: solid #aaa 1px;
    border-radius: 9999px;
    text-align: center;
@@ -597,6 +462,129 @@ input {
 }
 
 .changeCard > .scheText {
-   font-size: 125%;
+   font-size: 135%;
    font-weight: 500;
+}
+
+.ant-list-item-meta {
+   max-width: 100% !important;
+}
+
+.ant-avatar {
+   max-width: 15% !important;
+}
+
+.ant-list-item {
+   padding: 12px 16px !important;
+   border-block-end: none !important;
+   gap: 12px;
+}
+
+.ant-list-item-meta-title {
+   margin: 0 !important;
+}
+
+.ant-list-item-meta-description {
+   text-align: left;
+}
+
+.ant-avatar-string {
+   display: flex;
+}
+
+.ant-space-item:has(.datePicker) {
+   width: 100% !important;
+}
+
+.datePicker {
+   width: 100% !important;
+   margin: 0 auto !important;
+}
+
+.ant-picker {
+   width: 100%;
+}
+
+.changeSpace2 {
+   width: 100% !important;
+}
+
+.subSelect {
+   width: 100%;
+}
+
+.ant-list-item:has(.changeCard),
+.ant-spin-nested-loading {
+   width: 100% !important;
+   text-align: left;
+}
+
+.ant-picker-body {
+   padding: 8px !important;
+}
+
+.ant-picker-cell-inner {
+   min-width: 32px !important;
+   height: 32px !important;
+   line-height: 32px !important;
+}
+
+.ant-avatar {
+   background: #fff;
+   color: #1677ff;
+   border: #1677ff solid 0.5px;
+}
+
+.howtouseTopButtons Button {
+   border: none !important;
+   box-shadow: none !important;
+}
+
+.ant-divider {
+   margin: 8px 0 16px 0 !important;
+}
+
+.timeText {
+   display: flex;
+   flex-direction: row;
+}
+
+.ant-menu-item-icon {
+   font-size: 200% !important;
+}
+
+.ant-menu-title-content {
+   margin-inline-start: 0 !important;
+   line-height: 16px;
+}
+
+.ant-picker-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select,
+.ant-picker-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch,
+.ant-picker-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
+.ant-picker-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch > label {
+   width: auto !important;
+}
+
+.ant-picker-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
+   margin-inline-start: 8px !important;
+   margin-top: 0 !important;
+}
+
+.ant-picker-calendar-header {
+   display: flex !important;
+   padding-inline-start: 0 !important;
+   padding-inline-end: 0 !important;
+   position: relative !important;
+   justify-content: right !important;
+   right: 0 !important;
+   width: calc(100% - 4em);
+}
+
+.ant-tabs-nav {
+   margin: 0 16px !important;
+}
+
+.ant-picker-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
+   margin-top: 0 !important;
+   margin-inline-start: 8px !important;
 }

@@ -1,8 +1,6 @@
 import React from "react";
 import "./App.css";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import IconButton from "@mui/material/IconButton";
+import { List, Button, Divider, ConfigProvider } from "antd";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 
@@ -10,12 +8,17 @@ function cardMake(title, prop, isLast) {
    if (isLast == 0) {
       return (
          <div className="carddiv">
-            <p className="subName">{title}</p>
+            <div className="cardTitle">
+               <p className="cardtex">
+                  <span style={{ color: "#1677ff" }}>{title.slice(0, 1)}</span>
+                  <span>{title.slice(1)}</span>
+               </p>
+            </div>
             <div className="card" id="card">
                <List>
-                  <ListItem>
+                  <List.Item>
                      <div className="cardRight othercardtext">{prop}</div>
-                  </ListItem>
+                  </List.Item>
                </List>
             </div>
          </div>
@@ -23,12 +26,17 @@ function cardMake(title, prop, isLast) {
    } else {
       return (
          <div className="carddiv cardLast">
-            <p className="subName">{title}</p>
+            <div className="cardTitle">
+               <p className="cardtex">
+                  <span style={{ color: "#1677ff" }}>{title.slice(0, 1)}</span>
+                  <span>{title.slice(1)}</span>
+               </p>
+            </div>
             <div className="card" id="card">
                <List>
-                  <ListItem>
+                  <List.Item>
                      <div className="cardRight othercardtext">{prop}</div>
-                  </ListItem>
+                  </List.Item>
                </List>
             </div>
          </div>
@@ -84,7 +92,7 @@ export default function App() {
                      -Timetable Tab-
                   </p>
                   <div className="howtouseTopButtons">
-                     <IconButton
+                     <Button
                         aria-label="back"
                         size="small"
                         onClick={() => {
@@ -92,8 +100,8 @@ export default function App() {
                         }}
                      >
                         <ArrowBackIosNewOutlinedIcon fontSize="small" />
-                     </IconButton>
-                     <IconButton
+                     </Button>
+                     <Button
                         aria-label="forward"
                         size="small"
                         onClick={() => {
@@ -101,10 +109,10 @@ export default function App() {
                         }}
                      >
                         <ArrowForwardIosOutlinedIcon fontSize="small" />
-                     </IconButton>
+                     </Button>
                   </div>
                </div>
-               <div className="scheList howtoline"></div>
+               <Divider />
                <div id="howtosubs">
                   <p className="othercardsub">上から順に次の授業, 当日の時間割, 翌日の時間割のブロック</p>
                   <p>&nbsp;</p>
@@ -120,15 +128,7 @@ export default function App() {
          0
       )
    );
-   cards.push(
-      cardMake(
-         "Planned Features",
-         [
-            <p className="othercardsub">予定変更対応</p>
-         ],
-         0
-      )
-   );
+   cards.push(cardMake("Planned Features", [<p className="othercardsub">予定変更対応</p>], 0));
    cards.push(
       cardMake("Info", [
          <p className="othercardsub">要望, バグレポート</p>,
@@ -147,9 +147,9 @@ export default function App() {
             <a href="https://ja.react.dev/" target="_blank">
                React
             </a>
-            ,
-            <a href="https://mui.com/" target="_blank">
-               Material UI
+            ,&nbsp;
+            <a href="https://ant.design/" target="_blank">
+               Ant Design
             </a>
             , JavaScript, Google Apps Script, ChatGPT
          </p>,
@@ -159,8 +159,9 @@ export default function App() {
                rsu-Suba
             </a>
          </p>,
-         <p>&nbsp;</p>,
-         <h6 className="lastText">(時間割覚えるのめんどいから自分のためだけに作った)</h6>
+         <h4 className="lastText" style={{ textAlign: "right" }}>
+            v2.0
+         </h4>
       ])
    );
    return <>{cards}</>;
