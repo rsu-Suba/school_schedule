@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { ConfigProvider, theme } from "antd";
 import "./App.css";
-import { Clock, expday } from "./clock.jsx";
+import Clock from "./clock.jsx";
 import Bottom from "./bottom.jsx";
 import Card from "./card.jsx";
 import Calendar from "./calendar.jsx";
@@ -8,91 +9,133 @@ import Other from "./other.jsx";
 import Menu from "./menu.jsx";
 import ChangeMix from "./changeMix.jsx";
 import Tabs from "./tabs.jsx";
-import { fetchData } from "./changeGet";
+import darkSet from "./darkSet";
+import getCookie from "./getCookie";
 
-function App() {
+function App(props) {
+   const { defaultAlgorithm, darkAlgorithm } = theme;
+   const [isDarkMode, setIsDarkMode] = useState(false);
+   const aspectRatio = useAspectRatio();
    let date = new Date();
-   let tomorrowDate = new Date(new Date().setDate(new Date().getDate() + 1));
    let recentNum = date.getDay();
    let todayNum = date.getDay();
-   let tomorrowNum = tomorrowDate.getDay();
-   let todayText = `${date.getMonth() + 1}/${date.getDate()}/${expday(date.getDay())}曜日`;
-   let tomorrowText = `${tomorrowDate.getMonth() + 1}/${tomorrowDate.getDate()}/${expday(tomorrowDate.getDay())}曜日`;
    let nowtime = `${String(date.getHours()).padStart(2, "0")}${String(date.getMinutes()).padStart(2, "0")}`;
-
    /*
    recentNum = 2;
    todayNum = recentNum;
-   tomorrowNum = recentNum++;
    nowtime = 910;
-   */
+*/
+   const darkcall = (data) => {
+      setIsDarkMode(!data);
+   };
+
+   useEffect(() => {
+      console.log(getCookie("dark"));
+      if (getCookie("dark") == "true") {
+         darkcall();
+         darkSet(isDarkMode);
+      }
+   }, []);
 
    if (window.innerHeight > window.innerWidth) {
       return (
          <>
-            <div className="mainCanvas">
-               <div className="canvas" id="canvas">
-                  <div className="main" id="main">
-                     <div className="mainCards">
-                        <Clock />
-                        <Card
-                           key={"card1"}
-                           card={"Up Next"}
-                           num={recentNum}
-                           pos={"top"}
-                           nowtime={nowtime}
-                           mode={"main"}
-                        />
-                        <ChangeMix card="Change" />
-                        <Tabs key={"cardTimes"} num={todayNum} />
-                        <div className="blankCard"></div>
+            <ConfigProvider
+               theme={{
+                  algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
+               }}
+            >
+               <div className="mainCanvas">
+                  <div className="canvas" id="canvas">
+                     <div className="main" id="main">
+                        <div className="mainCards">
+                           <Clock />
+                           <Card
+                              key={"card1"}
+                              card={"Up Next"}
+                              num={recentNum}
+                              pos={"top"}
+                              nowtime={nowtime}
+                              mode={"main"}
+                           />
+                           <ChangeMix card="Change" />
+                           <Tabs key={"cardTimes"} num={todayNum} />
+                           <div className="blankCard"></div>
+                        </div>
+                     </div>
+                     <div className="sche" id="sche">
+                        <Calendar />
+                     </div>
+                     <div className="others" id="others">
+                        <div className="otherCards">
+                           <Other handleValueChange={darkcall} dark={isDarkMode} />
+                        </div>
                      </div>
                   </div>
-                  <div className="sche" id="sche">
-                     <Calendar />
-                  </div>
-                  <div className="others" id="others">
-                     <div className="otherCards">
-                        <Other />
-                     </div>
+                  <div className="bottomCanvas">
+                     <Bottom />
                   </div>
                </div>
-               <div className="bottomCanvas">
-                  <Bottom />
-               </div>
-            </div>
+            </ConfigProvider>
          </>
       );
    } else {
       return (
          <>
-            <div className="mainCanvas">
-               <div className="PCCanvas">
-                  <div className="main" id="main">
-                     <div className="mainCards">
-                        <Clock />
-                        <Card
-                           key={"card1"}
-                           card={"Up Next"}
-                           num={recentNum}
-                           pos={"top"}
-                           nowtime={nowtime}
-                           mode={"main"}
-                        />
-                           <ChangeMix card="Change"/>
-                        <Tabs key={"cardTimes"} num={todayNum} />
-                        <div className="blankCard"></div>
+            <ConfigProvider
+               theme={{
+                  algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
+               }}
+            >
+               <div className="mainCanvas">
+                  <div className="PCCanvas">
+                     <div className="main" id="main">
+                        <div className="mainCards">
+                           <Clock />
+                           <Card
+                              key={"card1"}
+                              card={"Up Next"}
+                              num={recentNum}
+                              pos={"top"}
+                              nowtime={nowtime}
+                              mode={"main"}
+                           />
+                           <ChangeMix card="Change" />
+                           <Tabs key={"cardTimes"} num={todayNum} />
+                           <div className="blankCard"></div>
+                        </div>
+                     </div>
+                     <div className="sche" id="sche">
+                        <Calendar />
                      </div>
                   </div>
-                  <div className="sche" id="sche">
-                     <Calendar />
-                  </div>
+                  <Menu handleValueChange={darkcall} dark={isDarkMode} />
                </div>
-               <Menu />
-            </div>
+            </ConfigProvider>
          </>
       );
    }
+}
+
+function useAspectRatio() {
+   const [aspectRatio, setAspectRatio] = useState(window.innerWidth / window.innerHeight);
+
+   useEffect(() => {
+      const handleResize = () => {
+         const newAspectRatio = window.innerWidth / window.innerHeight;
+         setAspectRatio(newAspectRatio);
+      };
+
+      // リサイズイベントを追加
+      window.addEventListener("resize", handleResize);
+
+      // クリーンアップ関数でイベントリスナーを削除
+      return () => {
+         window.removeEventListener("resize", handleResize);
+      };
+   }, []);
+
+   return aspectRatio;
 }
 
 export default App;

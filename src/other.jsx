@@ -3,6 +3,7 @@ import "./App.css";
 import { List, Button, Divider, ConfigProvider } from "antd";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import DarkTheme from "./darkComp.jsx";
 
 function cardMake(title, prop, isLast) {
    if (isLast == 0) {
@@ -10,7 +11,7 @@ function cardMake(title, prop, isLast) {
          <div className="carddiv">
             <div className="cardTitle">
                <p className="cardtex">
-                  <span style={{ color: "#1677ff" }}>{title.slice(0, 1)}</span>
+                  <span style={{ color: "var(--main-color)" }}>{title.slice(0, 1)}</span>
                   <span>{title.slice(1)}</span>
                </p>
             </div>
@@ -28,7 +29,7 @@ function cardMake(title, prop, isLast) {
          <div className="carddiv cardLast">
             <div className="cardTitle">
                <p className="cardtex">
-                  <span style={{ color: "#1677ff" }}>{title.slice(0, 1)}</span>
+                  <span style={{ color: "var(--main-color)" }}>{title.slice(0, 1)}</span>
                   <span>{title.slice(1)}</span>
                </p>
             </div>
@@ -73,7 +74,7 @@ const schesubs = [
 const subs = [schesubs, timesubs];
 let nowMode = 1;
 
-export default function App() {
+export default function App(props) {
    let cards = [];
 
    const howtoButton = () => {
@@ -82,6 +83,22 @@ export default function App() {
       document.getElementById("howtosubs").innerHTML = subs[nowMode][1];
    };
 
+   const darkcall = (data) => {
+      props.handleValueChange(data);
+   };
+
+   cards.push(
+      cardMake(
+         "Settings",
+         [
+            <div className="subProp">
+               <p>Dark Theme</p>
+               <DarkTheme handleValueChange={darkcall} dark={props.dark}/>
+            </div>,
+         ],
+         0
+      )
+   );
    cards.push(
       cardMake(
          "How to Use?",
@@ -128,7 +145,7 @@ export default function App() {
          0
       )
    );
-   cards.push(cardMake("Planned Features", [<p className="othercardsub">予定変更対応</p>], 0));
+   cards.push(cardMake("Planned Features", [<p className="othercardsub">None</p>], 0));
    cards.push(
       cardMake("Info", [
          <p className="othercardsub">要望, バグレポート</p>,
@@ -160,8 +177,8 @@ export default function App() {
             </a>
          </p>,
          <h4 className="lastText" style={{ textAlign: "right" }}>
-            v2.0
-         </h4>
+            Supported Dark theme. v3.0
+         </h4>,
       ])
    );
    return <>{cards}</>;

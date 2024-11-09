@@ -12,7 +12,6 @@ export default function LabelBottomNavigation() {
    const [value, setValue] = React.useState("timetable");
 
    const handleChange = (event, newValue) => {
-      console.log(event.key);
       setValue(event.key);
       Tabselect(event.key);
    };
@@ -27,7 +26,7 @@ export default function LabelBottomNavigation() {
                display: "flex",
                justifyContent: "space-around", // アイテムを等間隔に配置
                width: "100%",
-               borderTop: "1px solid #e8e8e8",
+               borderTop: "1px solid var(--border-color)",
                height: "100%",
             }}
          >
@@ -35,7 +34,7 @@ export default function LabelBottomNavigation() {
                key="timetable"
                icon={
                   <ClassOutlinedIcon
-                     style={value == "timetable" ? { fontSize: "24px" } : { fontSize: "24px", color: "#bbb" }}
+                     style={value == "timetable" ? { fontSize: "24px" } : { fontSize: "24px", color: "var(--border-color)" }}
                   />
                }
                style={{
@@ -47,13 +46,13 @@ export default function LabelBottomNavigation() {
                   justifyContent: "center",
                }}
             >
-               <div style={value == "timetable" ? {} : { color: "#bbb" }}>Timetable</div>
+               <div style={value == "timetable" ? {} : { color: "var(--border-color)" }}>Timetable</div>
             </Menu.Item>
             <Menu.Item
                key="schedule"
                icon={
                   <CalendarMonthOutlinedIcon
-                     style={value == "schedule" ? { fontSize: "24px" } : { fontSize: "24px", color: "#bbb" }}
+                     style={value == "schedule" ? { fontSize: "24px" } : { fontSize: "24px", color: "var(--border-color)" }}
                   />
                }
                style={{
@@ -65,13 +64,13 @@ export default function LabelBottomNavigation() {
                   justifyContent: "center",
                }}
             >
-               <div style={value == "schedule" ? {} : { color: "#bbb" }}>Schedule</div>
+               <div style={value == "schedule" ? {} : { color: "var(--border-color)" }}>Schedule</div>
             </Menu.Item>
             <Menu.Item
                key="others"
                icon={
                   <InfoOutlinedIcon
-                     style={value == "others" ? { fontSize: "24px" } : { fontSize: "24px", color: "#bbb" }}
+                     style={value == "others" ? { fontSize: "24px" } : { fontSize: "24px", color: "var(--border-color)" }}
                   />
                }
                style={{
@@ -83,7 +82,7 @@ export default function LabelBottomNavigation() {
                   justifyContent: "center",
                }}
             >
-               <div style={value == "others" ? {} : { color: "#bbb" }}>Other</div>
+               <div style={value == "others" ? {} : { color: "var(--border-color)" }}>Other</div>
             </Menu.Item>
          </Menu>
       </Footer>

@@ -3,7 +3,7 @@ import { Drawer, Button } from "antd";
 import Other from "./other.jsx";
 import AppsIcon from "@mui/icons-material/Apps";
 
-export default function AnchorTemporaryDrawer() {
+export default function AnchorTemporaryDrawer(props) {
    const [open, setOpen] = useState(false);
    const showDrawer = () => {
       setOpen(true);
@@ -11,6 +11,10 @@ export default function AnchorTemporaryDrawer() {
    const onClose = () => {
       setOpen(false);
    };
+   
+   const darkcall = (data) => {
+    props.handleValueChange(data);
+ };
 
    return (
       <div>
@@ -19,7 +23,7 @@ export default function AnchorTemporaryDrawer() {
          </Button>
 
          <Drawer onClose={onClose} open={open}>
-            <Other/>
+            <Other  handleValueChange={darkcall} dark={props.dark}/>
          </Drawer>
       </div>
    );

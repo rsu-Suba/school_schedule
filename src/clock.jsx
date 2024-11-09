@@ -3,11 +3,7 @@ import * as React from "react";
 
 const weekday = ["日", "月", "火", "水", "木", "金", "土"];
 
-function expday(day) {
-   return weekday[day];
-}
-
-function Clock() {
+export default function Clock() {
    const [date, setDate] = useState("Date...");
    const [time, setTime] = useState("Time...");
 
@@ -35,5 +31,3 @@ function Clock() {
       </div>
    );
 }
-
-export { expday, Clock };

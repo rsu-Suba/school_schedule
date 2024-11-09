@@ -3,7 +3,6 @@ import "./App.css";
 let nowTab = 0;
 
 function App(props) {
-   console.log(props);
    const canvas = document.getElementById("canvas");
 
    if (props == "timetable") {

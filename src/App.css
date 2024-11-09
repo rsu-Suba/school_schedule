@@ -4,6 +4,26 @@ html {
    overflow: hidden;
 }
 
+:root {
+   --main-color: #1677ff;
+   --bg-color: #fff;
+   --bg-sub-color: #ddd;
+   --mainCanvas-color: #f4f7fc;
+   --text-color: #000;
+   --text-sub-color: rgba(0, 0, 0, 0.65);
+   --clock-color: #556;
+   --border-color: #aaa;
+   --shadow-out: rgba(0, 0, 0, 0.38) 0 0 1.5vh;
+   --shadow-in: inset #ddd 0 0 0.7vh 0.2vh;
+   --input-color: rgba(255, 255, 255, 0.6);
+   --disable-day-color: rgba(0, 0, 0, 0.25);
+   --scheme: light;
+   --screen-width: 100dvw;
+   text-align: center;
+   overflow: hidden;
+   color-scheme: var(--scheme) !important;
+}
+
 .mainCards::-webkit-scrollbar,
 .scheDiv::-webkit-scrollbar {
    width: 10px;
@@ -17,25 +37,29 @@ html {
    background-color: rgba(0, 0, 0, 0);
 }
 
-#root {
-   text-align: center;
-   overflow: hidden;
-}
-
 button {
    outline: none !important;
+}
+
+p {
+   color: var(--text-color);
 }
 
 text,
 a,
 p,
 h4,
-div,
 button,
 span,
 input,
 select,
 Button {
+   font-family: "Inter", "Kosugi", sans-serif !important;
+   font-weight: 400;
+   transition: 0.2s;
+}
+
+div {
    font-family: "Inter", "Kosugi", sans-serif !important;
    font-weight: 400;
 }
@@ -57,15 +81,15 @@ a {
 .mainCanvas {
    position: absolute;
    width: 100%;
-   height: 100%;
+   height: 100dvh;
    top: 0;
    overflow: hidden;
-   background-color: #f4f7fc;
+   background-color: var(--mainCanvas-color);
 }
 
 .canvas {
    width: 300%;
-   height: 92%;
+   height: calc(100dvh - var(--screen-width) / 7);
    position: relative;
    display: flex;
    flex-direction: row;
@@ -80,13 +104,13 @@ a {
 
 .bottomCanvas {
    width: 100%;
-   height: 8%;
+   aspect-ratio: 7/1;
    position: relative;
 }
 
 .Digit {
    margin: 2vh 0;
-   color: #556;
+   color: var(--clock-color);
    font-size: min(6vw, max(5vh));
    line-height: 1.1;
    margin-top: 10%;
@@ -134,24 +158,29 @@ a {
    white-space: nowrap;
 }
 
+.changeMix {
+   display: flex;
+   flex-direction: column;
+}
+
 .carddiv {
    width: 100% !important;
-   background-color: rgba(255, 255, 255, 1);
+   background-color: var(--bg-color);
    position: relative;
    border-radius: 3vh;
-   border: solid #aaa 0.5px;
-   box-shadow: rgba(0, 0, 0, 0.38) 0 0 1.5vh;
+   border: solid var(--border-color) 0.5px;
+   box-shadow: var(--shadow-out);
    margin: 5% 0;
-   color: #000;
+   color: var(--text-color);
 }
 
 .card,
 .scheDiv > div > .ant-picker-panel {
    border: none;
-   background-color: rgba(0, 0, 0, 0);
+   background-color: var(--bg-color);
    border-radius: calc(3vh - 1.5vw);
-   border: solid #bbb 0.5px !important;
-   box-shadow: inset #ddd 0 0 0.7vh 0.2vh !important;
+   border: solid var(--border-color) 0.5px !important;
+   box-shadow: var(--shadow-in);
    margin: 3% !important;
    padding: 0 !important;
    border-radius: 2vh !important;
@@ -159,6 +188,10 @@ a {
 
 input {
    text-align: center !important;
+}
+
+.ant-input {
+   background-color: var(--bg-color) !important;
 }
 
 .card p,
@@ -186,7 +219,7 @@ input {
    height: 100% !important;
    bottom: 0;
    left: 0;
-   background-color: #fff !important;
+   background-color: var(--bg-color) !important;
    border-top: solid 1px #888;
    display: flex;
    justify-content: space-evenly;
@@ -208,6 +241,7 @@ input {
 
 .textbook {
    font-size: min(2.5vw, max(2vh));
+   color: var(--text-sub-color) !important;
 }
 
 .linkButton {
@@ -257,7 +291,7 @@ input {
 }
 
 .scheList {
-   border-bottom: solid 1px #ccc;
+   border-bottom: solid 1px var(--border-color);
    width: 90%;
    margin: 0 5%;
    position: relative;
@@ -338,6 +372,10 @@ input {
 }
 
 @media screen and (orientation: landscape) {
+   .canvas {
+      height: 92%;
+   }
+
    .Digit {
       font-size: min(2vw, max(2.5vh));
    }
@@ -380,7 +418,7 @@ input {
 
    .menubutton {
       background-color: rgba(0, 0, 0, 0) !important;
-      color: black !important;
+      color: var(--text-color) !important;
       box-shadow: none !important;
       position: absolute !important;
       right: 0;
@@ -395,10 +433,10 @@ input {
 .cardChanged select,
 .datepicker,
 .workInput {
-   background-color: rgba(255, 255, 255, 0.6);
-   color: black;
-   border: solid #aaa 1px;
-   box-shadow: rgba(0, 0, 0, 0.38) 0 0 0.5vh;
+   background-color: var(--input-color);
+   color: var(--text-color);
+   border: solid var(--border-color) 1px;
+   box-shadow: var(--shadow-out);
    border-radius: 9999px;
    text-align: center;
    padding: 6px;
@@ -449,7 +487,7 @@ input {
 }
 
 .changedButton Button {
-   border: solid #aaa 1px;
+   border: solid var(--border-color) 1px;
    border-radius: 9999px;
    text-align: center;
    padding: 4px;
@@ -530,9 +568,9 @@ input {
 }
 
 .ant-avatar {
-   background: #fff;
-   color: #1677ff;
-   border: #1677ff solid 0.5px;
+   background: var(--bg-color);
+   color: var(--main-color);
+   border: var(--main-color) solid 0.5px;
 }
 
 .howtouseTopButtons Button {
@@ -587,4 +625,11 @@ input {
 .ant-picker-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
    margin-top: 0 !important;
    margin-inline-start: 8px !important;
+}
+
+.ant-drawer-body {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   background-color: var(--bg-color);
 }

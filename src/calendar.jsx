@@ -48,7 +48,7 @@ function dateSelect(date) {
       <div className="carddiv">
          <div className="cardTitle">
             <p className="cardtex">
-               <span style={{ color: "#1677ff" }}>
+               <span style={{ color: "var(--main-color)" }}>
                   {`${String(date.$M + 1)}/${String(date.$D)}/${date.$y}`.slice(0, 1)}
                </span>
                <span>{`${String(date.$M + 1)}/${String(date.$D)}/${date.$y}`.slice(1)}</span>
@@ -205,7 +205,7 @@ export default function DateCalendarServerRequest() {
             <div>
                <Badge count={isSelected ? " " : null} size="small" color="blue">
                   <div
-                     style={isThisMonth && !isToday ? { color: "rgba(0, 0, 0, 0.25" } : {}}
+                     style={isThisMonth && !isToday ? { color: "var(--disable-day-color)" } : {}}
                      className="ant-picker-cell-inner"
                   >
                      {day}

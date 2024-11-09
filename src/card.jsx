@@ -172,7 +172,7 @@ export default function Card(props) {
          <div className="carddiv">
             <div className="cardTitle">
                <p className="cardtex">
-                  <span style={{ color: "#1677ff" }}>{props.card.slice(0, 1)}</span>
+                  <span style={{ color: "var(--main-color)" }}>{props.card.slice(0, 1)}</span>
                   <span>{props.card.slice(1)}</span>
                </p>
             </div>

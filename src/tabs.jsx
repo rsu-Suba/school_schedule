@@ -1,8 +1,7 @@
 import React from "react";
 import { Tabs } from "antd";
 import Card from "./card.jsx";
-const onChange = (key) => {
-};
+const onChange = (key) => {};
 const items = [
    {
       key: "1",
@@ -35,7 +34,7 @@ export default function TabsCard(props) {
       <div className="carddiv">
          <div className="cardTitle">
             <p className="cardtex">
-               <span style={{ color: "#1677ff" }}>T</span>
+               <span style={{ color: "var(--main-color)" }}>T</span>
                <span>ime Table</span>
             </p>
          </div>
