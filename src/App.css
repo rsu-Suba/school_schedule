@@ -24,17 +24,17 @@ html {
    color-scheme: var(--scheme) !important;
 }
 
+.mainCards,
+.main,
+.sche {
+   -ms-overflow-style: none;
+   scrollbar-width: none;
+}
+
 .mainCards::-webkit-scrollbar,
-.scheDiv::-webkit-scrollbar {
-   width: 10px;
-}
-.mainCards::-webkit-scrollbar-track,
-.scheDiv::-webkit-scrollbar-track {
-   background-color: rgba(0, 0, 0, 0);
-}
-.mainCards::-webkit-scrollbar-thumb,
-.scheDiv::-webkit-scrollbar-track {
-   background-color: rgba(0, 0, 0, 0);
+.main::-webkit-scrollbar,
+.sche::-webkit-scrollbar {
+   display: none;
 }
 
 button {

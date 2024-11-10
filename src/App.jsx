@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ConfigProvider, theme } from "antd";
-import "./App.css";
+import "./App.css?dark=1";
 import Clock from "./clock.jsx";
 import Bottom from "./bottom.jsx";
 import Card from "./card.jsx";
