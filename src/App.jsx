@@ -11,17 +11,23 @@ import ChangeMix from "./changeMix.jsx";
 import Tabs from "./tabs.jsx";
 import darkSet from "./darkSet";
 import getCookie from "./getCookie";
+import DarkNotice from "./darkNotice";
+import TabCont from "./tabCont";
+
 
 function App(props) {
    const { defaultAlgorithm, darkAlgorithm } = theme;
    const [isDarkMode, setIsDarkMode] = useState(false);
+   const [activeTab, setActiveTab] = useState(0);
    const aspectRatio = useAspectRatio();
    let date = new Date();
    let recentNum = date.getDay();
    let todayNum = date.getDay();
    let nowtime = `${String(date.getHours()).padStart(2, "0")}${String(date.getMinutes()).padStart(2, "0")}`;
+   let isDarkFirst = getCookie("isDarkFirst") == "" ? true : false;
+
    /*
-   recentNum = 2;
+   recentNum = 1;
    todayNum = recentNum;
    nowtime = 910;
 */
@@ -30,7 +36,6 @@ function App(props) {
    };
 
    useEffect(() => {
-      console.log(getCookie("dark"));
       if (getCookie("dark") == "true") {
          darkcall();
          darkSet(isDarkMode);
@@ -46,6 +51,7 @@ function App(props) {
                }}
             >
                <div className="mainCanvas">
+                  {isDarkFirst ? <DarkNotice handleValueChange={darkcall} /> : <></>}
                   <div className="canvas" id="canvas">
                      <div className="main" id="main">
                         <div className="mainCards">
@@ -73,7 +79,7 @@ function App(props) {
                      </div>
                   </div>
                   <div className="bottomCanvas">
-                     <Bottom />
+                    <TabCont/>
                   </div>
                </div>
             </ConfigProvider>
@@ -88,6 +94,7 @@ function App(props) {
                }}
             >
                <div className="mainCanvas">
+                  {isDarkFirst ? <DarkNotice handleValueChange={darkcall} /> : <></>}
                   <div className="PCCanvas">
                      <div className="main" id="main">
                         <div className="mainCards">

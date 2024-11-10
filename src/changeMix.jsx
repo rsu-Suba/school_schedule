@@ -246,7 +246,7 @@ const ChangeMix = (props) => {
                            {data.map((date, index) => (
                               <List className="card scheCard">
                                  <List.Item>
-                                    <div key={index} className="changeCard">
+                                    <div className="changeCard">
                                        <p className="scheText">
                                           {new Date(date[0]).getMonth() + 1}/{new Date(date[0]).getDate()}
                                        </p>
