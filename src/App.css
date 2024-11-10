@@ -313,10 +313,13 @@ input {
 }
 
 .otherCards {
+   display: flex;
+   flex-direction: column;
    position: relative;
    width: 80%;
    height: auto;
-   margin: 5% auto 0;
+   margin: 0 auto;
+   padding: 10% 0 0;
 }
 
 .howtouseTop {

@@ -93,7 +93,7 @@ export default function App(props) {
          [
             <div className="subProp">
                <p>Dark Theme</p>
-               <DarkTheme handleValueChange={darkcall} dark={props.dark}/>
+               <DarkTheme handleValueChange={darkcall} dark={props.dark} />
             </div>,
          ],
          0
@@ -177,7 +177,7 @@ export default function App(props) {
             </a>
          </p>,
          <h4 className="lastText" style={{ textAlign: "right" }}>
-            Supported Dark theme. v3.0
+            Supported Dark theme. v3.1
          </h4>,
       ])
    );

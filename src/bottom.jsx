@@ -8,19 +8,17 @@ import "./App.css";
 const { Footer } = Layout;
 
 export default function LabelBottomNavigation(props) {
-   const [value, setValue] = useState(props.tab);
+   const [value, setValue] = useState(props.tab == null ? "0" : props.tab.toString());
    const change = (data) => {
       props.handleValueChange(data);
    };
    const handleChange = (event, newValue) => {
-      change(Number(event.key) - value);
-      console.log(Number(event.key) - value);
-      console.log(`Value${value}`);
+      change(event.key);
    };
 
    useEffect(() => {
-      setValue(props.tab);
-   }, [props.tab]);
+      setValue(props.tab == null ? "0" : props.tab.toString());
+   }, [props.tab == null ? "0" : props.tab.toString()]);
 
    return (
       <Footer style={{ padding: 0, position: "relative", bottom: 0, width: "100%", height: "100%" }}>
@@ -40,9 +38,7 @@ export default function LabelBottomNavigation(props) {
                key="0"
                icon={
                   <ClassOutlinedIcon
-                     style={
-                        value == "0" ? { fontSize: "24px" } : { fontSize: "24px", color: "var(--border-color)" }
-                     }
+                     style={value == "0" ? { fontSize: "24px" } : { fontSize: "24px", color: "var(--border-color)" }}
                   />
                }
                style={{
@@ -60,9 +56,7 @@ export default function LabelBottomNavigation(props) {
                key="1"
                icon={
                   <CalendarMonthOutlinedIcon
-                     style={
-                        value == "1" ? { fontSize: "24px" } : { fontSize: "24px", color: "var(--border-color)" }
-                     }
+                     style={value == "1" ? { fontSize: "24px" } : { fontSize: "24px", color: "var(--border-color)" }}
                   />
                }
                style={{
@@ -80,9 +74,7 @@ export default function LabelBottomNavigation(props) {
                key="2"
                icon={
                   <InfoOutlinedIcon
-                     style={
-                        value == "2" ? { fontSize: "24px" } : { fontSize: "24px", color: "var(--border-color)" }
-                     }
+                     style={value == "2" ? { fontSize: "24px" } : { fontSize: "24px", color: "var(--border-color)" }}
                   />
                }
                style={{

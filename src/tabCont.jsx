@@ -3,26 +3,31 @@ import Swipe from "./swipe";
 import Bottom from "./bottom.jsx";
 import Tabselect from "./tabselect";
 
+let tabNum = 0;
+let count = 0;
 export default function TabCont() {
-   const [value, setValue] = useState(0);
-   let tabNum = 0;
-   let count = 0;
+   const [value, setValue] = useState(null);
 
    const change = (data) => {
-    console.log(`---${count}---`);
-    console.log(`Plus${data}`);
-      tabNum += data;
+      tabNum = Number(tabNum) + Number(data);
       if (tabNum < 0) tabNum = 0;
       if (tabNum > 2) tabNum = 2;
-      setValue(tabNum);
-      console.log(`Now${tabNum}`);
+      //setValue(tabNum);
       Tabselect(tabNum);
       count++;
+      setValue(Number(tabNum));
+   };
+   const changeBtn = (data) => {
+      tabNum = Number(data);
+      //setValue(tabNum);
+      Tabselect(tabNum);
+      count++;
+      setValue(Number(tabNum));
    };
    return (
       <>
          <Swipe handleValueChange={change} tab={value} />
-         <Bottom handleValueChange={change} tab={value} />
+         <Bottom handleValueChange={changeBtn} tab={value} />
       </>
    );
 }
