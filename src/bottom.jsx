@@ -10,6 +10,7 @@ const { Footer } = Layout;
 export default function LabelBottomNavigation(props) {
    const [value, setValue] = useState(props.tab == null ? "0" : props.tab.toString());
    const change = (data) => {
+      setValue(data);
       props.handleValueChange(data);
    };
    const handleChange = (event, newValue) => {
@@ -17,14 +18,17 @@ export default function LabelBottomNavigation(props) {
    };
 
    useEffect(() => {
-      setValue(props.tab == null ? "0" : props.tab.toString());
-   }, [props.tab == null ? "0" : props.tab.toString()]);
+      if (props.tab != null && props.tab.toString() !== value) {
+         setValue(props.tab.toString());
+         console.log(value);
+      }
+   }, [props.tab, value]);
 
    return (
       <Footer style={{ padding: 0, position: "relative", bottom: 0, width: "100%", height: "100%" }}>
          <Menu
             onClick={handleChange} // 指定された関数
-            selectedKeys={[value]} // 指定された選択値
+            selectedKeys={value} // 指定された選択値
             mode="horizontal"
             style={{
                display: "flex",

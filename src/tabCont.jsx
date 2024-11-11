@@ -16,6 +16,7 @@ export default function TabCont() {
       Tabselect(tabNum);
       count++;
       setValue(Number(tabNum));
+      //console.log(tabNum);
    };
    const changeBtn = (data) => {
       tabNum = Number(data);
@@ -23,6 +24,7 @@ export default function TabCont() {
       Tabselect(tabNum);
       count++;
       setValue(Number(tabNum));
+      //console.log(tabNum);
    };
    return (
       <>
