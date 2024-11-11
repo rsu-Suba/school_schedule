@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ConfigProvider, theme } from "antd";
-import "./App.css?dark=1";
+import "./App.css";
 import Clock from "./clock.jsx";
 import Bottom from "./bottom.jsx";
 import Card from "./card.jsx";
@@ -13,7 +13,6 @@ import darkSet from "./darkSet";
 import getCookie from "./getCookie";
 import DarkNotice from "./darkNotice";
 import TabCont from "./tabCont";
-
 
 function App(props) {
    const { defaultAlgorithm, darkAlgorithm } = theme;
@@ -79,7 +78,7 @@ function App(props) {
                      </div>
                   </div>
                   <div className="bottomCanvas">
-                    <TabCont/>
+                     <TabCont />
                   </div>
                </div>
             </ConfigProvider>

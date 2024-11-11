@@ -6,10 +6,18 @@
       <meta name="theme-color" content="#266AFF" />
       <link rel="icon" href="./favicon.ico" />
       <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180" />
+      <script type="text/javascript">
+        navigator.serviceWorker.getRegistrations()
+            .then(registrations => {
+                for (let registration of registrations) {
+                    registration.unregister();
+                }
+            })
+      </script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       <title>Schedule Hub</title>
    <body>
       <div id="root"></div>
-      <script type="module" src="/src/main.jsx?dark=1"></script>
+      <script type="module" src="/src/main.jsx"></script>
    </body>
 </html>
