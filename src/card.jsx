@@ -9,6 +9,7 @@ export default function Card(props) {
    let isChanged = false;
    let isTomorrow = false;
    let changeNum = 0;
+   let changeCount = 0;
    let todaytext = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`;
    const [fetchedData, setFetchedData] = useState([]);
    const [isFetching, setIsFetching] = useState(false);
@@ -83,10 +84,13 @@ export default function Card(props) {
          let subNameStr = json[day][i];
          let textbookStr = json[day][i];
          if (isChanged) {
-            if (fetchedData[changeNum][0][1][0][0] == i) {
-               iconStr = fetchedData[0][changeNum][1][0][1];
-               subNameStr = fetchedData[0][changeNum][1][0][1];
-               textbookStr = fetchedData[0][changeNum][1][0][1];
+            for (let n = 0; n < loop; n++) {
+               if (fetchedData[0][changeNum][1][n] == undefined) continue;
+               if (fetchedData[0][changeNum][1][n][0] == i && props.mode == "main") {
+                  iconStr = fetchedData[0][changeNum][1][n][1];
+                  subNameStr = fetchedData[0][changeNum][1][n][1];
+                  textbookStr = fetchedData[0][changeNum][1][n][1];
+               }
             }
          }
          cardtext.push(
