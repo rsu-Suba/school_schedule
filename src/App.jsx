@@ -25,11 +25,11 @@ function App(props) {
    let nowtime = `${String(date.getHours()).padStart(2, "0")}${String(date.getMinutes()).padStart(2, "0")}`;
    let isDarkFirst = getCookie("isDarkFirst") == "" ? true : false;
 
-   /*
-   recentNum = 1;
-   todayNum = recentNum;
-   nowtime = 910;
-*/
+   
+   //recentNum = 4;
+   //todayNum = recentNum;
+   //nowtime = 1910;
+
    const darkcall = (data) => {
       setIsDarkMode(!data);
    };

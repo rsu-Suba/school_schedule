@@ -177,7 +177,7 @@ export default function App(props) {
             </a>
          </p>,
          <h4 className="lastText" style={{ textAlign: "right" }}>
-            Supported Dark theme. v3.1
+            Supported to Test dates. v3.2
          </h4>,
       ])
    );

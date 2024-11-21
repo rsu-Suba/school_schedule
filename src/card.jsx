@@ -13,6 +13,7 @@ export default function Card(props) {
    let todaytext = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`;
    const [fetchedData, setFetchedData] = useState([]);
    const [isFetching, setIsFetching] = useState(false);
+   const testDates = ["2024/11/28", "2024/11/29", "2024/12/02", "2024/12/03", "2024/12/04"];
 
    let nowTime = Number(props.nowtime);
 
@@ -84,6 +85,7 @@ export default function Card(props) {
          let subNameStr = json[day][i];
          let textbookStr = json[day][i];
          if (isChanged) {
+            if (testDates.indexOf(todaytext) != -1) loop = fetchedData[0][changeNum][1].length;
             for (let n = 0; n < loop; n++) {
                if (fetchedData[0][changeNum][1][n] == undefined) continue;
                if (fetchedData[0][changeNum][1][n][0] == i && props.mode == "main") {
@@ -102,7 +104,10 @@ export default function Card(props) {
                   <List.Item.Meta
                      title={
                         <div className="subProp">
-                           <p className="subName">{json.sub[subNameStr].sub}</p>
+                           <p className="subName">
+                              {json.sub[subNameStr].sub}
+                              {testDates.indexOf(todaytext) != -1 ? " (後期中間テスト)" : ""}
+                           </p>
                            <p className="time">{json.time[timeList][i]}</p>
                         </div>
                      }
