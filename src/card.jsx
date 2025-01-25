@@ -13,7 +13,7 @@ export default function Card(props) {
    let todaytext = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`;
    const [fetchedData, setFetchedData] = useState([]);
    const [isFetching, setIsFetching] = useState(false);
-   const testDates = ["2024/11/28", "2024/11/29", "2024/12/02", "2024/12/03", "2024/12/04"];
+   const testDates = ["2025/01/30", "2025/01/31", "2025/02/03", "2025/02/04", "2025/02/05", "2025/02/06"];
 
    let nowTime = Number(props.nowtime);
 
@@ -40,6 +40,7 @@ export default function Card(props) {
             day++;
             isTomorrow = true;
             todaytext = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate() + 1}`;
+            //todaytext = `2025/02/03`;
          }
          if (day == 7) {
             day = 0;
@@ -106,7 +107,7 @@ export default function Card(props) {
                         <div className="subProp">
                            <p className="subName">
                               {json.sub[subNameStr].sub}
-                              {testDates.indexOf(todaytext) != -1 ? " (後期中間テスト)" : ""}
+                              {testDates.indexOf(todaytext) != -1 ? " (学年末テスト)" : ""}
                            </p>
                            <p className="time">{json.time[timeList][i]}</p>
                         </div>

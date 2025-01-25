@@ -26,7 +26,7 @@ function App(props) {
    let isDarkFirst = getCookie("isDarkFirst") == "" ? true : false;
 
    
-   //recentNum = 4;
+   //recentNum = 0;
    //todayNum = recentNum;
    //nowtime = 1910;
 
