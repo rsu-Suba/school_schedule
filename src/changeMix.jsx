@@ -95,7 +95,7 @@ const ChangeMix = (props) => {
             body: JSON.stringify({
                date: document.getElementById("datepicker").value,
                time: time,
-               value: sub + 1,
+               value: String(sub + 1),
             }),
          };
       } else if (mode == 1) {

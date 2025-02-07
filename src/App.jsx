@@ -28,7 +28,7 @@ function App(props) {
    
    //recentNum = 0;
    //todayNum = recentNum;
-   //nowtime = 1910;
+   //nowtime = 910;
 
    const darkcall = (data) => {
       setIsDarkMode(!data);

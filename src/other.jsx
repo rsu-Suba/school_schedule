@@ -177,7 +177,7 @@ export default function App(props) {
             </a>
          </p>,
          <h4 className="lastText" style={{ textAlign: "right" }}>
-            Supported to Test dates. v1.25.25
+            Exam update. v2.7.25
          </h4>,
       ])
    );

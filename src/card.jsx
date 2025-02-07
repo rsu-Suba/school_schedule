@@ -13,7 +13,7 @@ export default function Card(props) {
    let todaytext = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`;
    const [fetchedData, setFetchedData] = useState([]);
    const [isFetching, setIsFetching] = useState(false);
-   const testDates = ["2025/01/30", "2025/01/31", "2025/02/03", "2025/02/04", "2025/02/05", "2025/02/06"];
+   const testDates = ["2025/1/30", "2025/1/31", "2025/2/3", "2025/2/4", "2025/2/5", "2025/2/6", "2025/2/12", "2025/2/13"];
 
    let nowTime = Number(props.nowtime);
 
@@ -40,7 +40,7 @@ export default function Card(props) {
             day++;
             isTomorrow = true;
             todaytext = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate() + 1}`;
-            //todaytext = `2025/02/03`;
+            //todaytext = `2025/2/6`;
          }
          if (day == 7) {
             day = 0;
@@ -86,7 +86,7 @@ export default function Card(props) {
          let subNameStr = json[day][i];
          let textbookStr = json[day][i];
          if (isChanged) {
-            if (testDates.indexOf(todaytext) != -1) loop = fetchedData[0][changeNum][1].length;
+            if (testDates.indexOf(todaytext) != -1 && props.mode == "main") loop = fetchedData[0][changeNum][1].length;
             for (let n = 0; n < loop; n++) {
                if (fetchedData[0][changeNum][1][n] == undefined) continue;
                if (fetchedData[0][changeNum][1][n][0] == i && props.mode == "main") {
@@ -107,7 +107,7 @@ export default function Card(props) {
                         <div className="subProp">
                            <p className="subName">
                               {json.sub[subNameStr].sub}
-                              {testDates.indexOf(todaytext) != -1 ? " (学年末テスト)" : ""}
+                              {testDates.indexOf(todaytext) != -1 && props.mode == "main" ? " (学年末テスト)" : ""}
                            </p>
                            <p className="time">{json.time[timeList][i]}</p>
                         </div>
