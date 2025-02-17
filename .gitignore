@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+gas_old.gs
+gas.gs
+Todo.txt

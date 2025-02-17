@@ -177,7 +177,7 @@ export default function App(props) {
             </a>
          </p>,
          <h4 className="lastText" style={{ textAlign: "right" }}>
-            Exam update. v2.7.25
+            Faster than light. v2.17.25
          </h4>,
       ])
    );
