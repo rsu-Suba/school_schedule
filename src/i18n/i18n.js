@@ -11,7 +11,7 @@ i18n
     supportedLngs: ["en", "ja"],
     fallbackLng: "en",
     backend: {
-      loadPath: "school_schedule/locales/{{lng}}.json",
+      loadPath: "/locales/{{lng}}.json",
     },
     interpolation: {
       escapeValue: false,
