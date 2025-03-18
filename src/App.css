@@ -496,7 +496,7 @@ input {
    text-align: center;
    padding: 4px;
    font-size: 110%;
-   width: 35%;
+   width: 45%;
 }
 
 .changeCard {
@@ -634,6 +634,5 @@ input {
 .ant-drawer-body {
    display: flex;
    flex-direction: column;
-   justify-content: space-between;
    background-color: var(--bg-color);
 }

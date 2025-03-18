@@ -1,0 +1,29 @@
+{
+   "CardTitleContexts": {
+      "SubjectList_Main": "Up Next",
+      "SubjectList_Module": "Timetable",
+      "ChangeInteg_SC": "Subject Change",
+      "ChangeInteg_HW": "Homework",
+      "Calendar_MonthlyList": "Monthly Schedule",
+      "Settings": "Settings",
+      "PlannedFeatures": "Planned Features",
+      "Info": "Info"
+   },
+   "CardInsideContexts": {
+      "NoData": "No Data",
+      "FailedFetch": "Failed to Fetch",
+      "NoSchedule": "No Schedule",
+      "Holiday": "Holiday"
+   },
+   "ButtonContexts": {
+      "Update": "Update",
+      "Change": "Change",
+      "Submit": "Add",
+      "Delete": "Delete"
+   },
+   "Settings": {
+      "DarkTheme": "Dark Theme",
+      "Color": "Color",
+      "Language": "Language"
+   }
+}
