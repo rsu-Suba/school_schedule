@@ -7,7 +7,8 @@
       "Calendar_MonthlyList": "月間スケジュール",
       "Settings": "設定",
       "PlannedFeatures": "実装予定機能",
-      "Info": "その他"
+      "Info": "その他",
+      "Credit": "単位チェック"
    },
    "CardInsideContexts": {
       "NoData": "データなし",
@@ -25,5 +26,17 @@
       "DarkTheme": "ダークテーマ",
       "Color": "カラー",
       "Language": "言語"
+   },
+   "Credit": {
+      "Subject": "科目",
+      "Test": "テスト",
+      "MidTest": "中間テスト点数",
+      "FinalTest": "期末テスト点数",
+      "HW": "課題, レポート",
+      "Score": "点",
+      "Credit": "単位",
+      "Year": "通年",
+      "FirstH": "前期",
+      "SecondH": "後期"
    }
 }

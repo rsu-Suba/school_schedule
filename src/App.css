@@ -375,6 +375,17 @@ input {
    font-weight: 500;
 }
 
+.GCHeader {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+   padding-bottom: 12px;
+}
+
+.GCResult {
+   font-size: 115%;
+}
+
 @media screen and (orientation: landscape) {
    .canvas {
       height: 92%;

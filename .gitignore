@@ -23,6 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 
-gas_old.gs
-gas.gs
-Todo.txt
+/todo.txt

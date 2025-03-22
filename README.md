@@ -1,12 +1,11 @@
-# React + Vite
+# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Apr 18, 2024 : First commit -> React + JavaScript + MUI
+May 18, 2024 : Support for landscape
+Oct 7, 2024 : Add feature -> Subject change
+Oct 7, 2024 : Add feature -> Homework list
+Oct 22, 2024 : UI update -> MUI + CSS changed to AntD
+Nov 10, 2024 : Support Dark Theme
+Mar 19, 2025 : Full optimization -> GAS script changed
+Mar 20, 2025 : Script rewrited to TypeScript
+Mar 22, 2025 : Full rewrited to TypeScript, Add feature -> Credit Check

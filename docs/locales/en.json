@@ -7,7 +7,8 @@
       "Calendar_MonthlyList": "Monthly Schedule",
       "Settings": "Settings",
       "PlannedFeatures": "Planned Features",
-      "Info": "Info"
+      "Info": "Info",
+      "Credit": "Credit Check"
    },
    "CardInsideContexts": {
       "NoData": "No Data",
@@ -25,5 +26,17 @@
       "DarkTheme": "Dark Theme",
       "Color": "Color",
       "Language": "Language"
-   }
+   },
+"Credit": {
+   "Subject": " subjects",
+   "Test": "Test ",
+   "MidTest": "Mid Test Score",
+   "FinalTest": "Final Test Score",
+   "HW": "Homework, Report",
+   "Score": " Points",
+   "Credit": "Credit ",
+      "Year": "Full year",
+      "FirstH": "First term",
+      "SecondH": "Second term"
+}
 }

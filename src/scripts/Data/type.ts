@@ -1,0 +1,9 @@
+export type State<T> = React.Dispatch<React.SetStateAction<T>>;
+export type jsonType = Record<string, Record<string, string>>;
+export type ScheduleJSON = Record<string, { schedule: string }>;
+export type jsonTimeScheduleType = Record<string, Record<string, number | string>>;
+export type GASArraySubMapType = [string, [number, number][]];
+export type GASArrayHWMapType = [string, [string, number][]];
+export type GASArraySubType = GASArraySubMapType[];
+export type GASArrayHWType = GASArrayHWMapType[];
+export type GASArrayType = [GASArraySubType, GASArrayHWType];
