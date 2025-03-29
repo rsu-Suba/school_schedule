@@ -4,26 +4,24 @@ import { CheckCircleFilled } from "@ant-design/icons";
 import { accentsColors as colors } from "@/scripts/Data/DataPack";
 import { postCookie } from "@/scripts/Server/Cookie";
 
-export default function ColorSelect({
-   onChange,
-}: {
-   onChange: React.Dispatch<React.SetStateAction<string>>;
-}) {
+export default function ColorSelect({ onChange }: { onChange: React.Dispatch<React.SetStateAction<string>> }) {
    const root = document.querySelector(":root") as HTMLElement;
    const theme = useTheme();
    if (!theme) return <></>;
-   const { primaryColor, setPrimaryColor } = theme;
+   const { primaryColor, setPrimaryColor, isDarkMode } = theme;
+   let darkNum: number = 0;
 
    const handleColorChange = (color: number) => {
       postCookie("PrimaryColor", color);
-      setPrimaryColor(colors[color]);
-      root.style.setProperty("--main-color", colors[color]);
-      if (onChange) onChange(colors[color]);
+      if (isDarkMode) darkNum = 1;
+      setPrimaryColor(colors[darkNum][color]);
+      root.style.setProperty("--main-color", colors[darkNum][color]);
+      if (onChange) onChange(colors[darkNum][color]);
    };
 
    return (
       <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-         {colors.map((color) => (
+         {colors[darkNum].map((color) => (
             <div
                key={color}
                style={{
@@ -37,7 +35,7 @@ export default function ColorSelect({
                   alignItems: "center",
                   justifyContent: "center",
                }}
-               onClick={() => handleColorChange(colors.indexOf(color))}
+               onClick={() => handleColorChange(colors[darkNum].indexOf(color))}
             >
                {primaryColor === color && <CheckCircleFilled style={{ color: "white", fontSize: "16px" }} />}
             </div>

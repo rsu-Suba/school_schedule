@@ -1,16 +1,19 @@
 import { List } from "antd";
 import "@/App.css";
 import jsonData from "~/assets/main.json";
+import jsonScheData from "~/assets/schedule.json";
 import React, { useState, useEffect } from "react";
 import { CardBase, CardInside, LoadSkeleton, SubList, TimeListProp, SubIcon } from "@/components/Layout/CardComp";
 import { getSub } from "@/scripts/Server/api";
 import PastTimeChecker from "@/scripts/Misc/pastTimeChecker";
+import getCustomDate from "@/scripts/Misc/getCustomDate";
 import SubSelector from "@/scripts/Subject/subSelector";
 import { isChangeToday } from "@/scripts/Subject/subChangeSupporter";
 import useContexts from "@/scripts/Data/Contexts";
-import type { jsonTimeScheduleType, GASArrayType } from "@/scripts/Data/type";
+import type { jsonTimeScheduleType, ScheduleJSON, GASArrayType } from "@/scripts/Data/type";
 
 const jsonTimeSchedule: jsonTimeScheduleType = jsonData.time_schedule;
+const jsonSche: ScheduleJSON = jsonScheData;
 
 export default function SubjectList(props: { recentNum: number; nowtime: number; mode: string }) {
    const { CardTitleContexts, CardInsideContexts } = useContexts();
@@ -30,8 +33,22 @@ export default function SubjectList(props: { recentNum: number; nowtime: number;
       timeList = 2;
       loop--;
    }
-   if (day == 0 || day == 6 || (day === 5 && PastTimeChecker([timeList, loop], nowTime))) {
-      cardtext.push(<h4>{CardInsideContexts.Holiday}</h4>);
+
+   let irregular: number = 0;
+   const SelectDate: string = getCustomDate(todaytext, "YYYYMMDD");
+   if (props.mode === "main") {
+      if (jsonSche[SelectDate] !== undefined) {
+         irregular = jsonSche[SelectDate].irregular;
+      }
+   }
+   if (day == 0 || day == 6 || (day === 5 && PastTimeChecker([timeList, loop], nowTime)) || irregular == 1) {
+      cardtext.push(
+         <h4>
+            {CardInsideContexts.Holiday} | {irregular == 1 && jsonSche[SelectDate].schedule[0]}
+         </h4>
+      );
+   } else if (irregular == 2) {
+      cardtext.push(<h4>{jsonSche[SelectDate].schedule[0]}</h4>);
    } else {
       for (let i = 0; i < loop; i++) {
          let timeSelector: number = i + 1;
@@ -50,13 +67,12 @@ export default function SubjectList(props: { recentNum: number; nowtime: number;
             );
             const SubNumber = SubData.SubNumber;
             loop = SubData.loop;
-
             cardtext.push(
                <SubList key={`${SubNumber}-${timeSelector}-${i}`} day={day} timeSelector={timeSelector}>
                   <SubIcon SubNumber={SubNumber} />
                   <List.Item.Meta
                      title={<TimeListProp text="title" SubNumber={SubNumber} timeSelector={[timeList, timeSelector]} />}
-                     description={<TimeListProp text="desc" SubNumber={SubNumber} />}
+                     description={<TimeListProp text="desc" SubNumber={SubNumber} isTomorrow={isTomorrow} />}
                   />
                </SubList>
             );

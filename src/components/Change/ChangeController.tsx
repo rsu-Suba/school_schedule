@@ -44,7 +44,7 @@ export default function ChangeController({
    handleChangeSubject,
 }: ChangeControllerType) {
    return (
-      <CardInside className="cardCh">
+      <CardInside className="ChangeController">
          <Space direction="vertical" className="changeSpace1">
             <DateInput
                dateId={dateId}

@@ -4,7 +4,7 @@ import { Calendar, Badge } from "antd";
 import type { CalendarProps } from "antd";
 import { useTheme } from "@/ThemeContext";
 import jsonData from "~/assets/schedule.json";
-import { CardBase, CardInside, SubList } from "@/components/Layout/CardComp";
+import { CardBase, CardInside, SubList, Divider } from "@/components/Layout/CardComp";
 import { getWeekNumber, getScheProps } from "@/scripts/CalendarFC";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
 import useContexts from "@/scripts/Data/Contexts";
@@ -14,6 +14,7 @@ const json: ScheduleJSON = jsonData;
 
 type ScheProps = {
    dates: number[];
+   datesSches: number[];
    datesFull: string[];
    sches: string[];
 };
@@ -29,37 +30,40 @@ let cardtextContainer: React.ReactNode[] = [];
 
 function fakeFetch(date: Dayjs, signal: AbortSignal): Promise<daysToHighlightType> {
    return new Promise((resolve, reject) => {
-      const { dates, datesFull, sches }: ScheProps = getScheProps(date);
+      const { dates, datesSches, datesFull, sches }: ScheProps = getScheProps(date);
       const daysToHighlight: number[] = [...dates];
       let dayNumCache: number = 0;
+      let index: number = 0;
       cardtext = [];
       cardtextContainer = [];
 
       for (let i = 0; i < dates.length; i++) {
-         const dayNum: number = getWeekNumber(datesFull, i);
-         if (dayNumCache == dayNum) {
-            cardtext.push(<div className="scheList"></div>);
-         } else {
-            if (i != 0) {
-               cardtextContainer.push(<CardInside>{cardtext}</CardInside>);
-               cardtext = [];
+         for (let j = 0; j < datesSches[i]; j++, index++) {
+            const dayNum: number = getWeekNumber(datesFull, i);
+            if (dayNumCache == dayNum) {
+               cardtext.push(<Divider />);
+            } else {
+               if (index != 0) {
+                  cardtextContainer.push(<CardInside>{cardtext}</CardInside>);
+                  cardtext = [];
+               }
             }
+            cardtext.push(
+               <SubList>
+                  <div className="subProp">
+                     <p className="scheText">{sches[index]}</p>
+                     <p className="scheText">{datesFull[i].replace(/\/0(\d)/g, "/$1").replace(/^0/, "")}</p>
+                  </div>
+               </SubList>
+            );
+            if (i == dates.length - 1) {
+               cardtextContainer.push(<CardInside>{cardtext}</CardInside>);
+            }
+            dayNumCache = dayNum;
          }
-         cardtext.push(
-            <SubList>
-               <div className="subProp">
-                  <p className="scheText">{sches[i]}</p>
-                  <p className="scheText">{datesFull[i].replace(/\/0(\d)/g, "/$1").replace(/^0/, "")}</p>
-               </div>
-            </SubList>
-         );
-         if (i == dates.length - 1) {
-            cardtextContainer.push(<CardInside>{cardtext}</CardInside>);
-         }
-         dayNumCache = dayNum;
+         resolve({ daysToHighlight });
+         signal.onabort = () => reject(new DOMException("aborted", "AbortError"));
       }
-      resolve({ daysToHighlight });
-      signal.onabort = () => reject(new DOMException("aborted", "AbortError"));
    });
 }
 
@@ -75,13 +79,25 @@ export default function DateCalendarServerRequest() {
 
    const dateSelect = (date: Dayjs) => {
       let datetext: string = getCustomDate(String(date), "YYYYMMDD");
-      const SelectDate: { schedule: string } = json[datetext];
-
-      setSelectScheContainer([
-         <CardInside>
-            <SubList>{SelectDate === undefined ? CardInsideContexts.NoSchedule : SelectDate.schedule}</SubList>
-         </CardInside>,
-      ]);
+      const SelectDate: { schedule: string[] } | undefined = json[datetext];
+      if (SelectDate === undefined) {
+         setSelectScheContainer([
+            <CardInside>
+               <SubList>{CardInsideContexts.NoSchedule}</SubList>
+            </CardInside>,
+         ]);
+      } else {
+         setSelectScheContainer([
+            <CardInside>
+               {SelectDate.schedule.map((schedate: string, index: number) => (
+                  <>
+                     {index !== 0 && <Divider />}
+                     <SubList>{schedate}</SubList>
+                  </>
+               ))}
+            </CardInside>,
+         ]);
+      }
    };
 
    const fetchHighlightedDays = (date: Dayjs) => {
@@ -150,7 +166,7 @@ export default function DateCalendarServerRequest() {
    };
 
    return (
-      <div className="scheDiv">
+      <div className="scheCards">
          <Calendar
             dateFullCellRender={dateCellRender}
             className="carddiv"

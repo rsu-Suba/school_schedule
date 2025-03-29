@@ -12,18 +12,22 @@ function getWeekNumber(datesFull: string[], i: number) {
 
 function getScheProps(date: Dayjs) {
    let dates: number[] = [];
+   let datesSches: number[] = [];
    let datesFull: string[] = [];
    let sches: string[] = [];
    for (let i = 1; i <= date.daysInMonth(); i++) {
       let datetext: string = `${date.year()}${String(date.month() + 1).padStart(2, "0")}${String(i).padStart(2, "0")}`;
       if (json[datetext] !== undefined) {
          dates.push(i);
+         datesSches.push(json[datetext].schedule.length);
          datesFull.push(`${datetext.slice(4, 6)}/${datetext.slice(6, 8)}/${datetext.slice(0, 4)}`);
-         sches.push(json[datetext].schedule);
+         for (let j = 0; j < json[datetext].schedule.length; j++) {
+            sches.push(json[datetext].schedule[j]);
+         }
       }
    }
 
-   return { dates, datesFull, sches };
+   return { dates, datesSches, datesFull, sches };
 }
 
 export { getWeekNumber, getScheProps };

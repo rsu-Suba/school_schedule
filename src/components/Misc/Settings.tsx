@@ -14,7 +14,7 @@ import jaJP from "antd/lib/locale/ja_JP";
 export default function Settings() {
    const { i18n } = useTranslation();
    const { CardTitleContexts, SettingsContexts } = useContexts();
-   const [_accentColor, setAccentColor] = useState(colors[0]);
+   const [_accentColor, setAccentColor] = useState(colors[0][0]);
    const theme = useTheme();
    if (!theme) return <></>;
    const { localeLang, setLocaleLang } = theme;
@@ -41,7 +41,7 @@ export default function Settings() {
       <CardBase title={CardTitleContexts.Settings}>
          <CardInside>
             {SettingOptionFC(SettingsContexts.DarkTheme, <DarkSwitch />)}
-            {SettingOptionFC(SettingsContexts.Color, <ColorSelect  onChange={setAccentColor} />)}
+            {SettingOptionFC(SettingsContexts.Color, <ColorSelect onChange={setAccentColor} />)}
             {SettingOptionFC(
                SettingsContexts.Language,
                <Select

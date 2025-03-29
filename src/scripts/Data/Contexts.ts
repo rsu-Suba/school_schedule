@@ -27,9 +27,9 @@ export default function useContexts() {
          Delete: t("ButtonContexts.Delete"),
       },
       InfoContexts: {
-         PlannedFeatures: "None",
-         UpdateTitle: "Full rewrited to TypeScript.",
-         UpdateVersion: "3.22.25",
+         PlannedFeatures: `Exam time schedule support.`,
+         UpdateTitle: "Responsive Updated.",
+         UpdateVersion: "3.29.25",
       },
       SettingsContexts: {
          DarkTheme: t("Settings.DarkTheme"),

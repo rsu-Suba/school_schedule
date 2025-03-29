@@ -1,4 +1,5 @@
 import type { State, GASArraySubType, GASArrayHWType, GASArrayType } from "@/scripts/Data/type";
+//import { DataArrayDev } from "../../../Dev/apiDev";
 
 const url: string = `https://script.google.com/macros/s/AKfycbxrHb3CB2P2fhTsF6YtCggz8pKiu9bJ1NFPF7i6yZ8YGgpt9Djx00G7c3_5pfA-uvqO/exec`;
 //const url: string = `https://script.google.com/macros/s/AKfycbxNCLc3Oww0r65UpTyxfMu2s1_kpnYEiELOKc7YLVyWcrYgS0GpGE1yOOs7OMxuItpzuA/exec`;
@@ -7,6 +8,7 @@ export async function fetchData(options: RequestInit) {
    try {
       const response = await fetch(url, options);
       let data: GASArrayType = await response.json();
+      //const data = DataArrayDev;
       return data;
    } catch (error) {
       console.error("Error fetching data:", error);

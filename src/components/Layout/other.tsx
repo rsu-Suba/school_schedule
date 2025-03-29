@@ -24,16 +24,17 @@ export default function Other() {
          <Settings />
          {cardMake(CardTitleContexts.PlannedFeatures, [
             <div className="subProp">
-               <p className="othercardsub">{InfoContexts.PlannedFeatures}</p>
+               <p className="othercardsub">・{InfoContexts.PlannedFeatures}</p>
             </div>,
          ])}
          {cardMake(CardTitleContexts.Info, [
             <p className="othercardsub">
+               ・
                <a href="https://github.com/rsu-Suba/school_schedule" target="_blank">
                   Repository
                </a>
             </p>,
-            <p className="subName">
+            <p className="infoText">
                <a href="https://ja.react.dev/" target="_blank">
                   React
                </a>
@@ -43,7 +44,7 @@ export default function Other() {
                </a>
                , TypeScript, Google Apps Script, ChatGPT
             </p>,
-            <p className="subName">
+            <p className="infoText">
                Made by{" "}
                <a href="https://github.com/rsu-Suba" target="_blank">
                   rsu-Suba

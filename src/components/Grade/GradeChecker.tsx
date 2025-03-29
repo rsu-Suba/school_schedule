@@ -1,7 +1,7 @@
 import { Space } from "antd";
 import "@/App.css";
 import { useState } from "react";
-import { CardBase, CardInside } from "@/components/Layout/CardComp";
+import { CardBase, CardInside, Divider } from "@/components/Layout/CardComp";
 import { subsListGradeOpt_Array } from "@/scripts/Data/DataPack";
 import useContexts from "@/scripts/Data/Contexts";
 import { scoreColorFC, scoreCalc } from "@/scripts/GradeChecker";
@@ -65,7 +65,7 @@ export default function GradeChecker() {
 
    return (
       <CardBase title={CardTitleContexts.Credit}>
-         <CardInside className="cardCh">
+         <CardInside className="ChangeController">
             <Space direction="vertical" className="changeSpace1">
                <GCHeader value={value} handleChange={handleChange} examPer={examPer} />
                {isMidTest && (
@@ -90,6 +90,7 @@ export default function GradeChecker() {
                   </>
                )}
                {isHWScore && <HWInput HWScoreProp={HWScoreProp} HWScore={HWScore} HWPer={HWPer} />}
+               <Divider />
                <p className="GCResult">
                   <span style={{ color: scoreColor }}>{resultScore}</span>
                   {Credit.Score}: {Credit.Credit}

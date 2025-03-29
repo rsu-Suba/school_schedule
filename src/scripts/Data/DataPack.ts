@@ -59,7 +59,10 @@ export const languages: { value: string; label: string }[] = [
    { value: "ja", label: "日本語" },
    { value: "en", label: "English" },
 ];
-export const accentsColors: string[] = ["#007AFF", "#AF52DE", "#FF3B30", "#FFCC00", "#34C759", "#8E8E93"];
+export const accentsColors: string[][] = [
+   ["#007AFF", "#AF52DE", "#FF3B30", "#FFCC00", "#34C759", "#8E8E93"],
+   ["#0a84ff", "#bf5af2", "#ff453a", "#ffd60a", "#30d158", "#8e8e93"],
+];
 
 export const weekday: { en: string[]; ja: string[] } = {
    en: ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur"],
@@ -74,15 +77,15 @@ export const subsListGradeOpt_Array: {
    examPer: number;
 }[] = [
    { value: "1", label: "コンピューターシステムII", season: 2, midTest: false, HW: true, examPer: 70 },
-   { value: "2", label: "プログラミングII", season: 2, midTest: false, HW: true, examPer: 70},
-   { value: "3", label: "化学IIB", season: 2, midTest: true, HW: true, examPer: 80},
-   { value: "4", label: "微分積分学II", season: 2, midTest: true, HW: true, examPer: 70},
-   { value: "5", label: "英会話II", season: 0, midTest: true, HW: false, examPer: 80},
-   { value: "6", label: "総合英語II", season: 0, midTest: true, HW: true, examPer: 80},
-   { value: "7", label: "英語表現II", season: 0, midTest: true, HW: true, examPer: 60},
-   { value: "8", label: "総合国語IIB", season: 2, midTest: false, HW: true, examPer: 70},
-   { value: "9", label: "基礎電気II", season: 2, midTest: true, HW: true, examPer: 70},
-   { value: "10", label: "線形代数II", season: 2, midTest: true, HW: true, examPer: 80},
-   { value: "11", label: "物理学IIB", season: 2, midTest: true, HW: true, examPer: 80},
-   { value: "12", label: "歴史I", season: 0, midTest: true, HW: false, examPer: 100},
+   { value: "2", label: "プログラミングII", season: 2, midTest: false, HW: true, examPer: 70 },
+   { value: "3", label: "化学IIB", season: 2, midTest: true, HW: true, examPer: 80 },
+   { value: "4", label: "微分積分学II", season: 2, midTest: true, HW: true, examPer: 70 },
+   { value: "5", label: "英会話II", season: 0, midTest: true, HW: false, examPer: 80 },
+   { value: "6", label: "総合英語II", season: 0, midTest: true, HW: true, examPer: 80 },
+   { value: "7", label: "英語表現II", season: 0, midTest: true, HW: true, examPer: 60 },
+   { value: "8", label: "総合国語IIB", season: 2, midTest: false, HW: true, examPer: 70 },
+   { value: "9", label: "基礎電気II", season: 2, midTest: true, HW: true, examPer: 70 },
+   { value: "10", label: "線形代数II", season: 2, midTest: true, HW: true, examPer: 80 },
+   { value: "11", label: "物理学IIB", season: 2, midTest: true, HW: true, examPer: 80 },
+   { value: "12", label: "歴史I", season: 0, midTest: true, HW: false, examPer: 100 },
 ];

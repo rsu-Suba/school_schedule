@@ -13,9 +13,9 @@ function App() {
    let nowtime: number = parseInt(getCustomDate(String(date), "HHmm"));
    aspectRatio;
 
-   //recentNum = 5;
+   recentNum = 3;
    //todayNum = recentNum;
-   //nowtime = 910;
+   //nowtime = 1610;
 
    const CanvasProps = {
       recentNum: recentNum,
@@ -23,11 +23,7 @@ function App() {
       todayNum: todayNum,
    };
 
-   return (
-      <ThemeProvider>
-         {window.innerHeight > window.innerWidth ? <Phone {...CanvasProps} /> : <PC {...CanvasProps} />}
-      </ThemeProvider>
-   );
+   return <ThemeProvider>{aspectRatio ? <Phone {...CanvasProps} /> : <PC {...CanvasProps} />}</ThemeProvider>;
 }
 
 export default App;

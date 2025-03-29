@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 
 export default function AspectDetector() {
-   const [aspectRatio, setAspectRatio] = useState(window.innerWidth / window.innerHeight);
+   const [aspectRatio, setAspectRatio] = useState(false);
 
    useEffect(() => {
       const handleResize = () => {
-         const newAspectRatio = window.innerWidth / window.innerHeight;
-         setAspectRatio(newAspectRatio);
+         const newAspectRatio: number = window.innerHeight / window.innerWidth;
+         setAspectRatio(newAspectRatio > 1.6);
       };
+
+      handleResize();
 
       window.addEventListener("resize", handleResize);
       return () => {

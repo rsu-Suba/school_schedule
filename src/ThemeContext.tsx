@@ -25,10 +25,11 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
    const root = document.querySelector(":root") as HTMLElement;
    const { i18n } = useTranslation();
-   const [primaryColor, setPrimaryColor] = useState(colors[0]);
+   const [primaryColor, setPrimaryColor] = useState(colors[0][0]);
    const { defaultAlgorithm, darkAlgorithm } = theme;
    const [isDarkMode, setIsDarkMode] = useState(false);
    const [localeLang, setLocaleLang] = useState(i18n.languages[0] == "ja" ? jaJP : enUS);
+   let darkNum: number = 0;
 
    useEffect(() => {
       if (getCookie("dark") == "true") {
@@ -36,8 +37,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
          DarkClick(isDarkMode);
       }
       if (getCookie("PrimaryColor") != "") {
-         setPrimaryColor(colors[parseInt(getCookie("PrimaryColor"))]);
-         root.style.setProperty("--main-color", colors[parseInt(getCookie("PrimaryColor"))]);
+         if (isDarkMode) darkNum = 1;
+         setPrimaryColor(colors[darkNum][parseInt(getCookie("PrimaryColor"))]);
+         root.style.setProperty("--main-color", colors[darkNum][parseInt(getCookie("PrimaryColor"))]);
       }
    }, []);
 
