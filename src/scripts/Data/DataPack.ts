@@ -3,6 +3,14 @@ export const times_Array: { value: string; label: string }[] = [
    { value: "2", label: "2" },
    { value: "3", label: "3" },
    { value: "4", label: "4" },
+];export const times_Exam_Array: { value: string; label: string }[] = [
+   { value: "1", label: "50分9:20~" },
+   { value: "2", label: "50分10:20~" },
+   { value: "3", label: "50分11:20~" },
+   { value: "4", label: "50分11:00~" },
+   { value: "5", label: "90分9:20~" },
+   { value: "6", label: "90分10:20~" },
+   { value: "7", label: "90分11:00~" },
 ];
 export const subsListOpt_Array: { value: string; label: string }[] = [
    { value: "1", label: "コンピューターシステムII" },

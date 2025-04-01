@@ -10,6 +10,7 @@ import getCustomDate from "@/scripts/Misc/getCustomDate";
 import SubSelector from "@/scripts/Subject/subSelector";
 import { isChangeToday } from "@/scripts/Subject/subChangeSupporter";
 import useContexts from "@/scripts/Data/Contexts";
+import IsExamDate from "@/scripts/Change/isExamDate";
 import type { jsonTimeScheduleType, ScheduleJSON, GASArrayType } from "@/scripts/Data/type";
 
 const jsonTimeSchedule: jsonTimeScheduleType = jsonData.time_schedule;
@@ -67,6 +68,13 @@ export default function SubjectList(props: { recentNum: number; nowtime: number;
             );
             const SubNumber = SubData.SubNumber;
             loop = SubData.loop;
+            if (props.mode === "main") {
+               const datetext: string = getCustomDate(todaytext, "YYYYMMDD");
+               const IsExamDatePack = IsExamDate(datetext);
+               if (IsExamDatePack.TestStrNum !== -1) {
+                  timeList = 3;
+               }
+            }
             cardtext.push(
                <SubList key={`${SubNumber}-${timeSelector}-${i}`} day={day} timeSelector={timeSelector}>
                   <SubIcon SubNumber={SubNumber} />

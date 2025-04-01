@@ -8,8 +8,8 @@ type ChangeControllerType = {
    dateId: string;
    date: Dayjs;
    setDate: State<Dayjs>;
-   timeValue: number;
-   handleChangeTime: (e: number) => void;
+   timeValue: string;
+   handleChangeTime: (e: string) => void;
    timeOptions: { value: string; label: string }[] | undefined;
    showInput?: boolean;
    textValue?: string;

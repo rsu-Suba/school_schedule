@@ -22,11 +22,11 @@ export default function ChangeInteg() {
    const [isWorkPosting, setIsWorkPosting] = useState(false);
    const [textWork, setWorkText] = useState("");
    const [error, setError] = useState("");
-   const [timeWorkState, setTimeWorkState] = useState(0);
+   const [timeWorkState, setTimeWorkState] = useState("0");
    const [date, setDate] = useState<Dayjs>(dayjs());
    const [dateWork, setDateWork] = useState<Dayjs>(dayjs());
-   const [time, setTime] = useState(1);
-   const [sub, setSub] = useState(0);
+   const [time, setTime] = useState("1");
+   const [sub, setSub] = useState("0");
    const { CardTitleContexts } = useContexts();
    const get = () => {
       getChange(setData, setWorkData, (d) => homework(d, setWorkOpt), setIsFetching, setError);
@@ -70,10 +70,10 @@ export default function ChangeInteg() {
             time={timeWorkState}
             setTime={setTimeWorkState}
             isPosting={isWorkPosting}
-            postMode={timeWorkState === 0 ? 1 : 2}
+            postMode={timeWorkState === "0" ? 1 : 2}
             data={dataWork}
             timeOptions={dataWorkOpt}
-            showInput={timeWorkState == 0}
+            showInput={timeWorkState == "0"}
             textValue={textWork}
             setTextValue={setWorkText}
             {...changeCardProps}

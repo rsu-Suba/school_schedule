@@ -29,7 +29,7 @@ export default function UpdateNotice() {
 
    return (
       <Modal
-         title="Update (Mar 22)"
+         title="Update (Apr 1)"
          open={isModalOpen}
          onOk={handleOk}
          onCancel={handleCancel}
@@ -40,10 +40,8 @@ export default function UpdateNotice() {
          ]}
          style={{ textAlign: "left" }}
       >
-         <h3>Timetableタブに落単チェッカーを追加✅️</h3>
-         <p>教科を選択→テストの点数と課題提出率を入力すると予想成績点数が算出</p>
-         <h3>Otherタブに設定パネルを追加✅️</h3>
-         <p>カスタムカラーと言語設定(日本語, 英語)が可能</p>
+         <h3>テスト期間の特別時間割に対応✅️</h3>
+         <h3>レスポンシブデザイン対応, レイアウトの調整✅️</h3>
       </Modal>
    );
 }

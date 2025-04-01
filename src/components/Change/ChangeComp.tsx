@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { Space, Button, Input, Select, DatePicker, List } from "antd";
 import jsonData from "~/assets/main.json";
-import { subsList_Array } from "@/scripts/Data/DataPack";
+import { subsList_Array, times_Exam_Array } from "@/scripts/Data/DataPack";
 import useContexts from "@/scripts/Data/Contexts";
+import IsExamDate from "@/scripts/Change/isExamDate";
+import getCustomDate from "@/scripts/Misc/getCustomDate";
 import type { State, jsonType } from "@/scripts/Data/type";
 
 const jsonTime: jsonType = jsonData.time;
@@ -12,10 +14,23 @@ export const DateInput = (props: {
    dateId: string;
    date: Dayjs;
    setDate: State<Dayjs>;
-   timeValue: number;
-   handleChangeTime: (e: number) => void;
+   timeValue: string;
+   handleChangeTime: (e: string) => void;
    timeOptions: { value: string; label: string }[];
 }) => {
+   const [TestStrNum, setTestStrNum] = useState(-1);
+
+   const handleDateChange = (date: Dayjs | null) => {
+      if (date) {
+         props.setDate(date);
+         const datetext: string = `${date.year()}${String(date.month() + 1).padStart(2, "0")}${String(
+            date.date()
+         ).padStart(2, "0")}`;
+         const IsExamDatePack = IsExamDate(datetext);
+         setTestStrNum(IsExamDatePack.TestStrNum);
+      }
+   };
+
    return (
       <Space direction="horizontal" className="changeSpace2">
          <DatePicker
@@ -24,10 +39,23 @@ export const DateInput = (props: {
             value={props.date}
             minDate={dayjs()}
             maxDate={dayjs("2025-03-31")}
-            onChange={props.setDate}
+            onChange={handleDateChange}
             size="large"
          />
-         <Select value={props.timeValue} onChange={props.handleChangeTime} options={props.timeOptions} size="large" />
+         <Select
+            value={props.timeValue}
+            onChange={props.handleChangeTime}
+            options={
+               props.dateId === "datepickerWork"
+                  ? props.timeOptions
+                  : props.dateId === "datepicker"
+                  ? TestStrNum === -1
+                     ? props.timeOptions
+                     : times_Exam_Array
+                  : undefined
+            }
+            size="large"
+         />
       </Space>
    );
 };
@@ -135,9 +163,11 @@ export const ChangeList = (props: { children: React.ReactNode }) => {
    );
 };
 
-export const ChangeListMapper = (props: { mode: string; data: [number | string, number][] }) => {
+export const ChangeListMapper = (props: { mode: string; ListDate: string; data: [number | string, number][] }) => {
    const subsList: string[] = subsList_Array;
    const { CardTitleContexts } = useContexts();
+   const datetext: string = getCustomDate(props.ListDate, "YYYYMMDD");
+   const IsExamDatePack = IsExamDate(datetext);
 
    if (props.mode === CardTitleContexts.ChangeInteg_SC) {
       return (
@@ -145,7 +175,7 @@ export const ChangeListMapper = (props: { mode: string; data: [number | string, 
             {props.data.map((val: [number | string, number]) => (
                <div className="subProp">
                   <p className="scheText">{subsList[val[1] - 1]}</p>
-                  <p className="time">{jsonTime[1][val[0]]}</p>
+                  <p className="time">{jsonTime[IsExamDatePack.TestStrNum == -1 ? 1 : 3][val[0]]}</p>
                </div>
             ))}
          </>

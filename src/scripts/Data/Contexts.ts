@@ -27,9 +27,9 @@ export default function useContexts() {
          Delete: t("ButtonContexts.Delete"),
       },
       InfoContexts: {
-         PlannedFeatures: `Exam time schedule support.`,
-         UpdateTitle: "Responsive Updated.",
-         UpdateVersion: "3.29.25",
+         PlannedFeatures: "2025 Update.",
+         UpdateTitle: "Exam time schedule support.",
+         UpdateVersion: "4.1.25",
       },
       SettingsContexts: {
          DarkTheme: t("Settings.DarkTheme"),

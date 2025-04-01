@@ -78,11 +78,11 @@ export const postChange = (
    setIsWorkPosting: State<boolean>,
    setError: State<string>,
    get: () => void,
-   time: number,
-   sub: number,
+   time: string,
+   sub: string,
    textWork: string,
-   timeWorkState: number,
-   setTimeWorkState: State<number>,
+   timeWorkState: string,
+   setTimeWorkState: State<string>,
    setWorkText: State<string>
 ) => {
    let options: RequestInit = {};
@@ -126,7 +126,7 @@ export const postChange = (
             setWorkText("");
          }
          if (mode === 2) {
-            setTimeWorkState(0);
+            setTimeWorkState("0");
          }
          get();
       })

@@ -6,6 +6,7 @@ import IconProvider from "@/components/Misc/iconProvider";
 import { SubChangeSupporter } from "@/scripts/Subject/subChangeSupporter";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
 import getTodayDate from "@/scripts/Misc/getTodayDate";
+import IsExamDate from "@/scripts/Change/isExamDate";
 import type { jsonType, jsonTimeScheduleType, ScheduleJSON } from "@/scripts/Data/type";
 
 const jsonTimeSchedule: jsonTimeScheduleType = jsonData.time_schedule;
@@ -91,17 +92,10 @@ function TimeListProp(props: { text: string; SubNumber: number; timeSelector?: n
             </p>
          );
       } else {
-         const TestStr: string[] = ["中間試験", "期末試験", "学年末試験"];
-         let TestStrNum: number = -1;
-         for (let i = 0; i < 3; i++) {
-            const isTestDay = jsonSche[date].schedule[0].includes(TestStr[i]);
-            if (isTestDay) {
-               TestStrNum = i;
-            }
-         }
+         const { TestStrNum, resultStr }: { TestStrNum: number; resultStr: string } = IsExamDate(date);
          return (
             <p className="textbook" style={{ color: "rgba(0, 0, 0, 0.65" }}>
-               {TestStrNum !== -1 ? TestStr[TestStrNum] : SupportData.textbook}
+               {TestStrNum !== -1 ? resultStr : SupportData.textbook}
             </p>
          );
       }

@@ -18,16 +18,16 @@ type ChangeCardType = {
    card: string;
    date: Dayjs;
    setDate: State<Dayjs>;
-   time: number;
-   setTime: State<number>;
+   time: string;
+   setTime: State<string>;
    isPosting: boolean;
    postMode: number;
    data: GASArraySubType | GASArrayHWType;
    isFetching: boolean;
    post: (mode: number) => void;
    get: () => void;
-   sub?: number;
-   setSub?: State<number>;
+   sub?: string;
+   setSub?: State<string>;
    timeOptions?: { value: string; label: string }[];
    showInput?: boolean;
    textValue?: string;
@@ -64,7 +64,7 @@ export default function ChangeCard({
       date: date,
       setDate: setDate,
       timeValue: time,
-      handleChangeTime: (e: number) => setTime(e),
+      handleChangeTime: (e: string) => setTime(e),
       isFetching: isFetching,
       isPosting: isPosting,
       postMode: postMode,
@@ -74,9 +74,9 @@ export default function ChangeCard({
       showInput: showInput,
       textValue: textValue,
       setTextValue: setTextValue,
-      subjectValue: card === CardTitleContexts.ChangeInteg_SC ? subsList[sub!] : null,
+      subjectValue: card === CardTitleContexts.ChangeInteg_SC ? subsList[Number(sub!)] : null,
       subjectOptions: card === CardTitleContexts.ChangeInteg_SC ? subsListOpt : null,
-      handleChangeSubject: card === CardTitleContexts.ChangeInteg_SC ? (e: string) => setSub!(Number(e) - 1) : null,
+      handleChangeSubject: card === CardTitleContexts.ChangeInteg_SC ? (e: string) => setSub!((Number(e) - 1).toString()) : null,
    };
 
    return (
@@ -95,7 +95,7 @@ export default function ChangeCard({
                      {data.map((date: GASArraySubMapType | GASArrayHWMapType) => (
                         <ChangeList>
                            <p className="scheText">{getCustomDate(date[0], "MM/DD")}</p>
-                           <ChangeListMapper mode={card} data={date[1]} />
+                           <ChangeListMapper mode={card} ListDate={date[0]} data={date[1]} />
                         </ChangeList>
                      ))}
                   </div>
