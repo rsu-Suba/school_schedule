@@ -122,8 +122,7 @@ export default function DateCalendarServerRequest() {
       return () => requestAbortController.current?.abort();
    }, []);
 
-   const handleMonthChange = (date: Dayjs, mode: CalendarProps<Dayjs>["mode"]) => {
-      console.log(mode);
+   const handleMonthChange = (date: Dayjs, _mode: CalendarProps<Dayjs>["mode"]) => {
       if (requestAbortController.current) {
          requestAbortController.current.abort();
       }
@@ -171,7 +170,7 @@ export default function DateCalendarServerRequest() {
             dateFullCellRender={dateCellRender}
             className="carddiv"
             fullscreen={false}
-            validRange={[dayjs().subtract(1, "day"), dayjs("2025-04-01")]}
+            validRange={[dayjs().subtract(1, "day"), dayjs("2026-03-31")]}
             defaultValue={initialValue}
             value={dateValue}
             onPanelChange={handleMonthChange}

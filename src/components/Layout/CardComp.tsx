@@ -47,13 +47,15 @@ function LoadSkeleton(props: { className?: string }) {
 function SubList(props: { day?: number; timeSelector?: number; children: React.ReactNode }) {
    let link: React.ReactNode = [];
    if (props.day != undefined && props.timeSelector != undefined) {
-      link = (
-         <a
-            className="linkButton"
-            href={jsonSub[jsonTimeSchedule[props.day][props.timeSelector]].syllabus}
-            target="_blank"
-         ></a>
-      );
+      if (jsonSub[jsonTimeSchedule[props.day][props.timeSelector]].syllabus !== "") {
+         link = (
+            <a
+               className="linkButton"
+               href={jsonSub[jsonTimeSchedule[props.day][props.timeSelector]].syllabus}
+               target="_blank"
+            ></a>
+         );
+      }
    }
 
    return (

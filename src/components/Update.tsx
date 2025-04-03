@@ -29,7 +29,7 @@ export default function UpdateNotice() {
 
    return (
       <Modal
-         title="Update (Apr 1)"
+         title="Update (Apr 3)"
          open={isModalOpen}
          onOk={handleOk}
          onCancel={handleCancel}
@@ -40,8 +40,7 @@ export default function UpdateNotice() {
          ]}
          style={{ textAlign: "left" }}
       >
-         <h3>テスト期間の特別時間割に対応✅️</h3>
-         <h3>レスポンシブデザイン対応, レイアウトの調整✅️</h3>
+         <h3>2025年度対応✅️</h3>
       </Modal>
    );
 }

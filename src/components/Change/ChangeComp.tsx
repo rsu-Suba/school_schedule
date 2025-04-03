@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { Space, Button, Input, Select, DatePicker, List } from "antd";
 import jsonData from "~/assets/main.json";
@@ -19,6 +19,23 @@ export const DateInput = (props: {
    timeOptions: { value: string; label: string }[];
 }) => {
    const [TestStrNum, setTestStrNum] = useState(-1);
+   const [selectOptions, setSelectOptions] = useState(props.timeOptions);
+
+   useEffect(() => {
+      if (props.dateId === "datepicker") {
+         setSelectOptions(TestStrNum === -1 ? props.timeOptions : times_Exam_Array);
+      } else if (props.dateId === "datepickerWork") {
+         setSelectOptions(props.timeOptions);
+      }
+   }, [TestStrNum, props.timeOptions, props.dateId]);
+
+   useEffect(() => {
+      const datetext: string = `${props.date.year()}${String(props.date.month() + 1).padStart(2, "0")}${String(
+         props.date.date()
+      ).padStart(2, "0")}`;
+      const IsExamDatePack = IsExamDate(datetext);
+      setTestStrNum(IsExamDatePack.TestStrNum);
+   }, [props.date]);
 
    const handleDateChange = (date: Dayjs | null) => {
       if (date) {
@@ -38,24 +55,11 @@ export const DateInput = (props: {
             className="datePicker"
             value={props.date}
             minDate={dayjs()}
-            maxDate={dayjs("2025-03-31")}
+            maxDate={dayjs("2026-03-31")}
             onChange={handleDateChange}
             size="large"
          />
-         <Select
-            value={props.timeValue}
-            onChange={props.handleChangeTime}
-            options={
-               props.dateId === "datepickerWork"
-                  ? props.timeOptions
-                  : props.dateId === "datepicker"
-                  ? TestStrNum === -1
-                     ? props.timeOptions
-                     : times_Exam_Array
-                  : undefined
-            }
-            size="large"
-         />
+         <Select value={props.timeValue} onChange={props.handleChangeTime} options={selectOptions} size="large" />
       </Space>
    );
 };

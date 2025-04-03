@@ -1,0 +1,306 @@
+{
+   "20240426": {
+      "schedule": ["授業参観"],
+      "irregular": 0
+   },
+
+   "20240507": {
+      "schedule": ["月曜授業"],
+      "irregular": 2
+   },
+
+   "20240524": {
+      "schedule": ["短縮授業(北斗祭準備)"],
+      "irregular": 0
+   },
+
+   "20240525": {
+      "schedule": ["北斗祭"],
+      "irregular": 2
+   },
+
+   "20240526": {
+      "schedule": ["北斗祭"],
+      "irregular": 2
+   },
+
+   "20240527": {
+      "schedule": ["短縮授業(北斗祭片付け)"],
+      "irregular": 0
+   },
+
+   "20240606": {
+      "schedule": ["前期中間試験(1~4年)"],
+      "irregular": 0
+   },
+
+   "20240607": {
+      "schedule": ["前期中間試験(1~4年)"],
+      "irregular": 0
+   },
+
+   "20240610": {
+      "schedule": ["前期中間試験(1~4年)"],
+      "irregular": 0
+   },
+
+   "20240611": {
+      "schedule": ["前期中間試験(1~4年)"],
+      "irregular": 0
+   },
+
+   "20240612": {
+      "schedule": ["前期中間試験(1~4年)"],
+      "irregular": 0
+   },
+
+   "20240625": {
+      "schedule": ["風紀検査"],
+      "irregular": 0
+   },
+
+   "20240704": {
+      "schedule": ["カッターレース大会"],
+      "irregular": 2
+   },
+
+   "20240711": {
+      "schedule": ["カッターレース大会予備日"],
+      "irregular": 0
+   },
+
+   "20240717": {
+      "schedule": ["補講"],
+      "irregular": 0
+   },
+
+   "20240719": {
+      "schedule": ["補講"],
+      "irregular": 0
+   },
+
+   "20240723": {
+      "schedule": ["補講"],
+      "irregular": 0
+   },
+
+   "20240724": {
+      "schedule": ["前期末試験"],
+      "irregular": 0
+   },
+
+   "20240725": {
+      "schedule": ["前期末試験"],
+      "irregular": 0
+   },
+
+   "20240726": {
+      "schedule": ["前期末試験"],
+      "irregular": 0
+   },
+
+   "20240729": {
+      "schedule": ["前期末試験"],
+      "irregular": 0
+   },
+
+   "20240730": {
+      "schedule": ["前期末試験"],
+      "irregular": 0
+   },
+
+   "20240731": {
+      "schedule": ["前期末試験"],
+      "irregular": 0
+   },
+
+   "20240801": {
+      "schedule": ["特別時間割"],
+      "irregular": 0
+   },
+
+   "20240802": {
+      "schedule": ["特別時間割", "全体集会", "大掃除"],
+      "irregular": 0
+   },
+
+   "20240803": {
+      "schedule": ["夏季休業(~9/16)"],
+      "irregular": 1
+   },
+
+   "20240917": {
+      "schedule": ["火曜通常授業"],
+      "irregular": 0
+   },
+
+   "20240918": {
+      "schedule": ["水曜通常授業"],
+      "irregular": 0
+   },
+
+   "20240919": {
+      "schedule": ["木曜通常授業"],
+      "irregular": 0
+   },
+
+   "20240920": {
+      "schedule": ["金曜通常授業"],
+      "irregular": 0
+   },
+
+   "20240924": {
+      "schedule": ["特別時間割"],
+      "irregular": 0
+   },
+
+   "20240925": {
+      "schedule": ["休講"],
+      "irregular": 1
+   },
+
+   "20240926": {
+      "schedule": ["特別時間割"],
+      "irregular": 0
+   },
+
+   "20240927": {
+      "schedule": ["特別時間割"],
+      "irregular": 0
+   },
+
+   "20240930": {
+      "schedule": ["月曜通常授業"],
+      "irregular": 0
+   },
+
+   "20241001": {
+      "schedule": ["後期授業開始"],
+      "irregular": 0
+   },
+
+   "20241002": {
+      "schedule": ["海浜清掃"],
+      "irregular": 0
+   },
+
+   "20241009": {
+      "schedule": ["スポーツ大会"],
+      "irregular": 2
+   },
+
+   "20241015": {
+      "schedule": ["月曜通常授業"],
+      "irregular": 2
+   },
+
+   "20241023": {
+      "schedule": ["防災訓練"],
+      "irregular": 0
+   },
+
+   "20241025": {
+      "schedule": ["遠足"],
+      "irregular": 2
+   },
+
+   "20241106": {
+      "schedule": ["風紀検査"],
+      "irregular": 0
+   },
+
+   "20241113": {
+      "schedule": ["高専フェス"],
+      "irregular": 0
+   },
+
+   "20241128": {
+      "schedule": ["後期中間試験"],
+      "irregular": 0
+   },
+
+   "20241129": {
+      "schedule": ["後期中間試験"],
+      "irregular": 0
+   },
+
+   "20241202": {
+      "schedule": ["後期中間試験"],
+      "irregular": 0
+   },
+
+   "20241203": {
+      "schedule": ["後期中間試験"],
+      "irregular": 0
+   },
+
+   "20241204": {
+      "schedule": ["後期中間試験"],
+      "irregular": 0
+   },
+
+   "20241211": {
+      "schedule": ["学生会長選挙"],
+      "irregular": 0
+   },
+
+   "20241225": {
+      "schedule": ["短縮授業", "全体集会", "大掃除"],
+      "irregular": 0
+   },
+
+   "20241226": {
+      "schedule": ["冬季休業(~1/8)"],
+      "irregular": 2
+   },
+
+   "20250116": {
+      "schedule": ["月曜授業"],
+      "irregular": 2
+   },
+
+   "20250124": {
+      "schedule": ["補講"],
+      "irregular": 0
+   },
+
+   "20250128": {
+      "schedule": ["補講"],
+      "irregular": 0
+   },
+
+   "20250129": {
+      "schedule": ["補講"],
+      "irregular": 0
+   },
+
+   "20250130": {
+      "schedule": ["学年末試験"],
+      "irregular": 0
+   },
+
+   "20250131": {
+      "schedule": ["学年末試験"],
+      "irregular": 0
+   },
+
+   "20250203": {
+      "schedule": ["学年末試験"],
+      "irregular": 0
+   },
+
+   "20250204": {
+      "schedule": ["学年末試験"],
+      "irregular": 0
+   },
+
+   "20250205": {
+      "schedule": ["学年末試験"],
+      "irregular": 0
+   },
+
+   "20250206": {
+      "schedule": ["学年末試験"],
+      "irregular": 0
+   }
+}

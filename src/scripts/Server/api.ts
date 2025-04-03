@@ -94,7 +94,7 @@ export const postChange = (
          body: JSON.stringify({
             date: datePicker.value,
             time: time,
-            value: String(sub + 1),
+            value: String(Number(sub) + 1),
          }),
       };
    } else if (mode === 1) {
