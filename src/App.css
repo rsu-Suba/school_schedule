@@ -81,7 +81,7 @@ a {
 .canvas {
    position: relative;
    width: 300%;
-   height: calc(100dvh - var(--screen-width) / 7);
+   height: calc(100% - var(--screen-width) / 7);
    display: flex;
    justify-content: space-between;
    inset: 0;
@@ -362,7 +362,7 @@ input {
    position: relative;
 }
 
-@media (min-width: 480px) and (max-width: 799px) {
+@media (max-width: 799px) {
    .PCCanvas {
       width: 100%;
    }

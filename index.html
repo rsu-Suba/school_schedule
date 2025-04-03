@@ -6,6 +6,11 @@
       <link rel="icon" href="./favicon.ico" />
       <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180" />
       <!--<script src="https://unpkg.com/react-scan/dist/auto.global.js"></script>-->
+      <script>
+         let viewport = document.querySelector("meta[name=viewport]");
+         viewport.setAttribute("content", viewport.content + ", height=" + window.innerHeight);
+      </script>
+
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       <title>Schedule Hub</title>
    </head>

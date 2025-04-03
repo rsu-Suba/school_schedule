@@ -42,11 +42,14 @@ export default function SubjectList(props: { recentNum: number; nowtime: number;
          irregular = jsonSche[SelectDate].irregular;
       }
    }
-   if (day == 0 || day == 6 || (day === 5 && PastTimeChecker([timeList, loop], nowTime)) || irregular == 1) {
+   if (day == 0 || day == 6 || (day === 5 && !isTomorrow && PastTimeChecker([timeList, loop], nowTime)) || irregular == 1) {
       cardtext.push(
-         <h4>
-            {CardInsideContexts.Holiday} | {irregular == 1 && jsonSche[SelectDate].schedule[0]}
-         </h4>
+         <SubList>
+            <h4>
+               {CardInsideContexts.Holiday}
+               {irregular == 1 && ` | ${jsonSche[SelectDate].schedule[0]}`}
+            </h4>
+         </SubList>
       );
    } else if (irregular == 2) {
       cardtext.push(<h4>{jsonSche[SelectDate].schedule[0]}</h4>);

@@ -13,9 +13,9 @@ function App() {
    let nowtime: number = parseInt(getCustomDate(String(date), "HHmm"));
    aspectRatio;
 
-   recentNum = 3;
+   //recentNum = 1;
    //todayNum = recentNum;
-   //nowtime = 1610;
+   //nowtime = 1050;
 
    const CanvasProps = {
       recentNum: recentNum,

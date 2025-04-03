@@ -1,8 +1,9 @@
 import jsonData from "~/assets/main.json";
 import getTodayDate from "@/scripts/Misc/getTodayDate";
-import type { jsonType, GASArrayType } from "@/scripts/Data/type";
+import type { jsonType, jsonTimeScheduleType, GASArrayType } from "@/scripts/Data/type";
 
 const json: jsonType = jsonData.sub;
+const jsonTimeSchedule: jsonTimeScheduleType = jsonData.time_schedule;
 
 function SubChangeSupporter(props: { text: string; SubNumber: number; timeSelector?: number[] }) {
    const SubData = json[props.SubNumber];
@@ -25,10 +26,11 @@ function isChangeToday(
    let isTomorrow: boolean = false;
    let todaytext: string = getTodayDate();
    if (props.mode == "main") {
-      if (nowTime > 1600) {
+      const EndTime: number = jsonTimeSchedule[day].class === 3 ? 1435 : 1615;
+      if (nowTime > EndTime) {
          isTomorrow = true;
          todaytext = getTodayDate(1);
-         day!++;
+         day++;
       }
       if (day == 7) day = 0;
    }
