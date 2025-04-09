@@ -36,34 +36,35 @@ function fakeFetch(date: Dayjs, signal: AbortSignal): Promise<daysToHighlightTyp
       let index: number = 0;
       cardtext = [];
       cardtextContainer = [];
-
       for (let i = 0; i < dates.length; i++) {
-         for (let j = 0; j < datesSches[i]; j++, index++) {
+         const schedCount = datesSches[i];
+         for (let j = 0; j < schedCount; j++, index++) {
             const dayNum: number = getWeekNumber(datesFull, i);
-            if (dayNumCache == dayNum) {
+            if (dayNumCache === dayNum) {
                cardtext.push(<Divider />);
             } else {
-               if (index != 0) {
+               if (index !== 0) {
                   cardtextContainer.push(<CardInside>{cardtext}</CardInside>);
                   cardtext = [];
                }
             }
             cardtext.push(
-               <SubList>
+               <SubList key={index}>
                   <div className="subProp">
                      <p className="scheText">{sches[index]}</p>
                      <p className="scheText">{datesFull[i].replace(/\/0(\d)/g, "/$1").replace(/^0/, "")}</p>
                   </div>
                </SubList>
             );
-            if (i == dates.length - 1) {
+
+            dayNumCache = dayNum;
+            if (i === dates.length - 1 && j === schedCount - 1) {
                cardtextContainer.push(<CardInside>{cardtext}</CardInside>);
             }
-            dayNumCache = dayNum;
          }
-         resolve({ daysToHighlight });
-         signal.onabort = () => reject(new DOMException("aborted", "AbortError"));
       }
+      resolve({ daysToHighlight });
+      signal.onabort = () => reject(new DOMException("aborted", "AbortError"));
    });
 }
 
@@ -103,7 +104,7 @@ export default function DateCalendarServerRequest() {
    const fetchHighlightedDays = (date: Dayjs) => {
       const controller: AbortController = new AbortController();
       dateSelect(date);
-
+      setHighlightedDays([]);
       fakeFetch(date, controller.signal)
          .then(({ daysToHighlight }) => {
             setHighlightedDays(daysToHighlight);

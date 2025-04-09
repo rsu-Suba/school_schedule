@@ -89,13 +89,13 @@
       },
       "6": {
          "sub": "電子回路I",
-         "textbook": "",
-         "syllabus": "",
+         "textbook": "電子回路",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0071&year=2023&lang=ja",
          "icon": "BoltOutlinedIcon"
       },
       "7": {
          "sub": "電子情報工学実験IIIA",
-         "textbook": "",
+         "textbook": "なし",
          "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0075&year=2023&lang=ja",
          "icon": "LaptopOutlinedIcon"
       },
@@ -113,7 +113,7 @@
       },
       "10": {
          "sub": "電子情報数学II",
-         "textbook": "",
+         "textbook": "なし",
          "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0073&year=2023&lang=ja",
          "icon": "CalculateOutlinedIcon"
       },
@@ -137,8 +137,8 @@
       },
       "14": {
          "sub": "歴史II",
-         "textbook": "",
-         "syllabus": "",
+         "textbook": "歴史総合, 世界史図録, 日本史図録",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0084&year=2023&lang=ja",
          "icon": "HotelOutlinedIcon"
       },
       "15": {
