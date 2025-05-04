@@ -6,7 +6,7 @@ export default function AspectDetector() {
    useEffect(() => {
       const handleResize = () => {
          const newAspectRatio: number = window.innerHeight / window.innerWidth;
-         setAspectRatio(newAspectRatio > 1.6);
+         setAspectRatio(newAspectRatio > 1);
       };
 
       handleResize();
