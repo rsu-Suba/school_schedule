@@ -14,11 +14,21 @@ export default function SubSelector(
    fetchedData: GASArrayType,
    changeNum: number
 ) {
-   let SubNumber: number = parseInt(json[String(day)][String(timeSelector)].toString());
+   let SubNumber: number = 1;
+   if (json[String(day)][String(timeSelector)] !== undefined) {
+      SubNumber = parseInt(json[String(day)][String(timeSelector)].toString());
+   }
    if (isChanged && mode === "main") {
       const customDate: string = getCustomDate(todaytext, "YYYYMMDD");
       if (IsExamDate(customDate).TestStrNum != -1) {
          loop = fetchedData[0][changeNum][1].length;
+      } else {
+         for (let n = 0; n < fetchedData[0][changeNum][1].length; n++) {
+            if (fetchedData[0][changeNum][1][n][0] > loop) {
+               loop = fetchedData[0][changeNum][1][n][0];
+               break;
+            }
+         }
       }
       for (let n = 0; n < loop; n++) {
          const changeSubData: number[] = fetchedData[0][changeNum][1][n];

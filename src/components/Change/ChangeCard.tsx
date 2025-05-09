@@ -76,7 +76,8 @@ export default function ChangeCard({
       setTextValue: setTextValue,
       subjectValue: card === CardTitleContexts.ChangeInteg_SC ? subsList[Number(sub!)] : null,
       subjectOptions: card === CardTitleContexts.ChangeInteg_SC ? subsListOpt : null,
-      handleChangeSubject: card === CardTitleContexts.ChangeInteg_SC ? (e: string) => setSub!((Number(e) - 1).toString()) : null,
+      handleChangeSubject:
+         card === CardTitleContexts.ChangeInteg_SC ? (e: string) => setSub!((Number(e) - 1).toString()) : null,
    };
 
    return (

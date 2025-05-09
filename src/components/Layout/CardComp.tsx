@@ -7,9 +7,8 @@ import { SubChangeSupporter } from "@/scripts/Subject/subChangeSupporter";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
 import getTodayDate from "@/scripts/Misc/getTodayDate";
 import IsExamDate from "@/scripts/Change/isExamDate";
-import type { jsonType, jsonTimeScheduleType, ScheduleJSON } from "@/scripts/Data/type";
+import type { jsonType, ScheduleJSON } from "@/scripts/Data/type";
 
-const jsonTimeSchedule: jsonTimeScheduleType = jsonData.time_schedule;
 const jsonSub: jsonType = jsonData.sub;
 const jsonTime: jsonType = jsonData.time;
 const jsonSche: ScheduleJSON = jsonScheData;
@@ -44,17 +43,11 @@ function LoadSkeleton(props: { className?: string }) {
    );
 }
 
-function SubList(props: { day?: number; timeSelector?: number; children: React.ReactNode }) {
+function SubList(props: { SubNumber?: number; children: React.ReactNode }) {
    let link: React.ReactNode = [];
-   if (props.day != undefined && props.timeSelector != undefined) {
-      if (jsonSub[jsonTimeSchedule[props.day][props.timeSelector]].syllabus !== "") {
-         link = (
-            <a
-               className="linkButton"
-               href={jsonSub[jsonTimeSchedule[props.day][props.timeSelector]].syllabus}
-               target="_blank"
-            ></a>
-         );
+   if (props.SubNumber != undefined) {
+      if (jsonSub[props.SubNumber].syllabus !== "") {
+         link = <a className="linkButton" href={jsonSub[props.SubNumber].syllabus} target="_blank"></a>;
       }
    }
 

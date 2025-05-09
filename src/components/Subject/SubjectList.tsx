@@ -14,6 +14,7 @@ import IsExamDate from "@/scripts/Change/isExamDate";
 import type { jsonTimeScheduleType, ScheduleJSON, GASArrayType } from "@/scripts/Data/type";
 
 const jsonTimeSchedule: jsonTimeScheduleType = jsonData.time_schedule;
+//test
 const jsonSche: ScheduleJSON = jsonScheData;
 
 export default function SubjectList(props: { recentNum: number; nowtime: number; mode: string }) {
@@ -88,7 +89,7 @@ export default function SubjectList(props: { recentNum: number; nowtime: number;
                }
             }
             cardtext.push(
-               <SubList key={`${SubNumber}-${timeSelector}-${i}`} day={day} timeSelector={timeSelector}>
+               <SubList key={`${SubNumber}-${timeSelector}-${i}`} SubNumber={SubNumber}>
                   <SubIcon SubNumber={SubNumber} />
                   <List.Item.Meta
                      title={<TimeListProp text="title" SubNumber={SubNumber} timeSelector={[timeList, timeSelector]} />}
