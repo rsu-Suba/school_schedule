@@ -29,7 +29,7 @@ export default function UpdateNotice() {
 
    return (
       <Modal
-         title="Update (May 10)"
+         title="Update (May 18)"
          open={isModalOpen}
          onOk={handleOk}
          onCancel={handleCancel}
@@ -40,7 +40,9 @@ export default function UpdateNotice() {
          ]}
          style={{ textAlign: "left" }}
       >
-         <h3>補講時間割対応✅️</h3>
+         <h3>バグ修正</h3>
+         <h5>・変更データ(課題、授業変更)が消えるバグ✅️</h5>
+         <h5>・単位チェッカーの教科のずれ✅️</h5>
       </Modal>
    );
 }

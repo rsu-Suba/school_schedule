@@ -28,8 +28,8 @@ export default function useContexts() {
       },
       InfoContexts: {
          PlannedFeatures: "Technical Optimization.",
-         UpdateTitle: "補講時間割対応.",
-         UpdateVersion: "5.10.25",
+         UpdateTitle: "Bug fix.",
+         UpdateVersion: "5.18.25",
       },
       SettingsContexts: {
          DarkTheme: t("Settings.DarkTheme"),
