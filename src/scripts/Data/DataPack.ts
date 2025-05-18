@@ -5,13 +5,14 @@ export const times_Array: { value: string; label: string }[] = [
    { value: "4", label: "4" },
 ];
 export const times_Exam_Array: { value: string; label: string }[] = [
-   { value: "1", label: "50分9:20~" },
-   { value: "2", label: "50分10:20~" },
-   { value: "3", label: "50分11:20~" },
-   { value: "4", label: "50分11:00~" },
-   { value: "5", label: "90分9:20~" },
-   { value: "6", label: "90分10:20~" },
-   { value: "7", label: "90分11:00~" },
+   { value: "1", label: "9:20~(50)" },
+   { value: "2", label: "9:20~(90)" },
+   { value: "3", label: "11:00~(50)" },
+   { value: "4", label: "11:00~(90)" },
+   { value: "5", label: "13:15~(50)" },
+   { value: "6", label: "13:15~(90)" },
+   { value: "7", label: "14:55~(50)" },
+   { value: "8", label: "14:55~(90)" },
 ];
 export const subsListOpt_Array: { value: string; label: string }[] = [
    { value: "1", label: "電気回路I" },

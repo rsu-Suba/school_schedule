@@ -104,7 +104,7 @@ export const postChange = (
          method: "POST",
          body: JSON.stringify({
             date: datePicker.value,
-            time: 8,
+            time: 9,
             value: textWork,
          }),
       };
@@ -114,7 +114,7 @@ export const postChange = (
          method: "POST",
          body: JSON.stringify({
             date: 0,
-            time: 8,
+            time: 9,
             value: timeWorkState,
          }),
       };

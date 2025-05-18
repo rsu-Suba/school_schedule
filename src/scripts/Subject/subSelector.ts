@@ -32,8 +32,16 @@ export default function SubSelector(
       }
       for (let n = 0; n < loop; n++) {
          const changeSubData: number[] = fetchedData[0][changeNum][1][n];
-         if (changeSubData != undefined && changeSubData[0] == timeSelector) {
-            SubNumber = changeSubData[1];
+         const changeTime = IsExamDate(customDate).TestStrNum != -1 ? n : changeSubData[0];
+         if (IsExamDate(customDate).TestStrNum != -1) {
+            timeSelector--;
+         }
+         if (changeSubData[0] != 0 && changeTime == timeSelector) {
+            if (IsExamDate(customDate).TestStrNum != -1) {
+               SubNumber = fetchedData[0][changeNum][1][n][1];
+            } else {
+               SubNumber = changeSubData[1];
+            }
          }
       }
    }

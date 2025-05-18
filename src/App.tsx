@@ -15,7 +15,7 @@ function App() {
 
    //recentNum = 1;
    //todayNum = recentNum;
-   //nowtime = 1050;
+   //nowtime = 1225;
 
    const CanvasProps = {
       recentNum: recentNum,
