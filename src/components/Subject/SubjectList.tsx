@@ -86,7 +86,7 @@ export default function SubjectList(props: { recentNum: number; nowtime: number;
                const IsExamDatePack = IsExamDate(datetext);
                if (IsExamDatePack.TestStrNum !== -1) {
                   timeList = 3;
-                  timeSelector = fetchedData[0][changeNum][1][i][0];
+                  timeSelector = fetchedData[0][changeNum][1][i]?.[0];
                }
             }
             cardtext.push(
