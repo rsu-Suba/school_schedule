@@ -77,7 +77,8 @@ export default function SubjectList(props: { recentNum: number; nowtime: number;
                todaytext,
                loop,
                fetchedData,
-               changeNum
+               changeNum,
+               i
             );
             const SubNumber = SubData.SubNumber;
             loop = SubData.loop;
