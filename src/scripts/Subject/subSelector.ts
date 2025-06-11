@@ -33,13 +33,15 @@ export default function SubSelector(
       }
       for (let n = 0; n < loop; n++) {
          const changeSubData: number[] = fetchedData[0][changeNum][1][n];
-         const changeTime = IsExamDate(customDate).TestStrNum != -1 ? n : changeSubData[0];
-         if (changeSubData[0] != 0) {
-            if (IsExamDate(customDate).TestStrNum != -1) {
-               SubNumber = fetchedData[0][changeNum][1][TestNum][1];
-            } else {
-               if (changeSubData[0] != 0 && changeTime == timeSelector) {
-                  SubNumber = changeSubData[1];
+         if (fetchedData[0][changeNum][1][n] !== undefined) {
+            const changeTime = IsExamDate(customDate).TestStrNum != -1 ? n : changeSubData[0];
+            if (changeSubData[0] != 0) {
+               if (IsExamDate(customDate).TestStrNum != -1) {
+                  SubNumber = fetchedData[0][changeNum][1][TestNum][1];
+               } else {
+                  if (changeSubData[0] != 0 && changeTime == timeSelector) {
+                     SubNumber = changeSubData[1];
+                  }
                }
             }
          }

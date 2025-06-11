@@ -29,7 +29,7 @@ export default function UpdateNotice() {
 
    return (
       <Modal
-         title="Update (May 18)"
+         title="Update (June 11)"
          open={isModalOpen}
          onOk={handleOk}
          onCancel={handleCancel}
@@ -41,8 +41,7 @@ export default function UpdateNotice() {
          style={{ textAlign: "left" }}
       >
          <h3>バグ修正</h3>
-         <h5>・変更データ(課題、授業変更)が消えるバグ✅️</h5>
-         <h5>・単位チェッカーの教科のずれ✅️</h5>
+         <h4>・時間割変更がUp Nextカードに適用されると画面に何も描画されない(白くなる)バグを修正✅️</h4>
       </Modal>
    );
 }
