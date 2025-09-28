@@ -4,36 +4,35 @@
          "class": 0
       },
       "1": {
-         "class": 4,
-         "1": "1",
-         "2": "2",
-         "3": "3",
-         "4": "4"
+         "class": 3,
+         "1": "15",
+         "2": "3",
+         "3": "12"
       },
       "2": {
          "class": 4,
-         "1": "5",
-         "2": "6",
+         "1": "14",
+         "2": "11",
          "3": "7",
          "4": "7"
       },
       "3": {
          "class": 3,
-         "1": "8",
-         "2": "9",
-         "3": "10"
+         "1": "4",
+         "2": "12",
+         "3": "9"
       },
       "4": {
          "class": 3,
-         "1": "11",
-         "2": "12",
-         "3": "13"
+         "1": "6",
+         "2": "10",
+         "3": "2"
       },
       "5": {
          "class": 3,
-         "1": "14",
-         "2": "15",
-         "3": "12"
+         "1": "1",
+         "2": "5",
+         "3": "13"
       },
       "6": {
          "class": 0
@@ -59,16 +58,16 @@
    },
    "sub": {
       "1": {
-         "sub": "電気回路I",
+         "sub": "電気回路II",
          "textbook": "電気回路を理解する",
-         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0069&year=2023&lang=ja",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0070&year=2023&lang=ja",
          "icon": "BoltOutlinedIcon"
       },
       "2": {
-         "sub": "物理学II",
-         "textbook": "プリント",
-         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0094&year=2023&lang=ja",
-         "icon": "CalculateOutlinedIcon"
+         "sub": "プログラミングIII",
+         "textbook": "見ひらきで学べるJavaプログラミング",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0085&year=2023&lang=ja",
+         "icon": "LaptopOutlinedIcon"
       },
       "3": {
          "sub": "英語表現III",
@@ -77,9 +76,9 @@
          "icon": "TranslateOutlinedIcon"
       },
       "4": {
-         "sub": "総合国語IIIA",
-         "textbook": "",
-         "syllabus": "",
+         "sub": "総合国語IIIB",
+         "textbook": "新編現代文A",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0083&year=2023&lang=ja",
          "icon": "MenuBookOutlinedIcon"
       },
       "5": {
@@ -89,15 +88,15 @@
          "icon": "FitnessCenterOutlinedIcon"
       },
       "6": {
-         "sub": "電子回路I",
+         "sub": "電子回路II",
          "textbook": "電子回路",
-         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0071&year=2023&lang=ja",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0072&year=2023&lang=ja",
          "icon": "BoltOutlinedIcon"
       },
       "7": {
-         "sub": "電子情報工学実験IIIA",
+         "sub": "電子情報工学実験IIIB",
          "textbook": "なし",
-         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0075&year=2023&lang=ja",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0076&year=2023&lang=ja",
          "icon": "LaptopOutlinedIcon"
       },
       "8": {
@@ -113,27 +112,27 @@
          "icon": "TranslateOutlinedIcon"
       },
       "10": {
-         "sub": "電子情報数学II",
+         "sub": "電子情報数学III",
          "textbook": "なし",
-         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0073&year=2023&lang=ja",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0074&year=2023&lang=ja",
          "icon": "CalculateOutlinedIcon"
       },
       "11": {
-         "sub": "アルゴリズムとデータ構造I",
+         "sub": "アルゴリズムとデータ構造II",
          "textbook": "明解C言語で学ぶアルゴリズムとデータ構造",
-         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0088&year=2023&lang=ja",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0089&year=2023&lang=ja",
          "icon": "LaptopOutlinedIcon"
       },
       "12": {
-         "sub": "解析学I",
-         "textbook": "",
-         "syllabus": "",
+         "sub": "解析学II",
+         "textbook": "新微分積分II",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0092&year=2023&lang=ja",
          "icon": "CalculateOutlinedIcon"
       },
       "13": {
-         "sub": "確率と統計",
-         "textbook": "",
-         "syllabus": "",
+         "sub": "総合数学",
+         "textbook": "新基礎数学",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0090&year=2023&lang=ja",
          "icon": "CalculateOutlinedIcon"
       },
       "14": {
@@ -143,9 +142,9 @@
          "icon": "HotelOutlinedIcon"
       },
       "15": {
-         "sub": "応用物理I",
+         "sub": "応用物理II",
          "textbook": "高専の応用物理",
-         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0095&year=2023&lang=ja",
+         "syllabus": "https://syllabus.kosen-k.go.jp/Pages/PublicSyllabus?school_id=17&department_id=15&subject_id=0096&year=2023&lang=ja",
          "icon": "CalculateOutlinedIcon"
       },
       "16": {
