@@ -12,8 +12,8 @@ html {
 	--text-color: #000;
 	--text-sub-color: rgba(0, 0, 0, 0.65);
 	--clock-color: #556;
-	--border-color: #aaa;
-	--shadow-out: rgba(0, 0, 0, 0.38) 0 0 1.5vh;
+	--border-color: #ccc;
+	--shadow-out: rgba(0, 0, 0, 0.2) 0 0 1.8vh;
 	--shadow-in: inset #ddd 0 0 0.7vh 0.2vh;
 	--input-color: rgba(255, 255, 255, 0.6);
 	--disable-day-color: rgba(0, 0, 0, 0.25);
@@ -131,14 +131,13 @@ a {
 	border-radius: 34px;
 	margin: 5% 0;
 	background-color: var(--bg-color);
-	border: solid var(--border-color) 0.5px;
+	border: solid var(--bg-color) 0.5px;
 	box-shadow: var(--shadow-out);
 	color: var(--text-color);
 }
 
 .card,
 .scheCards > div > .ant-picker-panel {
-	border: solid var(--border-color) 0.5px;
 	box-shadow: var(--shadow-in);
 	margin: 10px !important;
 	margin-top: 0 !important;
@@ -369,6 +368,12 @@ input {
 .ant-space-item {
 	height: 100% !important;
 	position: relative;
+}
+
+.drawerBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 @media (max-width: 799px) {

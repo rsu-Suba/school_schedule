@@ -20,7 +20,7 @@ export default function Other() {
    const { CardTitleContexts, InfoContexts } = useContexts();
 
    return (
-      <>
+      <div className="drawerBar">
          <Settings />
          {cardMake(CardTitleContexts.PlannedFeatures, [
             <div className="subProp">
@@ -54,6 +54,6 @@ export default function Other() {
                {InfoContexts.UpdateTitle} {InfoContexts.UpdateVersion}
             </h4>,
          ])}
-      </>
+      </div>
    );
 }
