@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from "react";
+import { createContext, useContext, useState, useMemo, useEffect, ReactNode, Dispatch, SetStateAction } from "react";
 import { ConfigProvider, theme } from "antd";
 import enUS from "antd/lib/locale/en_US";
 import jaJP from "antd/lib/locale/ja_JP";
@@ -43,9 +43,18 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
       }
    }, []);
 
+   const themeValue = useMemo(() => ({
+      primaryColor,
+      setPrimaryColor,
+      isDarkMode,
+      setIsDarkMode,
+      localeLang,
+      setLocaleLang,
+   }), [primaryColor, isDarkMode, localeLang]);
+
    return (
       <ThemeContext.Provider
-         value={{ primaryColor, setPrimaryColor, isDarkMode, setIsDarkMode, localeLang, setLocaleLang }}
+         value={themeValue}
       >
          <ConfigProvider
             locale={localeLang}

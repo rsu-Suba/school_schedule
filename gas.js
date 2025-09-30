@@ -1,128 +1,162 @@
-const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("sheet1");
-
-function getSheetData() {
-   if (sheet.getLastRow() === 0) return { dates: [], times: [], values: [], datesWork: [], works: [], worksCells: [] };
-
-   const data = sheet.getDataRange().getValues();
-   let dates = [],
-      times = [],
-      values = [],
-      datesWork = [],
-      works = [],
-      worksCells = [];
-
-   data.forEach((row, i) => {
-      if (row[0] !== "") {
-         const timestamp = new Date(row[0]).getTime();
-         if (row[1] !== 5) {
-            dates.push(timestamp);
-            times.push(row[1]);
-            values.push(row[2]);
-         } else {
-            worksCells.push(i + 1);
-            datesWork.push(timestamp);
-            works.push(row[2]);
-         }
-      }
-   });
-   return { dates, times, values, datesWork, works, worksCells };
-}
-
-const sortingDates = (arr) => [...new Set(arr)].sort((a, b) => a - b);
-
-const sortNums = (sorted, unsorted) =>
-   sorted.map((d) => unsorted.map((v, i) => (v === d ? i : -1)).filter((i) => i !== -1));
-
-const packing = (mode, numArray, sortD, times, values, works) => {
-   return numArray.map((indices, i) => [
-      new Date(sortD[i]),
-      indices.map((j) => (mode === 0 ? [times[j], values[j]] : [works[j], j + 1])),
-   ]);
+const SPREADSHEET = SpreadsheetApp.getActiveSpreadsheet();
+const SHEET = SPREADSHEET.getSheetByName("sheet1");
+const COL_INDEX = {
+    TIMESTAMP: 0,
+    TYPE: 1,
+    VALUE: 2,
 };
 
-function doPost(e) {
-   const { datesWork, worksCells } = getSheetData();
-   const { date, time, value } = JSON.parse(e.postData.getDataAsString());
+const WORK_TYPE_ID = 9;
+const DELETE_TRIGGER_VALUE = "18";
 
-   if (sheet.getLastRow() === 0 && value != 18) {
-      sheet.appendRow([date, time, value]);
-      return ContentService.createTextOutput(JSON.stringify({ valid: true })).setMimeType(ContentService.MimeType.JSON);
-   }
+function processSheetData(values) {
+    const normalData = [];
+    const workData = [];
 
-   const data = sheet.getDataRange().getValues();
-   let rowDeleted = false;
-   const inputDate = new Date(date).getTime() - 32400000;
+    values.forEach((row, index) => {
+        const timestampStr = row[COL_INDEX.TIMESTAMP];
+        if (!timestampStr) return;
 
-   if (value === "18") {
-      rowDeleted = true;
-      for (let i = data.length - 1; i >= 0; i--) {
-         if (new Date(data[i][0]).getTime() == inputDate && data[i][1] == time) {
-            sheet.deleteRow(i + 1);
-         }
-      }
-   }
+        const timestamp = new Date(timestampStr).getTime();
+        const type = row[COL_INDEX.TYPE];
+        const value = row[COL_INDEX.VALUE];
 
-   if (date == 0 && time == 5) {
-      rowDeleted = true;
+        if (type !== WORK_TYPE_ID) {
+            normalData.push({ timestamp, type, value });
+        } else {
+            workData.push({ timestamp, value, rowIndex: index + 1 });
+        }
+    });
 
-      let numsWork = sortNums(sortingDates(datesWork), datesWork);
-      let sortWorksCells = [];
+    return { normalData, workData };
+}
 
-      numsWork.forEach((row) => {
-         row.forEach((index) => {
-            sortWorksCells.push(worksCells[index]);
-         });
-      });
+function groupAndFormatData(data, isWorkData = false) {
+    if (!data || data.length === 0) {
+        return [];
+    }
 
-      sheet.deleteRow(sortWorksCells[value - 1]);
-   }
+    const grouped = data.reduce((map, item) => {
+        const key = new Date(item.timestamp).setHours(0, 0, 0, 0);
+        if (!map.has(key)) {
+            map.set(key, []);
+        }
+        const entry = isWorkData ? [item.value, item.rowIndex] : [item.type, item.value];
+        map.get(key).push(entry);
+        return map;
+    }, new Map());
+    const sorted = [...grouped.entries()].sort((a, b) => a[0] - b[0]);
+    return sorted.map(([date, values]) => [new Date(date), values]);
+}
 
-   if (!rowDeleted) {
-      if (time != 5) {
-         for (let i = data.length - 1; i >= 0; i--) {
-            if (new Date(data[i][0]).getTime() == inputDate && data[i][1] == time) {
-               sheet.deleteRow(i + 1);
-               break;
-            }
-         }
-      }
-      sheet.appendRow([date, time, value]);
-   }
+function deleteOldRows() {
+    const lastRow = SHEET.getLastRow();
+    if (lastRow === 0) return;
 
-   return ContentService.createTextOutput(JSON.stringify({ valid: true })).setMimeType(ContentService.MimeType.JSON);
+    const allData = SHEET.getDataRange().getValues();
+    const today = new Date().setHours(0, 0, 0, 0);
+
+    const dataToKeep = allData.filter((row) => {
+        const timestamp = row[COL_INDEX.TIMESTAMP];
+        return timestamp && new Date(timestamp).getTime() >= today;
+    });
+    SHEET.clearContents();
+    if (dataToKeep.length > 0) {
+        SHEET.getRange(1, 1, dataToKeep.length, dataToKeep[0].length).setValues(dataToKeep);
+    }
 }
 
 function doGet() {
-   trashRow();
-   const { dates, times, values, datesWork, works } = getSheetData();
+    const cache = CacheService.getScriptCache();
+    const cacheKey = "all_data_v1";
+    const cached = cache.get(cacheKey);
+    if (cached != null) {
+        return ContentService.createTextOutput(cached).setMimeType(ContentService.MimeType.JSON);
+    }
 
-   if (dates.length === 0 && datesWork.length === 0) {
-      return ContentService.createTextOutput(JSON.stringify([[], []])).setMimeType(ContentService.MimeType.JSON);
-   }
+    const values = SHEET.getLastRow() > 0 ? SHEET.getDataRange().getValues() : [];
+    if (values.length === 0) {
+        const emptyResult = JSON.stringify([[], []]);
+        cache.put(cacheKey, emptyResult, 300);
+        return ContentService.createTextOutput(emptyResult).setMimeType(ContentService.MimeType.JSON);
+    }
+    const { normalData, workData } = processSheetData(values);
+    const result = [groupAndFormatData(normalData, false), groupAndFormatData(workData, true)];
+    const resultString = JSON.stringify(result);
+    cache.put(cacheKey, resultString, 900);
 
-   const sortDates = sortingDates(dates);
-   const sortDatesWork = sortingDates(datesWork);
-
-   const result = [
-      packing(0, sortNums(sortDates, dates), sortDates, times, values, works),
-      packing(1, sortNums(sortDatesWork, datesWork), sortDatesWork, times, values, works),
-   ];
-
-   return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
+    return ContentService.createTextOutput(resultString).setMimeType(ContentService.MimeType.JSON);
 }
 
-function trashRow() {
-   if (sheet.getLastRow() === 0) return;
+function doPost(e) {
+    try {
+        const { date, time, value } = JSON.parse(e.postData.getDataAsString());
+        const isUpdateOrDelete =
+            value === DELETE_TRIGGER_VALUE || (date == 0 && time == WORK_TYPE_ID) || time != WORK_TYPE_ID;
+        if (!isUpdateOrDelete) {
+            SHEET.appendRow([date, time, value]);
+            CacheService.getScriptCache().remove("all_data_v1");
+            return ContentService.createTextOutput(JSON.stringify({ valid: true, action: "append" })).setMimeType(
+                ContentService.MimeType.JSON
+            );
+        }
 
-   const data = sheet.getDataRange().getValues();
-   const today = new Date().setHours(0, 0, 0, 0);
-   let i = 1;
-   while (i < data.length) {
-      if (!data[i][0] || new Date(data[i][0]).getTime() < today) {
-         sheet.deleteRow(i + 1);
-         data.splice(i, 1);
-      } else {
-         i++;
-      }
-   }
+        const lastRow = SHEET.getLastRow();
+        let currentData = lastRow > 0 ? SHEET.getDataRange().getValues() : [];
+        let dataModified = false;
+
+        const inputTimestamp = new Date(date).getTime();
+
+        if (value === DELETE_TRIGGER_VALUE) {
+            currentData = currentData.filter((row) => {
+                const rowTimestamp = new Date(row[COL_INDEX.TIMESTAMP]).getTime();
+                return !(rowTimestamp === inputTimestamp && row[COL_INDEX.TYPE] == time);
+            });
+            dataModified = true;
+        } else if (date == 0 && time == WORK_TYPE_ID) {
+            const { workData } = processSheetData(currentData);
+            const sortedWorkData = workData.sort((a, b) => a.timestamp - b.timestamp);
+
+            const targetIndex = parseInt(value, 10) - 1;
+            if (sortedWorkData[targetIndex]) {
+                const rowToDelete = sortedWorkData[targetIndex].rowIndex;
+                currentData = currentData.filter((row, index) => index + 1 !== rowToDelete);
+                dataModified = true;
+            }
+        }
+
+        if (!dataModified) {
+            if (time != WORK_TYPE_ID) {
+                currentData = currentData.filter((row) => {
+                    const rowTimestamp = new Date(row[COL_INDEX.TIMESTAMP]).getTime();
+                    return !(rowTimestamp === inputTimestamp && row[COL_INDEX.TYPE] == time);
+                });
+            }
+            currentData.push([date, time, value]);
+        }
+
+        SHEET.clearContents();
+        if (currentData.length > 0) {
+            SHEET.getRange(1, 1, currentData.length, currentData[0].length).setValues(currentData);
+        }
+        CacheService.getScriptCache().remove("all_data_v1");
+
+        return ContentService.createTextOutput(JSON.stringify({ valid: true, action: "rewrite" })).setMimeType(
+            ContentService.MimeType.JSON
+        );
+    } catch (error) {
+        return ContentService.createTextOutput(JSON.stringify({ valid: false, error: error.message })).setMimeType(
+            ContentService.MimeType.JSON
+        );
+    }
+}
+
+function setupTrigger() {
+    const triggers = ScriptApp.getProjectTriggers();
+    for (const trigger of triggers) {
+        if (trigger.getHandlerFunction() === "deleteOldRows") {
+            ScriptApp.deleteTrigger(trigger);
+        }
+    }
+    ScriptApp.newTrigger("deleteOldRows").timeBased().atHour(2).everyDays(1).create();
 }

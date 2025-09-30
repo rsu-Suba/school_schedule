@@ -1,4 +1,4 @@
-import jsonData from "~/assets/main.json";
+import jsonData from "@/assets/main.json";
 import IsExamDate from "@/scripts/Change/isExamDate";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
 import type { jsonTimeScheduleType, GASArrayType } from "@/scripts/Data/type";

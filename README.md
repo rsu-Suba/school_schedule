@@ -1,11 +1,27 @@
-f# React + TypeScript + Vite + AntD
+# School Schedule App
 
-Apr 18, 2024 : **First commit** -> React + JavaScript + MUI  
-May 18, 2024 : <font color="Deepskyblue">Support</font> for landscape  
-Oct 7, 2024 : <font color="limegreen">Add feature</font> -> Subject change  
-Oct 7, 2024 : <font color="limegreen">Add feature</font> -> Homework list  
-Oct 22, 2024 : _UI update_ -> MUI + CSS changed to AntD  
-Nov 10, 2024 : <font color="Deepskyblue">Support</font> Dark Theme  
-Mar 19, 2025 : <font color="violet">Full optimization</font> -> GAS script changed  
-Mar 20, 2025 : Script <font color="violet">rewrited</font> to TypeScript  
-Mar 22, 2025 : Full <font color="violet">rewrited</font> to TypeScript, Add feature -> Credit Check
+This is a web application for managing school schedules.
+
+## Google Apps Script Setup
+
+To improve performance, the app uses a Google Apps Script to fetch data from a Google Sheet. The script is designed to be fast and efficient, but it requires a one-time setup to enable a daily trigger for cleaning up old data.
+
+### Trigger Setup Instructions
+
+1.  **Open the Google Apps Script Editor:**
+    *   Open the Google Sheet that is connected to this application.
+    *   Go to `Extensions > Apps Script`.
+
+2.  **Select the function to run:**
+    *   In the Apps Script editor, go to `Edit > Current project's triggers`.
+    *   Click on the `+ Add Trigger` button in the bottom right corner.
+
+3.  **Configure the trigger:**
+    *   Choose which function to run: `deleteOldRows`
+    *   Choose which deployment should run: `Head`
+    *   Select event source: `Time-driven`
+    *   Select type of time based trigger: `Day timer`
+    *   Select time of day: `2am - 3am` (or any other time that is convenient for you)
+    *   Click `Save`.
+
+This will set up a daily trigger to automatically clean up old data from the sheet, which will significantly improve the performance of the application.

@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from "dayjs";
-import jsonData from "~/assets/schedule.json";
+import jsonData from "@/assets/schedule.json";
 import type { ScheduleJSON } from "@/scripts/Data/type";
 const json: ScheduleJSON = jsonData;
 

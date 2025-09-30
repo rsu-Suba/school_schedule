@@ -9,7 +9,9 @@ import BottomNavigator from "@/components/Layout/Bottom";
 import GradeChecker from "@/components/Grade/GradeChecker";
 import Update from "@/components/Update";
 
-export default function Phone({
+import React from 'react';
+
+const Phone = React.memo(({
    recentNum,
    nowtime,
    todayNum,
@@ -17,15 +19,15 @@ export default function Phone({
    recentNum: number;
    nowtime: number;
    todayNum: number;
-}) {
+}) => {
    return (
       <div className="mainCanvas">
          <div className="canvas" id="canvas">
-         <Update />
+            <Update />
             <div className="main" id="main">
                <div className="mainCards">
                   <Clock />
-                  <SubjectList recentNum={recentNum} nowtime={nowtime} mode={"main"} />
+                  <SubjectList recentNum={recentNum} nowtime={nowtime} mode={"main"} shouldFetch={true} />
                   <ChangeInteg />
                   <GradeChecker />
                   <Timetable key={"cardTimes"} num={todayNum} />
@@ -46,4 +48,6 @@ export default function Phone({
          </div>
       </div>
    );
-}
+});
+
+export default Phone;

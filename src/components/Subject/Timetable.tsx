@@ -10,7 +10,7 @@ for (let i = 1; i <= 5; i++) {
    items.push({
       key: `${i}`,
       label: `${label[i - 1]}`,
-      children: <SubjectList recentNum={i} nowtime={i} mode={"module"} />,
+      children: <SubjectList recentNum={i} nowtime={i} mode={"module"} shouldFetch={false} />,
    });
 }
 

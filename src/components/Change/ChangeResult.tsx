@@ -1,6 +1,6 @@
 import React from "react";
 import { List } from "antd";
-import jsonData from "~/assets/main.json";
+import jsonData from "@/assets/main.json";
 import { subsList_Array } from "@/scripts/Data/DataPack";
 import useContexts from "@/scripts/Data/Contexts";
 import IsExamDate from "@/scripts/Change/isExamDate";

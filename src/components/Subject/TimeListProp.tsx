@@ -1,5 +1,6 @@
-import jsonData from "~/assets/main.json";
-import jsonScheData from "~/assets/schedule.json";
+import React from 'react';
+import jsonData from "@/assets/main.json";
+import jsonScheData from "@/assets/schedule.json";
 import { SubChangeSupporter } from "@/scripts/Subject/subChangeSupporter";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
 import getTodayDate from "@/scripts/Misc/getTodayDate";
@@ -9,12 +10,12 @@ import type { jsonType, ScheduleJSON } from "@/scripts/Data/type";
 const jsonTime: jsonType = jsonData.time;
 const jsonSche: ScheduleJSON = jsonScheData;
 
-export default function TimeListProp(props: {
+const TimeListProp = React.memo((props: {
     text: string;
     SubNumber: number;
     timeSelector?: number[];
     isTomorrow?: boolean;
-}) {
+}) => {
     const SupportData: { subName: string; textbook: string } = SubChangeSupporter(props);
     if (props.text == "title") {
         const time: string = jsonTime[props.timeSelector![0]][props.timeSelector![1]];
@@ -42,4 +43,6 @@ export default function TimeListProp(props: {
             );
         }
     }
-}
+});
+
+export default TimeListProp;

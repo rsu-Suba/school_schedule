@@ -1,4 +1,3 @@
-import { ThemeProvider } from "./ThemeContext";
 import "./App.css";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
 import AspectDetector from "@/scripts/Misc/AspectDetector";
@@ -23,7 +22,7 @@ function App() {
       todayNum: todayNum,
    };
 
-   return <ThemeProvider>{aspectRatio ? <Phone {...CanvasProps} /> : <PC {...CanvasProps} />}</ThemeProvider>;
+   return <>{aspectRatio ? <Phone {...CanvasProps} /> : <PC {...CanvasProps} />}</>;
 }
 
 export default App;

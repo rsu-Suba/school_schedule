@@ -16,7 +16,7 @@ export default function PC({ recentNum, nowtime, todayNum }: { recentNum: number
             <div className="main" id="main">
                <div className="mainCards">
                   <Clock />
-                  <SubjectList recentNum={recentNum} nowtime={nowtime} mode={"main"} />
+                  <SubjectList recentNum={recentNum} nowtime={nowtime} mode={"main"} shouldFetch={true} />
                   <ChangeInteg />
                   <GradeChecker />
                   <Timetable num={todayNum} />

@@ -3,7 +3,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { Calendar, Badge } from "antd";
 import type { CalendarProps } from "antd";
 import { useTheme } from "@/ThemeContext";
-import jsonData from "~/assets/schedule.json";
+import jsonData from "@/assets/schedule.json";
 import { CardBase, CardInside, SubList, Divider } from "@/components/Layout/CardComp";
 import { getWeekNumber, getScheProps } from "@/scripts/CalendarFC";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
@@ -44,7 +44,7 @@ function fakeFetch(date: Dayjs, signal: AbortSignal): Promise<daysToHighlightTyp
                cardtext.push(<Divider />);
             } else {
                if (index !== 0) {
-                  cardtextContainer.push(<CardInside>{cardtext}</CardInside>);
+                  cardtextContainer.push(<CardInside key={dayNumCache}>{cardtext}</CardInside>);
                   cardtext = [];
                }
             }
@@ -93,7 +93,7 @@ export default function DateCalendarServerRequest() {
                {SelectDate.schedule.map((schedate: string, index: number) => (
                   <>
                      {index !== 0 && <Divider />}
-                     <SubList>{schedate}</SubList>
+                     <SubList key={index}>{schedate}</SubList>
                   </>
                ))}
             </CardInside>,

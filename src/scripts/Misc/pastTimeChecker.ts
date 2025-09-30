@@ -1,4 +1,4 @@
-import jsonData from "~/assets/main.json";
+import jsonData from "@/assets/main.json";
 import type { jsonType } from "@/scripts/Data/type";
 
 const json: jsonType = jsonData.time;

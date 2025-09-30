@@ -1,4 +1,4 @@
-import jsonData from "~/assets/main.json";
+import jsonData from "@/assets/main.json";
 import getTodayDate from "@/scripts/Misc/getTodayDate";
 import type { jsonType, jsonTimeScheduleType, GASArrayType } from "@/scripts/Data/type";
 
@@ -36,12 +36,14 @@ function isChangeToday(
    }
 
    if (fetchedData[0]) {
-      let fetchedDataDates: (Date | number | string)[] = fetchedData[0].map(function (item) {
-         return new Date(item[0]).getTime();
-      });
-      if (fetchedDataDates.indexOf(new Date(todaytext).getTime()) != -1) {
-         isChanged = true;
-         changeNum = fetchedDataDates.indexOf(new Date(todaytext).getTime());
+      const todayTimestamp = new Date(todaytext).getTime();
+      for (let i = 0; i < fetchedData[0].length; i++) {
+         const itemTimestamp = new Date(fetchedData[0][i][0]).getTime();
+         if (itemTimestamp === todayTimestamp) {
+            isChanged = true;
+            changeNum = i;
+            break;
+         }
       }
    }
 

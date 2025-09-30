@@ -1,6 +1,6 @@
 import React from "react";
 import { List, Avatar, Skeleton } from "antd";
-import jsonData from "~/assets/main.json";
+import jsonData from "@/assets/main.json";
 import IconProvider from "@/components/Misc/iconProvider";
 import type { jsonType } from "@/scripts/Data/type";
 

@@ -6,7 +6,7 @@
       "baseUrl": ".",
       "paths": {
          "@/*": ["./src/*"],
-         "~/*": ["./public/*"]
+         
       },
 
       "composite": true,
@@ -34,5 +34,5 @@
       "resolveJsonModule": true,
       "esModuleInterop": true
    },
-   "include": ["./src/**/*", "./public/**/*", "src"]
+   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "src/**/*.json", "public"]
 }
