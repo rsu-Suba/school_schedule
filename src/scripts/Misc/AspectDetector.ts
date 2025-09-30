@@ -1,21 +1,27 @@
 import { useState, useEffect } from "react";
 
+const isClient = typeof window === "object";
+
+const getInitialAspectRatio = (): boolean => {
+	if (!isClient) {
+		return false;
+	}
+	return window.innerHeight > window.innerWidth;
+};
+
 export default function AspectDetector() {
-   const [aspectRatio, setAspectRatio] = useState(false);
+	const [aspectRatio, setAspectRatio] = useState(getInitialAspectRatio());
 
-   useEffect(() => {
-      const handleResize = () => {
-         const newAspectRatio: number = window.innerHeight / window.innerWidth;
-         setAspectRatio(newAspectRatio > 1);
-      };
+	useEffect(() => {
+		const handleResize = () => {
+			setAspectRatio(window.innerHeight > window.innerWidth);
+		};
 
-      handleResize();
+		window.addEventListener("resize", handleResize);
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, []);
 
-      window.addEventListener("resize", handleResize);
-      return () => {
-         window.removeEventListener("resize", handleResize);
-      };
-   }, []);
-
-   return aspectRatio;
+	return aspectRatio;
 }
