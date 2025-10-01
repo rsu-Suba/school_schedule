@@ -3,7 +3,7 @@ import useContexts from "@/scripts/Data/Contexts";
 import { Button, Modal } from "antd";
 
 export default function UpdateNotice() {
-	const { InfoContexts } = useContexts();
+	const { InfoContexts, UpdateContexts } = useContexts();
 
 	const APP_VERSION = InfoContexts.UpdateVersion;
 	const [showNotice, setShowNotice] = useState(false);
@@ -13,6 +13,7 @@ export default function UpdateNotice() {
 		const viewedVersion = localStorage.getItem("appVersion");
 		if (viewedVersion !== APP_VERSION) {
 			setShowNotice(true);
+			setIsModalOpen(true);
 			localStorage.setItem("appVersion", APP_VERSION);
 		}
 	}, []);
@@ -29,7 +30,7 @@ export default function UpdateNotice() {
 
 	return (
 		<Modal
-			title="Update (Sept 28)"
+			title={`Update (${UpdateContexts.date})`}
 			open={isModalOpen}
 			onOk={handleOk}
 			onCancel={handleCancel}
@@ -40,8 +41,12 @@ export default function UpdateNotice() {
 			]}
 			style={{ textAlign: "left" }}
 		>
-			<h3>後期アップデート</h3>
-			<h4>・時間割が2025年度後期に対応✅️</h4>
+			<>
+				<h3>{UpdateContexts.title}</h3>
+				{UpdateContexts.texts.map((text, index) => (
+					<h4 key={index}>{text}</h4>
+				))}
+			</>
 		</Modal>
 	);
 }

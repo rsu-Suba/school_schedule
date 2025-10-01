@@ -14,6 +14,8 @@ type ThemeContextType = {
    setIsDarkMode: Dispatch<SetStateAction<boolean>>;
    localeLang: typeof jaJP | typeof enUS;
    setLocaleLang: Dispatch<SetStateAction<typeof jaJP | typeof enUS>>;
+   isPerformanceMode: boolean;
+   setIsPerformanceMode: Dispatch<SetStateAction<boolean>>;
 };
 
 type ThemeProviderProps = {
@@ -28,6 +30,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
    const [primaryColor, setPrimaryColor] = useState(colors[0][0]);
    const { defaultAlgorithm, darkAlgorithm } = theme;
    const [isDarkMode, setIsDarkMode] = useState(false);
+   const [isPerformanceMode, setIsPerformanceMode] = useState(true); // Default to true (on)
    const [localeLang, setLocaleLang] = useState(i18n.languages[0] == "ja" ? jaJP : enUS);
    let darkNum: number = 0;
 
@@ -35,6 +38,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
       if (getCookie("dark") == "true") {
          setIsDarkMode(true);
          DarkClick(isDarkMode);
+      }
+      if (getCookie("performanceMode") == "false") {
+         setIsPerformanceMode(false);
       }
       if (getCookie("PrimaryColor") != "") {
          if (isDarkMode) darkNum = 1;
@@ -50,7 +56,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
       setIsDarkMode,
       localeLang,
       setLocaleLang,
-   }), [primaryColor, isDarkMode, localeLang]);
+      isPerformanceMode,
+      setIsPerformanceMode,
+   }), [primaryColor, isDarkMode, localeLang, isPerformanceMode]);
 
    return (
       <ThemeContext.Provider

@@ -1,42 +1,45 @@
 {
-   "CardTitleContexts": {
-      "SubjectList_Main": "次の授業",
-      "SubjectList_Module": "時間割",
-      "ChangeInteg_SC": "授業変更",
-      "ChangeInteg_HW": "課題",
-      "Calendar_MonthlyList": "月間スケジュール",
-      "Settings": "設定",
-      "PlannedFeatures": "実装予定機能",
-      "Info": "その他",
-      "Credit": "単位チェック"
-   },
-   "CardInsideContexts": {
-      "NoData": "データなし",
-      "FailedFetch": "取得に失敗",
-      "NoSchedule": "予定なし",
-      "Holiday": "休み"
-   },
-   "ButtonContexts": {
-      "Update": "更新",
-      "Change": "変更",
-      "Submit": "追加",
-      "Delete": "削除"
-   },
-   "Settings": {
-      "DarkTheme": "ダークテーマ",
-      "Color": "カラー",
-      "Language": "言語"
-   },
-   "Credit": {
-      "Subject": "科目",
-      "Test": "テスト",
-      "MidTest": "中間テスト点数",
-      "FinalTest": "期末テスト点数",
-      "HW": "課題, レポート",
-      "Score": "点",
-      "Credit": "単位",
-      "Year": "通年",
-      "FirstH": "前期",
-      "SecondH": "後期"
-   }
+	"CardTitleContexts": {
+		"SubjectList_Main": "次の授業",
+		"SubjectList_Module": "時間割",
+		"ChangeInteg_SC": "授業変更",
+		"ChangeInteg_HW": "課題",
+		"Calendar_MonthlyList": "月間スケジュール",
+		"Settings": "設定",
+		"PlannedFeatures": "実装予定機能",
+		"Info": "その他",
+		"Credit": "単位チェック"
+	},
+	"CardInsideContexts": {
+		"NoData": "データなし",
+		"FailedFetch": "取得に失敗",
+		"NoSchedule": "予定なし",
+		"Holiday": "休み",
+		"Updated": "授業リストが更新されました！",
+		"LastUpdate": "最終更新"
+	},
+	"ButtonContexts": {
+		"Update": "更新",
+		"Change": "変更",
+		"Submit": "追加",
+		"Delete": "削除"
+	},
+	"Settings": {
+		"Performance": "パフォーマンスモード",
+		"DarkTheme": "ダークテーマ",
+		"Color": "カラー",
+		"Language": "言語"
+	},
+	"Credit": {
+		"Subject": "科目",
+		"Test": "テスト",
+		"MidTest": "中間テスト点数",
+		"FinalTest": "期末テスト点数",
+		"HW": "課題, レポート",
+		"Score": "点",
+		"Credit": "単位",
+		"Year": "通年",
+		"FirstH": "前期",
+		"SecondH": "後期"
+	}
 }

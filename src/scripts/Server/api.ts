@@ -16,20 +16,12 @@ export async function fetchData(options: RequestInit) {
 	}
 }
 
-export const getSub = async (setFetchedData: State<GASArrayType>, setIsFetching: State<boolean>) => {
-	setIsFetching(true);
+export const getSub = async (): Promise<GASArrayType> => {
 	const options: RequestInit = {
 		method: "GET",
 	};
-
-	try {
-		const fetchedData: GASArrayType = await fetchData(options);
-		setFetchedData(fetchedData);
-	} catch (err) {
-		console.error(err);
-	} finally {
-		setIsFetching(false);
-	}
+	const fetchedData: GASArrayType = await fetchData(options);
+	return fetchedData;
 };
 
 export const getChange = (

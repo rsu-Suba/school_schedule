@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Drawer, Button } from "antd";
-import Other from "@/components/Layout/other.js";
+import Other from "@/components/Layout/other.tsx";
 import AppsIcon from "@mui/icons-material/Apps";
 
 export default function MenuDrawer() {

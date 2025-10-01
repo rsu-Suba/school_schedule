@@ -376,6 +376,19 @@ input {
     justify-content: space-around;
 }
 
+.ant-notification-notice {
+    text-align: left;
+}
+
+.allow-wrap h3,
+.allow-wrap h4 {
+    white-space: normal;
+}
+
+.allow-wrap h4 {
+    margin-bottom: 8px !important;
+}
+
 @media (max-width: 799px) {
 	.PCCanvas {
 		width: 100%;

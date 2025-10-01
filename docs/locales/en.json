@@ -1,42 +1,45 @@
 {
-   "CardTitleContexts": {
-      "SubjectList_Main": "Up Next",
-      "SubjectList_Module": "Timetable",
-      "ChangeInteg_SC": "Subject Change",
-      "ChangeInteg_HW": "Homework",
-      "Calendar_MonthlyList": "Monthly Schedule",
-      "Settings": "Settings",
-      "PlannedFeatures": "Planned Features",
-      "Info": "Info",
-      "Credit": "Credit Check"
-   },
-   "CardInsideContexts": {
-      "NoData": "No Data",
-      "FailedFetch": "Failed to Fetch",
-      "NoSchedule": "No Schedule",
-      "Holiday": "Holiday"
-   },
-   "ButtonContexts": {
-      "Update": "Update",
-      "Change": "Change",
-      "Submit": "Add",
-      "Delete": "Delete"
-   },
-   "Settings": {
-      "DarkTheme": "Dark Theme",
-      "Color": "Color",
-      "Language": "Language"
-   },
-"Credit": {
-   "Subject": " subjects",
-   "Test": "Test ",
-   "MidTest": "Mid Test Score",
-   "FinalTest": "Final Test Score",
-   "HW": "Homework, Report",
-   "Score": " Points",
-   "Credit": "Credit ",
-      "Year": "Full year",
-      "FirstH": "First term",
-      "SecondH": "Second term"
-}
+	"CardTitleContexts": {
+		"SubjectList_Main": "Up Next",
+		"SubjectList_Module": "Timetable",
+		"ChangeInteg_SC": "Subject Change",
+		"ChangeInteg_HW": "Homework",
+		"Calendar_MonthlyList": "Monthly Schedule",
+		"Settings": "Settings",
+		"PlannedFeatures": "Planned Features",
+		"Info": "Info",
+		"Credit": "Credit Check"
+	},
+	"CardInsideContexts": {
+		"NoData": "No Data",
+		"FailedFetch": "Failed to Fetch",
+		"NoSchedule": "No Schedule",
+		"Holiday": "Holiday",
+		"Updated": "Up Next was updated!",
+		"LastUpdate": "Last Update"
+	},
+	"ButtonContexts": {
+		"Update": "Update",
+		"Change": "Change",
+		"Submit": "Add",
+		"Delete": "Delete"
+	},
+	"Settings": {
+		"Performance": "Performance Mode",
+		"DarkTheme": "Dark Theme",
+		"Color": "Color",
+		"Language": "Language"
+	},
+	"Credit": {
+		"Subject": " subjects",
+		"Test": "Test ",
+		"MidTest": "Mid Test Score",
+		"FinalTest": "Final Test Score",
+		"HW": "Homework, Report",
+		"Score": " Points",
+		"Credit": "Credit ",
+		"Year": "Full year",
+		"FirstH": "First term",
+		"SecondH": "Second term"
+	}
 }
