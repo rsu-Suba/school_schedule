@@ -30,7 +30,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
    const [primaryColor, setPrimaryColor] = useState(colors[0][0]);
    const { defaultAlgorithm, darkAlgorithm } = theme;
    const [isDarkMode, setIsDarkMode] = useState(false);
-   const [isPerformanceMode, setIsPerformanceMode] = useState(true); // Default to true (on)
+   const [isPerformanceMode, setIsPerformanceMode] = useState(true)
    const [localeLang, setLocaleLang] = useState(i18n.languages[0] == "ja" ? jaJP : enUS);
    let darkNum: number = 0;
 

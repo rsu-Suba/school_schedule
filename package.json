@@ -13,6 +13,7 @@
       "@emotion/styled": "^11.13.0",
       "@mui/icons-material": "^6.1.6",
       "@mui/styled-engine": "^6.1.6",
+      "@supabase/supabase-js": "^2.58.0",
       "@vitejs/plugin-react-swc": "^3.8.0",
       "antd": "^5.24.3",
       "i18next": "^24.2.3",

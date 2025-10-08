@@ -115,21 +115,22 @@ export const ButtonComp = (props: {
     );
 };
 
+import { useData } from "@/contexts/DataContext";
+
 export const ButtonPair = (props: {
-    get: () => void;
-    post: (mode: number) => void;
     isFetching: boolean;
     isPosting: boolean;
     postMode: number;
     showInput: boolean;
 }) => {
     const { ButtonContexts } = useContexts();
+    const { api: { fetchData, handlePost } } = useData();
 
     return (
         <div className="changedButton">
             <ButtonComp
                 variant="outlined"
-                click={props.get}
+                click={fetchData}
                 disabled={props.isFetching || props.isPosting}
                 load={props.isFetching}
             >
@@ -138,7 +139,7 @@ export const ButtonPair = (props: {
             {props.postMode !== null && (
                 <ButtonComp
                     variant="solid"
-                    click={() => props.post(props.postMode)}
+                    click={() => handlePost(props.postMode)}
                     load={props.isPosting}
                     disabled={false}
                 >

@@ -14,9 +14,7 @@
 		"NoData": "データなし",
 		"FailedFetch": "取得に失敗",
 		"NoSchedule": "予定なし",
-		"Holiday": "休み",
-		"Updated": "授業リストが更新されました！",
-		"LastUpdate": "最終更新"
+		"Holiday": "休み"
 	},
 	"ButtonContexts": {
 		"Update": "更新",
@@ -25,7 +23,6 @@
 		"Delete": "削除"
 	},
 	"Settings": {
-		"Performance": "パフォーマンスモード",
 		"DarkTheme": "ダークテーマ",
 		"Color": "カラー",
 		"Language": "言語"

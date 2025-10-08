@@ -1,27 +1,17 @@
 import "./App.css";
-import getCustomDate from "@/scripts/Misc/getCustomDate";
 import AspectDetector from "@/scripts/Misc/AspectDetector";
 import PC from "@/components/PC";
 import Phone from "@/components/Phone";
+import { DataProvider } from "@/contexts/DataProvider";
 
 function App() {
-	let date: Date = new Date();
-	let recentNum: number = date.getDay();
-	let todayNum: number = date.getDay();
-	let nowtime: number = parseInt(getCustomDate(String(date), "HHmm"));
 	const aspectRatio = AspectDetector();
 
-	//recentNum = 1;
-	//todayNum = recentNum;
-	//nowtime = 910;
-
-	const CanvasProps = {
-		recentNum: recentNum,
-		nowtime: nowtime,
-		todayNum: todayNum,
-	};
-
-	return <>{aspectRatio ? <Phone {...CanvasProps} /> : <PC {...CanvasProps} />}</>;
+	return (
+		<DataProvider>
+			{aspectRatio ? <Phone /> : <PC />}
+		</DataProvider>
+	);
 }
 
 export default App;

@@ -14,9 +14,7 @@
 		"NoData": "No Data",
 		"FailedFetch": "Failed to Fetch",
 		"NoSchedule": "No Schedule",
-		"Holiday": "Holiday",
-		"Updated": "Up Next was updated!",
-		"LastUpdate": "Last Update"
+		"Holiday": "Holiday"
 	},
 	"ButtonContexts": {
 		"Update": "Update",
@@ -25,7 +23,6 @@
 		"Delete": "Delete"
 	},
 	"Settings": {
-		"Performance": "Performance Mode",
 		"DarkTheme": "Dark Theme",
 		"Color": "Color",
 		"Language": "Language"

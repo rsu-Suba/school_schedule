@@ -6,48 +6,48 @@ const json: jsonType = jsonData.sub;
 const jsonTimeSchedule: jsonTimeScheduleType = jsonData.time_schedule;
 
 function SubChangeSupporter(props: { text: string; SubNumber: number; timeSelector?: number[] }) {
-   const SubData = json[props.SubNumber];
-   const SupportData = {
-      subName: SubData.sub,
-      textbook: SubData.textbook,
-   };
+	const SubData = json[props.SubNumber];
+	const SupportData = {
+		subName: SubData.sub,
+		textbook: SubData.textbook,
+	};
 
-   return SupportData;
+	return SupportData;
 }
 
 function isChangeToday(
-   fetchedData: GASArrayType,
-   nowTime: number,
-   props: { recentNum: number; nowtime: number; mode: string }
+	fetchedData: GASArrayType,
+	nowTime: number,
+	props: { recentNum: number; nowtime: number; mode: string }
 ) {
-   let isChanged: boolean = false;
-   let changeNum: number = 0;
-   let day: number = props.recentNum;
-   let isTomorrow: boolean = false;
-   let todaytext: string = getTodayDate();
-   if (props.mode == "main") {
-      const EndTime: number = jsonTimeSchedule[day].class === 3 ? 1435 : 1615;
-      if (nowTime > EndTime) {
-         isTomorrow = true;
-         todaytext = getTodayDate(1);
-         day++;
-      }
-      if (day == 7) day = 0;
-   }
+	let isChanged: boolean = false;
+	let changeNum: number = 0;
+	let day: number = props.recentNum;
+	let isTomorrow: boolean = false;
+	let todaytext: string = getTodayDate();
+	if (props.mode == "main") {
+		const EndTime: number = jsonTimeSchedule[day].class === 3 ? 1435 : 1615;
+		if (nowTime > EndTime) {
+			isTomorrow = true;
+			todaytext = getTodayDate(1);
+			day++;
+		}
+		if (day == 7) day = 0;
+	}
 
-   if (fetchedData[0]) {
-      const todayTimestamp = new Date(todaytext).getTime();
-      for (let i = 0; i < fetchedData[0].length; i++) {
-         const itemTimestamp = new Date(fetchedData[0][i][0]).getTime();
-         if (itemTimestamp === todayTimestamp) {
-            isChanged = true;
-            changeNum = i;
-            break;
-         }
-      }
-   }
+	if (fetchedData[0]) {
+		const todayTimestamp = new Date(todaytext).getTime();
+		for (let i = 0; i < fetchedData[0].length; i++) {
+			const itemTimestamp = (new Date(fetchedData[0][i][0]).getTime() - 32400000);
+			if (itemTimestamp === todayTimestamp) {
+				isChanged = true;
+				changeNum = i;
+				break;
+			}
+		}
+	}
 
-   return { isChanged, changeNum, day, isTomorrow, todaytext };
+	return { isChanged, changeNum, day, isTomorrow, todaytext };
 }
 
 export { SubChangeSupporter, isChangeToday };

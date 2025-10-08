@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useTheme } from "@/ThemeContext";
 import { CardBase, CardInside, SubList } from "@/components/Layout/CardComp";
 import DarkSwitch from "@/components/Misc/DarkSwitch";
-import PerformanceSwitch from "@/components/Misc/PerformanceSwitch";
 import useContexts from "@/scripts/Data/Contexts";
 import { Select } from "antd";
 import { languages } from "@/scripts/Data/DataPack";
@@ -41,7 +40,6 @@ export default function Settings() {
 	return (
 		<CardBase title={CardTitleContexts.Settings}>
 			<CardInside>
-				{SettingOptionFC(SettingsContexts.Performance, <PerformanceSwitch />)}
 				{SettingOptionFC(SettingsContexts.DarkTheme, <DarkSwitch />)}
 				{SettingOptionFC(SettingsContexts.Color, <ColorSelect onChange={setAccentColor} />)}
 				{SettingOptionFC(

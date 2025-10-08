@@ -5,53 +5,53 @@ import type { jsonTimeScheduleType, GASArrayType } from "@/scripts/Data/type";
 const json: jsonTimeScheduleType = jsonData.time_schedule;
 
 export default function SubSelector(
-   day: number,
-   timeSelector: number,
-   isChanged: boolean,
-   mode: string,
-   todaytext: string,
-   loop: number,
-   fetchedData: GASArrayType,
-   changeNum: number,
-   TestNum: number
+	day: number,
+	timeSelector: number,
+	isChanged: boolean,
+	mode: string,
+	todaytext: string,
+	loop: number,
+	fetchedData: GASArrayType | null,
+	changeNum: number,
+	TestNum: number
 ) {
-   let SubNumber: number = 1;
-   if (json[String(day)][String(timeSelector)] !== undefined) {
-      SubNumber = parseInt(json[String(day)][String(timeSelector)].toString());
-   }
-   if (isChanged && mode === "main") {
-      const customDate: string = getCustomDate(todaytext, "YYYYMMDD");
-      if (IsExamDate(customDate).TestStrNum != -1) {
-         loop = fetchedData[0][changeNum][1].length;
-      } else {
-         for (let n = 0; n < fetchedData[0][changeNum][1].length; n++) {
-            if (fetchedData[0][changeNum][1][n][0] > loop) {
-               loop = fetchedData[0][changeNum][1][n][0];
-               break;
-            }
-         }
-      }
-      for (let n = 0; n < loop; n++) {
-         const changeSubData: number[] = fetchedData[0][changeNum][1][n];
-         if (fetchedData[0][changeNum][1][n] !== undefined) {
-            const changeTime = IsExamDate(customDate).TestStrNum != -1 ? n : changeSubData[0];
-            if (changeSubData[0] != 0) {
-               if (IsExamDate(customDate).TestStrNum != -1) {
-                  SubNumber = fetchedData[0][changeNum][1][TestNum][1];
-               } else {
-                  if (changeSubData[0] != 0 && changeTime == timeSelector) {
-                     SubNumber = changeSubData[1];
-                  }
-               }
-            }
-         }
-      }
-   }
+	let SubNumber: number = 1;
+	if (json[String(day)][String(timeSelector)] !== undefined) {
+		SubNumber = parseInt(json[String(day)][String(timeSelector)].toString());
+	}
+	if (isChanged && mode === "main") {
+		const customDate: string = getCustomDate(todaytext, "YYYYMMDD");
+		if (IsExamDate(customDate).TestStrNum != -1) {
+			loop = fetchedData![0][changeNum][1].length;
+		} else {
+			for (let n = 0; n < fetchedData![0][changeNum][1].length; n++) {
+				if (fetchedData![0][changeNum][1][n][0] > loop) {
+					loop = fetchedData![0][changeNum][1][n][0];
+					break;
+				}
+			}
+		}
+		for (let n = 0; n < loop; n++) {
+			const changeSubData: number[] = fetchedData![0][changeNum][1][n];
+			if (fetchedData![0][changeNum][1][n] !== undefined) {
+				const changeTime = IsExamDate(customDate).TestStrNum != -1 ? n : changeSubData[0];
+				if (changeSubData[0] != 0) {
+					if (IsExamDate(customDate).TestStrNum != -1) {
+						SubNumber = fetchedData![0][changeNum][1][TestNum][1];
+					} else {
+						if (changeSubData[0] != 0 && changeTime == timeSelector) {
+							SubNumber = changeSubData[1];
+						}
+					}
+				}
+			}
+		}
+	}
 
-   const SubData = {
-      SubNumber: SubNumber,
-      loop: loop,
-   };
+	const SubData = {
+		SubNumber: SubNumber,
+		loop: loop,
+	};
 
-   return SubData;
+	return SubData;
 }

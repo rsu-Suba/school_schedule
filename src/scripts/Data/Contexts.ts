@@ -6,17 +6,15 @@ export default function useContexts() {
 		InfoContexts: {
 			PlannedFeatures: "Technical Optimization.",
 			UpdateTitle: "Peak performance.",
-			UpdateVersion: "10.1.25",
+			UpdateVersion: "10.8.25",
 		},
 		UpdateContexts: {
-			date: "Oct 1",
-			title: "パフォーマンスモードを追加 (設定タブ)",
+			date: "Oct 8",
+			title: "パフォーマンスモードを廃止",
 			texts: [
-				"・次の教科タブにパフォーマンスモードを追加しました✅️",
-				"・このモードでは表示は速くなりますが変更があったときの反映が遅れます。",
-				"・パフォーマンスモードについては以下のとおりです。",
-				"～ サーバーからの教科データを次のアクセスまで常に保持します。",
-				"～ 授業変更により更新されたときは通知されます。",
+				"・次の教科タブのパフォーマンスモードを1週間で廃止しました✅️",
+				"・データサーバを変えたところ爆速になった",
+				"・Google Apps Script → Supabase",
 			],
 		},
 		CardTitleContexts: {
@@ -34,9 +32,7 @@ export default function useContexts() {
 			NoData: t("CardInsideContexts.NoData"),
 			FailedFetch: t("CardInsideContexts.FailedFetch"),
 			NoSchedule: t("CardInsideContexts.NoSchedule"),
-			Holiday: t("CardInsideContexts.Holiday"),
-			Updated: t("CardInsideContexts.Updated"),
-			LastUpdate: t("CardInsideContexts.LastUpdate"),
+			Holiday: t("CardInsideContexts.Holiday")
 		},
 		ButtonContexts: {
 			Update: t("ButtonContexts.Update"),
@@ -45,7 +41,6 @@ export default function useContexts() {
 			Delete: t("ButtonContexts.Delete"),
 		},
 		SettingsContexts: {
-			Performance: t("Settings.Performance"),
 			DarkTheme: t("Settings.DarkTheme"),
 			Color: t("Settings.Color"),
 			Language: t("Settings.Language"),

@@ -8,46 +8,50 @@ import Timetable from "@/components/Subject/Timetable";
 import BottomNavigator from "@/components/Layout/Bottom";
 import GradeChecker from "@/components/Grade/GradeChecker";
 import Update from "@/components/Update";
+import { useData } from "@/contexts/DataContext";
+import getCustomDate from "@/scripts/Misc/getCustomDate";
 
-import React from 'react';
+export default function Phone() {
+	const {
+		api: { fetchedData, isLoading },
+	} = useData();
+	let date: Date = new Date();
+	let recentNum: number = date.getDay();
+	let todayNum: number = date.getDay();
+	let nowtime: number = parseInt(getCustomDate(String(date), "HHmm"));
 
-const Phone = React.memo(({
-   recentNum,
-   nowtime,
-   todayNum,
-}: {
-   recentNum: number;
-   nowtime: number;
-   todayNum: number;
-}) => {
-   return (
-      <div className="mainCanvas">
-         <div className="canvas" id="canvas">
-            <Update />
-            <div className="main" id="main">
-               <div className="mainCards">
-                  <Clock />
-                  <SubjectList recentNum={recentNum} nowtime={nowtime} mode={"main"} shouldFetch={true} />
-                  <ChangeInteg />
-                  <GradeChecker />
-                  <Timetable key={"cardTimes"} num={todayNum} />
-                  <div className="blankCard"></div>
-               </div>
-            </div>
-            <div className="sche" id="sche">
-               <Calendar />
-            </div>
-            <div className="others" id="others">
-               <div className="otherCards">
-                  <Other />
-               </div>
-            </div>
-         </div>
-         <div className="bottomCanvas">
-            <BottomNavigator />
-         </div>
-      </div>
-   );
-});
-
-export default Phone;
+	return (
+		<div className="mainCanvas">
+			<div className="canvas" id="canvas">
+				<Update />
+				<div className="main" id="main">
+					<div className="mainCards">
+						<Clock />
+						<SubjectList
+							recentNum={recentNum}
+							nowtime={nowtime}
+							mode={"main"}
+							fetchedData={fetchedData!}
+							isLoading={isLoading}
+						/>
+						<ChangeInteg />
+						<GradeChecker />
+						<Timetable num={todayNum} />
+						<div className="blankCard"></div>
+					</div>
+				</div>
+				<div className="sche" id="sche">
+					<Calendar />
+				</div>
+				<div className="others" id="others">
+					<div className="otherCards">
+						<Other />
+					</div>
+				</div>
+			</div>
+			<div className="bottomCanvas">
+				<BottomNavigator />
+			</div>
+		</div>
+	);
+}

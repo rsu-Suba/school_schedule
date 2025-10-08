@@ -51,7 +51,17 @@ export default function Other() {
 					<a href="https://ant.design/" target="_blank">
 						Ant Design
 					</a>
-					, TypeScript, Google Apps Script, ChatGPT
+					, TypeScript,&nbsp;
+					<a href="https://supabase.com/" target="_blank">
+						Supabase
+					</a>
+					,&nbsp;
+					<a
+						href="https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/"
+						target="_blank"
+					>
+						Gemini CLI
+					</a>
 				</p>,
 				<p className="infoText">
 					Made by{" "}

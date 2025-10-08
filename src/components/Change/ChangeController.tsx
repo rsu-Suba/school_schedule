@@ -1,76 +1,62 @@
 import { Space } from "antd";
-import { Dayjs } from "dayjs";
 import { DateInput, InputSelector, ButtonPair } from "@/components/Change/ChangeComp";
 import { CardInside } from "@/components/Layout/CardComp";
-import type { State } from "@/scripts/Data/type";
-
-type ChangeControllerType = {
-   dateId: string;
-   date: Dayjs;
-   setDate: State<Dayjs>;
-   timeValue: string;
-   handleChangeTime: (e: string) => void;
-   timeOptions: { value: string; label: string }[] | undefined;
-   showInput?: boolean;
-   textValue?: string;
-   setTextValue?: State<string>;
-   subjectValue: string | null;
-   subjectOptions: { value: string; label: string }[] | null;
-   handleChangeSubject: ((e: string) => void) | null;
-   isFetching: boolean;
-   isPosting: boolean;
-   postMode: number;
-   post: (mode: number) => void;
-   get: () => void;
-};
+import { useData } from "@/contexts/DataContext";
+import { times_Array, subsListOpt_Array, subsList_Array } from "@/scripts/Data/DataPack";
 
 export default function ChangeController({
-   dateId,
-   date,
-   setDate,
-   timeValue,
-   handleChangeTime,
-   isFetching,
-   isPosting,
-   postMode,
-   post,
-   get,
-   timeOptions,
-   showInput,
-   textValue,
-   setTextValue,
-   subjectValue,
-   subjectOptions,
-   handleChangeSubject,
-}: ChangeControllerType) {
-   return (
-      <CardInside className="ChangeController">
-         <Space direction="vertical" className="changeSpace1">
-            <DateInput
-               dateId={dateId}
-               date={date}
-               setDate={setDate}
-               timeValue={timeValue}
-               handleChangeTime={handleChangeTime}
-               timeOptions={timeOptions!}
-            />
-            <InputSelector
-               subjectOptions={subjectOptions}
-               subjectValue={subjectValue}
-               handleChangeSubject={handleChangeSubject}
-               showInput={showInput!}
-               textValue={textValue!}
-               setTextValue={setTextValue!}
-            />
-            <ButtonPair
-               isFetching={isFetching}
-               isPosting={isPosting}
-               postMode={postMode}
-               post={post}
-               get={get}
-               showInput={showInput!}
-            />
-         </Space>
-      </CardInside>
-   );
+	isSC,
+	postMode,
+	timeOptions,
+	showInput,
+}: {
+	isSC: boolean;
+	postMode: number;
+	timeOptions: { value: string; label: string }[];
+	showInput: boolean;
+}) {
+	const {
+		change: { date, setDate, time, setTime, sub, setSub },
+		work: { dateWork, setDateWork, timeWorkState, setTimeWorkState, textWork, setWorkText },
+		api: { isLoading, isPosting, isWorkPosting },
+	} = useData();
+
+	const times = times_Array;
+	const subsListOpt = subsListOpt_Array;
+	const subsList = subsList_Array;
+
+	const dateInputProps = {
+		dateId: isSC ? "datepicker" : "datepickerWork",
+		date: isSC ? date : dateWork,
+		setDate: isSC ? setDate : setDateWork,
+		timeValue: isSC ? time : timeWorkState,
+		handleChangeTime: (e: string) => (isSC ? setTime(e) : setTimeWorkState(e)),
+		timeOptions: isSC ? times : timeOptions,
+	};
+
+    const inputSelectorProps = {
+        subjectOptions: isSC ? subsListOpt : null,
+        subjectValue: isSC ? subsList[Number(sub)] : null,
+        handleChangeSubject: isSC ? (e: string) => setSub((Number(e) - 1).toString()) : null,
+        showInput: showInput,
+        textValue: isSC ? "" : textWork,
+        setTextValue: setWorkText,
+    };
+
+	const buttonPairProps = {
+		isFetching: isLoading,
+		isPosting: isSC ? isPosting : isWorkPosting,
+		postMode: postMode,
+		showInput: showInput,
+	};
+
+	return (
+		<CardInside className="ChangeController">
+			<Space direction="vertical" className="changeSpace1">
+				<DateInput {...dateInputProps} />
+				<InputSelector {...inputSelectorProps} />
+				<ButtonPair {...buttonPairProps} />
+			</Space>
+		</CardInside>
+	);
 }
