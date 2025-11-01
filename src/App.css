@@ -3,29 +3,27 @@
 html {
     overflow: hidden;
 }
+:root {
+    --main-color: #007aff;
+    --bg-color: #fff;
+    --bg-sub-color: #ddd;
+    --mainCanvas-color: #f4f7fc;
+    --text-color: #000;
+    --text-sub-color: rgba(0, 0, 0, 0.65);
+    --clock-color: #556;
+    --border-color: #ccc;
+    --shadow-out: rgba(0, 0, 0, 0.2) 0 0 1.8vh;
+    --shadow-in: inset #ddd 0 0 0.7vh 0.2vh;
+    --input-color: rgba(255, 255, 255, 0.6);
+    --disable-day-color: rgba(0, 0, 0, 0.25);
+    --scheme: light;
+    --screen-width: 100dvw;
+    text-align: center;
+    overflow: hidden;
+    color-scheme: var(--scheme) !important;
+}
 
 /*
-:root {
-	--main-color: #007aff;
-	--bg-color: #fff;
-	--bg-sub-color: #ddd;
-	--mainCanvas-color: #f4f7fc;
-	--text-color: #000;
-	--text-sub-color: rgba(0, 0, 0, 0.65);
-	--clock-color: #556;
-	--border-color: #ccc;
-	--shadow-out: rgba(0, 0, 0, 0.2) 0 0 1.8vh;
-	--shadow-in: inset #ddd 0 0 0.7vh 0.2vh;
-	--input-color: rgba(255, 255, 255, 0.6);
-	--disable-day-color: rgba(0, 0, 0, 0.25);
-	--scheme: light;
-	--screen-width: 100dvw;
-	text-align: center;
-	overflow: hidden;
-	color-scheme: var(--scheme) !important;
-}
-*/
-
 :root {
     --main-color: #FF7518;
     --bg-color: #1A1A1A;
@@ -45,6 +43,7 @@ html {
     overflow: hidden;
     color-scheme: var(--scheme) !important;
 }
+*/
 
 .pc-view {
     display: block;
@@ -130,8 +129,8 @@ a {
     font-weight: 400;
     padding: 0.5em;
     font-size: 1.8em;
-	color: var(--clock-color);
-	text-shadow: 0 0 2vh #FF7518;
+    color: var(--clock-color);
+    text-shadow: 0 0 2vh #ff7518;
 }
 
 .time {
