@@ -19,7 +19,7 @@ export const ChangeList = (props: { children: React.ReactNode }) => {
 	);
 };
 
-export const ChangeListMapper = (props: { mode: string; ListDate: string; data: [number | string, number][] }) => {
+export const ChangeListMapper = (props: { mode: string; ListDate: string; data: any[] }) => {
 	const subsList: string[] = subsList_Array;
 	const { CardTitleContexts } = useContexts();
 	const datetext: string = getCustomDate(props.ListDate, "YYYYMMDD");
@@ -28,18 +28,21 @@ export const ChangeListMapper = (props: { mode: string; ListDate: string; data: 
 	if (props.mode === CardTitleContexts.ChangeInteg_SC) {
 		return (
 			<>
-				{props.data.map((val: [number | string, number]) => (
-					<div className="subProp">
-						<p className="scheText">{subsList[val[1] - 1]}</p>
-						<p className="time">{jsonTime[IsExamDatePack.TestStrNum == -1 ? 1 : 3][val[0]]}</p>
-					</div>
-				))}
+				{props.data.map((val: [number, number, string | null]) => {
+					const subjectName = val[1] === 16 && val[2] ? val[2] : subsList[val[1] - 1];
+					return (
+						<div className="subProp">
+							<p className="scheText">{subjectName}</p>
+							<p className="time">{jsonTime[IsExamDatePack.TestStrNum == -1 ? 1 : 3][val[0]]}</p>
+						</div>
+					);
+				})}
 			</>
 		);
 	} else {
 		return (
 			<>
-				{props.data.map((val: [number | string, number]) => (
+				{props.data.map((val: [string, number]) => (
 					<div className="subProp">
 						<p className="scheText">{val[0]}</p>
 						<p className="scheText">{val[1]}</p>

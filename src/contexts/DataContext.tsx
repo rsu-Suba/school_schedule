@@ -20,6 +20,8 @@ export type DataContextType = {
 		setTime: Dispatch<SetStateAction<string>>;
 		sub: string;
 		setSub: Dispatch<SetStateAction<string>>;
+		textOther: string;
+		setOtherText: Dispatch<SetStateAction<string>>;
 	};
 	work: {
 		dateWork: Dayjs;

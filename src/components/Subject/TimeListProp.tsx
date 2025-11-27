@@ -12,11 +12,14 @@ const jsonSche: ScheduleJSON = jsonScheData;
 
 const TimeListProp = React.memo((props: {
     text: string;
-    SubNumber: number;
+    subjectName: string;
     timeSelector?: number[];
     isTomorrow?: boolean;
 }) => {
-    const SupportData: { subName: string; textbook: string } = SubChangeSupporter(props);
+    const SupportData: { subName: string; textbook: string } = SubChangeSupporter({
+        text: props.text,
+        subjectName: props.subjectName,
+    });
     if (props.text == "title") {
         const time: string = jsonTime[props.timeSelector![0]][props.timeSelector![1]];
         return (

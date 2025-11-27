@@ -14,6 +14,7 @@ import IsExamDate from "@/scripts/Change/isExamDate";
 import { ReloadOutlined } from "@ant-design/icons";
 import type { GASArrayType, jsonTimeScheduleType, ScheduleJSON } from "@/scripts/Data/type";
 import { useTheme } from "@/ThemeContext";
+import { subsList_Array } from "@/scripts/Data/DataPack";
 
 const jsonTimeSchedule: jsonTimeScheduleType = jsonData.time_schedule;
 const jsonSche: ScheduleJSON = jsonScheData;
@@ -111,28 +112,33 @@ export default function SubjectList(props: {
 					changeNum,
 					i
 				);
-				const SubNumber = SubData.SubNumber;
+				const { subjectName } = SubData;
 				loop = SubData.loop;
+
+				const subIndex = subsList_Array.indexOf(subjectName);
+				const SubNumber = subIndex !== -1 ? subIndex + 1 : undefined;
 
 				if (props.mode === "main") {
 					const IsExamDatePack = IsExamDate(getCustomDate(todaytext, "YYYYMMDD"));
 					if (IsExamDatePack.TestStrNum !== -1) {
 						timeList = 3;
-						timeSelector = data![0][changeNum][1][i]?.[0];
+						if (data && data[0][changeNum] && data[0][changeNum][1][i]) {
+							timeSelector = data[0][changeNum][1][i][0];
+						}
 					}
 				}
 				cards.push(
-					<MemoizedSubList key={`${SubNumber}-${timeSelector}-${i}`} SubNumber={SubNumber}>
-						<SubIcon SubNumber={SubNumber} />
+					<MemoizedSubList key={`${subjectName}-${timeSelector}-${i}`} SubNumber={SubNumber}>
+						{SubNumber !== undefined && <SubIcon SubNumber={SubNumber} />}
 						<List.Item.Meta
 							title={
 								<TimeListProp
 									text="title"
-									SubNumber={SubNumber}
+									subjectName={subjectName}
 									timeSelector={[timeList, timeSelector]}
 								/>
 							}
-							description={<TimeListProp text="desc" SubNumber={SubNumber} isTomorrow={isTomorrow} />}
+							description={<TimeListProp text="desc" subjectName={subjectName} isTomorrow={isTomorrow} />}
 						/>
 					</MemoizedSubList>
 				);

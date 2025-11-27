@@ -1,4 +1,5 @@
 import jsonData from "@/assets/main.json";
+import { subsList_Array } from "@/scripts/Data/DataPack";
 import IsExamDate from "@/scripts/Change/isExamDate";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
 import type { jsonTimeScheduleType, GASArrayType } from "@/scripts/Data/type";
@@ -15,32 +16,38 @@ export default function SubSelector(
 	changeNum: number,
 	TestNum: number
 ) {
-	let SubNumber: number = 1;
+	let subjectName: string = "休み";
 	if (json[String(day)][String(timeSelector)] !== undefined) {
-		SubNumber = parseInt(json[String(day)][String(timeSelector)].toString());
+		const subId = parseInt(json[String(day)][String(timeSelector)].toString());
+		subjectName = subsList_Array[subId - 1] || "不明";
 	}
-	if (isChanged && mode === "main") {
+
+	if (isChanged && mode === "main" && fetchedData && fetchedData[0][changeNum]) {
 		const customDate: string = getCustomDate(todaytext, "YYYYMMDD");
+		const changeData = fetchedData[0][changeNum][1];
 		if (IsExamDate(customDate).TestStrNum != -1) {
-			loop = fetchedData![0][changeNum][1].length;
+			loop = changeData.length;
 		} else {
-			for (let n = 0; n < fetchedData![0][changeNum][1].length; n++) {
-				if (fetchedData![0][changeNum][1][n][0] > loop) {
-					loop = fetchedData![0][changeNum][1][n][0];
+			for (let n = 0; n < changeData.length; n++) {
+				if (changeData[n][0] > loop) {
+					loop = changeData[n][0];
 					break;
 				}
 			}
 		}
 		for (let n = 0; n < loop; n++) {
-			const changeSubData: number[] = fetchedData![0][changeNum][1][n];
-			if (fetchedData![0][changeNum][1][n] !== undefined) {
+			const changeSubData: [number, number, string | null] = changeData[n];
+			if (changeSubData !== undefined) {
 				const changeTime = IsExamDate(customDate).TestStrNum != -1 ? n : changeSubData[0];
 				if (changeSubData[0] != 0) {
 					if (IsExamDate(customDate).TestStrNum != -1) {
-						SubNumber = fetchedData![0][changeNum][1][TestNum][1];
+						const testSubData = changeData[TestNum];
+						if (testSubData) {
+							subjectName = testSubData[1] === 16 && testSubData[2] ? testSubData[2] : subsList_Array[testSubData[1] - 1];
+						}
 					} else {
 						if (changeSubData[0] != 0 && changeTime == timeSelector) {
-							SubNumber = changeSubData[1];
+							subjectName = changeSubData[1] === 16 && changeSubData[2] ? changeSubData[2] : subsList_Array[changeSubData[1] - 1];
 						}
 					}
 				}
@@ -49,7 +56,7 @@ export default function SubSelector(
 	}
 
 	const SubData = {
-		SubNumber: SubNumber,
+		subjectName: subjectName,
 		loop: loop,
 	};
 

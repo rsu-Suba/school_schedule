@@ -17,6 +17,7 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
 	const [time, setTime] = useState("1");
 	const [timeWorkState, setTimeWorkState] = useState("0");
 	const [sub, setSub] = useState("0");
+	const [textOther, setOtherText] = useState("");
 	const [textWork, setWorkText] = useState("");
 
 	const idMap = useRef<Map<number, number>>(new Map());
@@ -67,6 +68,7 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
 			get: fetchData,
 			time,
 			sub,
+			textOther,
 			textWork,
 			setWorkText,
 			homeworkIdToDelete: supabaseId,
@@ -75,6 +77,10 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
 		if (mode === 2) {
 			setTimeWorkState("0");
 		}
+
+        if (mode === 0 && sub === "15") {
+            setOtherText("");
+        }
 	};
 
 	useEffect(() => {
@@ -99,6 +105,8 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
 			setTime,
 			sub,
 			setSub,
+			textOther,
+			setOtherText,
 		},
 		work: {
 			dateWork,

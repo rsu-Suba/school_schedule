@@ -5,6 +5,7 @@ import { times_Exam_Array } from "@/scripts/Data/DataPack";
 import useContexts from "@/scripts/Data/Contexts";
 import IsExamDate from "@/scripts/Change/isExamDate";
 import type { State } from "@/scripts/Data/type";
+import { useData } from "@/contexts/DataContext";
 
 export const DateInput = (props: {
     dateId: string;
@@ -67,17 +68,32 @@ export const InputSelector = (props: {
     showInput?: boolean;
     textValue: string;
     setTextValue: State<string>;
+    otherValue: string;
+    setOtherValue: State<string>;
 }) => {
+    console.log(props.subjectValue);
+    const isOtherSubject = props.subjectValue === "その他";
     return (
         <>
             {props.subjectOptions && (
-                <Select
-                    className="subSelect"
-                    value={props.subjectValue!}
-                    onChange={props.handleChangeSubject!}
-                    options={props.subjectOptions!}
-                    size="large"
-                />
+                <Space direction="vertical" className="changeSpace2">
+                    <Select
+                        className="subSelect"
+                        value={props.subjectValue!}
+                        onChange={props.handleChangeSubject!}
+                        options={props.subjectOptions!}
+                        size="large"
+                    />
+                    {isOtherSubject && (
+                        <Input
+                            id="outlined-basic"
+                            placeholder="Content Title"
+                            value={props.otherValue}
+                            onChange={(event) => props.setOtherValue(event.target.value)}
+                            size="large"
+                        />
+                    )}
+                </Space>
             )}
             {props.showInput && (
                 <Input
@@ -115,8 +131,6 @@ export const ButtonComp = (props: {
     );
 };
 
-import { useData } from "@/contexts/DataContext";
-
 export const ButtonPair = (props: {
     isFetching: boolean;
     isPosting: boolean;
@@ -124,7 +138,9 @@ export const ButtonPair = (props: {
     showInput: boolean;
 }) => {
     const { ButtonContexts } = useContexts();
-    const { api: { fetchData, handlePost } } = useData();
+    const {
+        api: { fetchData, handlePost },
+    } = useData();
 
     return (
         <div className="changedButton">

@@ -5,11 +5,21 @@ import type { jsonType, jsonTimeScheduleType, GASArrayType } from "@/scripts/Dat
 const json: jsonType = jsonData.sub;
 const jsonTimeSchedule: jsonTimeScheduleType = jsonData.time_schedule;
 
-function SubChangeSupporter(props: { text: string; SubNumber: number; timeSelector?: number[] }) {
-	const SubData = json[props.SubNumber];
+function SubChangeSupporter(props: { text: string; subjectName: string; timeSelector?: number[] }) {
+	const subName = props.subjectName;
+	let textbook = "";
+
+	// Find the subject in jsonData.sub to get the textbook
+	for (const key in json) {
+		if (json[key].sub === subName) {
+			textbook = json[key].textbook;
+			break;
+		}
+	}
+
 	const SupportData = {
-		subName: SubData.sub,
-		textbook: SubData.textbook,
+		subName: subName,
+		textbook: textbook,
 	};
 
 	return SupportData;
