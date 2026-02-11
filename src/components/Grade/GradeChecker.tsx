@@ -1,11 +1,12 @@
-import { Space } from "antd";
+import { Space, Button, Tooltip } from "antd";
 import "@/App.css";
 import { useState } from "react";
 import { CardBase, CardInside, Divider } from "@/components/Layout/CardComp";
 import { subsListGradeOpt_Array } from "@/scripts/Data/DataPack";
 import useContexts from "@/scripts/Data/Contexts";
-import { scoreColorFC, scoreCalc } from "@/scripts/GradeChecker";
+import { scoreColorFC, scoreCalc, autoFillCalc } from "@/scripts/GradeChecker";
 import { GCHeader, ExamInput, HWInput } from "@/components/Grade/GradeCheckerComp";
+import AutoFixHighOutlinedIcon from "@mui/icons-material/AutoFixHighOutlined";
 
 export default function GradeChecker() {
    const { CardTitleContexts, Credit } = useContexts();
@@ -40,6 +41,7 @@ export default function GradeChecker() {
       setExamScore3(0);
       setExamScore4(0);
       setHWScore(0);
+      setResultScore(0);
    };
 
    let examScores: number[] = [examScore1, examScore2, examScore3, examScore4];
@@ -61,6 +63,21 @@ export default function GradeChecker() {
    const HWScoreProp = (e: number) => {
       setHWScore(e);
       setResultScore(scoreCalc(examScores, e, examPer, checkBooleans));
+   };
+
+   const handleAutoFill = () => {
+      const { examScores: newExamScores, HWScore: newHWScore } = autoFillCalc(
+         [examScore1, examScore2, examScore3, examScore4],
+         HWScore,
+         examPer,
+         checkBooleans
+      );
+      setExamScore1(newExamScores[0]);
+      setExamScore2(newExamScores[1]);
+      setExamScore3(newExamScores[2]);
+      setExamScore4(newExamScores[3]);
+      setHWScore(newHWScore);
+      setResultScore(scoreCalc(newExamScores, newHWScore, examPer, checkBooleans));
    };
 
    return (
@@ -95,6 +112,15 @@ export default function GradeChecker() {
                   <span style={{ color: scoreColor }}>{resultScore}</span>
                   {Credit.Score}: {Credit.Credit}
                   {gradeStatus}
+                  <Tooltip>
+                     <Button
+                        type="text"
+                        shape="circle"
+                        icon={<AutoFixHighOutlinedIcon style={{ fontSize: "20px" }} />}
+                        onClick={handleAutoFill}
+                        style={{ marginLeft: "4px" }}
+                     />
+                  </Tooltip>
                </p>
             </Space>
          </CardInside>

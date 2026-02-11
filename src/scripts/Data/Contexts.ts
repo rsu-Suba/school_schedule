@@ -5,16 +5,14 @@ export default function useContexts() {
 	return {
 		InfoContexts: {
 			PlannedFeatures: "Technical Optimization.",
-			UpdateTitle: "Peak performance.",
-			UpdateVersion: "10.8.25",
+			UpdateTitle: "I got credit.",
+			UpdateVersion: "2.11.26",
 		},
 		UpdateContexts: {
-			date: "Oct 8",
-			title: "パフォーマンスモードを廃止",
+			date: "Feb 11",
+			title: "単位チェッカーに自動60点ボタンを追加",
 			texts: [
-				"・次の教科タブのパフォーマンスモードを1週間で廃止しました✅️",
-				"・データサーバを変えたところ爆速になった",
-				"・Google Apps Script → Supabase",
+				"・単位チェッカーに自動で成績60点にするために必要な点を計算するボタンを追加しました✅️",
 			],
 		},
 		CardTitleContexts: {
