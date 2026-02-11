@@ -37,7 +37,6 @@ export default function Phone() {
 						<ChangeInteg />
 						<GradeChecker />
 						<Timetable num={todayNum} />
-						<div className="blankCard"></div>
 					</div>
 				</div>
 				<div className="sche" id="sche">

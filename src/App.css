@@ -16,6 +16,8 @@ html {
     --shadow-in: inset #ddd 0 0 0.7vh 0.2vh;
     --input-color: rgba(255, 255, 255, 0.6);
     --disable-day-color: rgba(0, 0, 0, 0.25);
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.6);
     --scheme: light;
     --screen-width: 100dvw;
     text-align: center;
@@ -37,6 +39,8 @@ html {
     --shadow-in: inset #000 0 0 0.7vh 0.2vh;
     --input-color: rgba(50, 50, 50, 0.6);
     --disable-day-color: rgba(245, 245, 245, 0.25);
+    --glass-bg: rgba(24, 24, 26, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
 	--scheme: dark;
     --screen-width: 100dvw;
     text-align: center;
@@ -111,7 +115,7 @@ a {
 .canvas {
     position: relative;
     width: 300%;
-    height: calc(100% - var(--screen-width) / 7);
+    height: 100%;
     display: flex;
     justify-content: space-between;
     inset: 0;
@@ -120,9 +124,105 @@ a {
 }
 
 .bottomCanvas {
+    width: 85%;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 72px;
+    position: absolute;
+    border-radius: 9999px;
+    overflow: visible;
+}
+
+.bottomCanvas {
+    width: 85%;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 72px;
+    position: absolute;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+}
+
+.liquid-glass-effect {
+    position: absolute;
+    inset: -10px;
+    z-index: 0;
+    backdrop-filter: blur(15px) saturate(170%);
+    isolation: isolate;
+    pointer-events: none;
+}
+
+.liquid-glass-tint {
+    position: absolute;
+    inset: -10px;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+.liquid-glass-shine {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: 40px;
+    box-shadow: 
+        inset 2px 2px 2px 0 rgba(255, 255, 255, 0.4),
+        inset -1px -1px 1px 1px rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+}
+
+.bottomFooter {
+    padding: 0;
+    position: absolute;
+    inset: 0;
     width: 100%;
-    aspect-ratio: 7/1;
-    position: relative;
+    height: 100%;
+    background-color: transparent !important;
+    z-index: 3;
+}
+
+.nav-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 33.3333%;
+    z-index: 0;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-indicator::after {
+    content: "";
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(40px);
+    border-radius: 30px;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.bottomFooter > .ant-menu {
+    background: transparent !important;
+    border: none !important;
+    height: 100%;
+}
+
+.bottomFooter .ant-menu-item-selected::after,
+.bottomFooter .ant-menu-item::after {
+    display: none !important;
+    border-bottom: none !important;
 }
 
 .digit {
@@ -130,7 +230,6 @@ a {
     padding: 0.5em;
     font-size: 1.8em;
     color: var(--clock-color);
-    /* text-shadow: 0 0 2vh #ff7518; */
 }
 
 .time {
@@ -274,6 +373,7 @@ input {
 .otherCards {
     width: 85%;
     padding: 10% 7.5%;
+    padding-bottom: 20%;
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;

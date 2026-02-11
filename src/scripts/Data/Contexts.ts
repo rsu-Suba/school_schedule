@@ -5,7 +5,7 @@ export default function useContexts() {
 	return {
 		InfoContexts: {
 			PlannedFeatures: "Technical Optimization.",
-			UpdateTitle: "I got credit.",
+			UpdateTitle: "Hello, Glass.",
 			UpdateVersion: "2.11.26",
 		},
 		UpdateContexts: {

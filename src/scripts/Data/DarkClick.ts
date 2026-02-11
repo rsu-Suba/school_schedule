@@ -20,6 +20,8 @@ function darkSet(isDarkMode: boolean) {
       root.style.setProperty("--shadow-in", "inset #ddd 0 0 0.7vh 0.2vh");
       root.style.setProperty("--input-color", "rgba(255, 255, 255, 0.6)");
       root.style.setProperty("--disable-day-color", "rgba(0, 0, 0, 0.25)");
+      root.style.setProperty("--glass-bg", "linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1))");
+      root.style.setProperty("--glass-border", "rgba(255, 255, 255, 0.6)");
       root.style.setProperty("--scheme", "light");
    } else {
       //root.style.setProperty("--main-color", "#6fabff");
@@ -27,13 +29,15 @@ function darkSet(isDarkMode: boolean) {
       root.style.setProperty("--bg-sub-color", "#39383c");
       root.style.setProperty("--mainCanvas-color", "#000");
       root.style.setProperty("--text-color", "#fff");
-      root.style.setProperty("--text-sub-color", "#rgba(255, 255, 255, 0.65)");
+      root.style.setProperty("--text-sub-color", "rgba(255, 255, 255, 0.65)");
       root.style.setProperty("--clock-color", "#97969c");
       root.style.setProperty("--border-color", "#3a3a3b");
       root.style.setProperty("--shadow-out", "rgba(240, 240, 240, 0.3) 0 0 1.2vh");
       root.style.setProperty("--shadow-in", "inset #070708 0 0 1vh 0.2vh");
       root.style.setProperty("--input-color", "rgba(0, 0, 0, 0.6)");
       root.style.setProperty("--disable-day-color", "rgba(255, 255, 255, 0.25)");
+      root.style.setProperty("--glass-bg", "linear-gradient(135deg, rgba(30, 30, 30, 0.5), rgba(10, 10, 10, 0.3))");
+      root.style.setProperty("--glass-border", "rgba(255, 255, 255, 0.2)");
       root.style.setProperty("--scheme", "dark");
    }
 }
