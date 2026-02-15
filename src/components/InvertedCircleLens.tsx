@@ -8,12 +8,11 @@ interface DraggablePillLensProps {
     height?: number;
     innerRatio?: number;
     innerBlurWidth?: number;
-    // ★ 背景画像の調整用プロパティ
-    bgOffsetX?: number;    // X軸のズレ（ピクセル）
-    bgOffsetY?: number;    // Y軸のズレ（ピクセル）
-    bgScale?: number;      // 拡大・縮小率（1.0が等倍）
-    canvasWidth?: number;  // 描画領域全体の幅（指定しない場合は画像サイズに依存）
-    canvasHeight?: number; // 描画領域全体の高さ（指定しない場合は画像サイズに依存）
+    bgOffsetX?: number;
+    bgOffsetY?: number;
+    bgScale?: number;
+    canvasWidth?: number;
+    canvasHeight?: number;
 }
 
 const InvertedCircleLens: React.FC<DraggablePillLensProps> = ({
@@ -50,41 +49,25 @@ const InvertedCircleLens: React.FC<DraggablePillLensProps> = ({
         const ctx = canvas.getContext("2d", { willReadFrequently: true });
         if (!ctx) return;
 
-        // ★ Canvasのサイズ決定（固定サイズが指定されていればそれを使用）
         const finalCanvasWidth = canvasWidth || imageElement.width * bgScale;
         const finalCanvasHeight = canvasHeight || imageElement.height * bgScale;
-
         canvas.width = finalCanvasWidth;
         canvas.height = finalCanvasHeight;
 
-        // 背景を一度クリア（画像をずらした時に残像が残らないようにするため）
         ctx.clearRect(0, 0, finalCanvasWidth, finalCanvasHeight);
+        ctx.drawImage(imageElement, bgOffsetX, bgOffsetY, imageElement.width * bgScale, imageElement.height * bgScale);
 
-        // ★ オフセットとスケールを適用して画像を描画
-        ctx.drawImage(
-            imageElement,
-            bgOffsetX,
-            bgOffsetY,
-            imageElement.width * bgScale,
-            imageElement.height * bgScale
-        );
-
-        // 処理する四角形のサイズ
         const sizeX = width;
         const sizeY = height;
         const startX = Math.round(pos.x - width / 2);
         const startY = Math.round(pos.y - height / 2);
 
-        // エラーハンドリング：画面外に出た時に落ちないように try-catch
         try {
             const imageData = ctx.getImageData(startX, startY, sizeX, sizeY);
             const data = imageData.data;
             const newData = new Uint8ClampedArray(data.length);
-
-            // --- ピル状にするための「背骨（Spine）」の計算 ---
             const isHorizontal = width >= height;
             const radius = isHorizontal ? height / 2 : width / 2;
-            
             const spineStartX = isHorizontal ? radius : width / 2;
             const spineEndX = isHorizontal ? width - radius : width / 2;
             const spineStartY = isHorizontal ? height / 2 : radius;
@@ -96,7 +79,7 @@ const InvertedCircleLens: React.FC<DraggablePillLensProps> = ({
                 for (let x = 0; x < sizeX; x++) {
                     const cx = Math.max(spineStartX, Math.min(x, spineEndX));
                     const cy = Math.max(spineStartY, Math.min(y, spineEndY));
-                    
+
                     const dx = x - cx;
                     const dy = y - cy;
                     const distance = Math.sqrt(dx * dx + dy * dy);
@@ -108,7 +91,7 @@ const InvertedCircleLens: React.FC<DraggablePillLensProps> = ({
                         const ringThickness = radius - innerRadius;
                         const ratioInRing = (distance - innerRadius) / ringThickness;
 
-                        const compressionPower = 2.5; 
+                        const compressionPower = 2.5;
                         const compressedRatio = Math.pow(ratioInRing, compressionPower);
                         const newDistance = innerRadius - compressedRatio * (innerRadius - reflectMinRadius);
 
@@ -125,13 +108,13 @@ const InvertedCircleLens: React.FC<DraggablePillLensProps> = ({
                                 t = t * t * (3 - 2 * t);
                             }
 
-                            newData[destIndex]     = data[destIndex]     * (1 - t) + data[srcIndex]     * t;
+                            newData[destIndex] = data[destIndex] * (1 - t) + data[srcIndex] * t;
                             newData[destIndex + 1] = data[destIndex + 1] * (1 - t) + data[srcIndex + 1] * t;
                             newData[destIndex + 2] = data[destIndex + 2] * (1 - t) + data[srcIndex + 2] * t;
                             newData[destIndex + 3] = data[destIndex + 3];
                         }
                     } else {
-                        newData[destIndex]     = data[destIndex];
+                        newData[destIndex] = data[destIndex];
                         newData[destIndex + 1] = data[destIndex + 1];
                         newData[destIndex + 2] = data[destIndex + 2];
                         newData[destIndex + 3] = data[destIndex + 3];
@@ -140,12 +123,21 @@ const InvertedCircleLens: React.FC<DraggablePillLensProps> = ({
             }
 
             ctx.putImageData(new ImageData(newData, sizeX, sizeY), startX, startY);
-        } catch (e) {
-            // キャンバス外にドラッグした際の getImageData エラーを無視
-        }
-    }, [pos, imageElement, width, height, innerRatio, innerBlurWidth, bgOffsetX, bgOffsetY, bgScale, canvasWidth, canvasHeight]);
+        } catch (e) {}
+    }, [
+        pos,
+        imageElement,
+        width,
+        height,
+        innerRatio,
+        innerBlurWidth,
+        bgOffsetX,
+        bgOffsetY,
+        bgScale,
+        canvasWidth,
+        canvasHeight,
+    ]);
 
-    // ... (以下のマウスイベント・JSX部分は前回と全く同じ) ...
     const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
         if (!canvasRef.current) return;
         const rect = canvasRef.current.getBoundingClientRect();
@@ -165,7 +157,7 @@ const InvertedCircleLens: React.FC<DraggablePillLensProps> = ({
         const cx = Math.max(spineStartX, Math.min(localX, spineEndX));
         const cy = Math.max(spineStartY, Math.min(localY, spineEndY));
 
-        const distance = Math.sqrt((localX - cx)**2 + (localY - cy)**2);
+        const distance = Math.sqrt((localX - cx) ** 2 + (localY - cy) ** 2);
 
         if (distance <= radius) {
             setIsDragging(true);

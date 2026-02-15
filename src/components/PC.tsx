@@ -21,14 +21,14 @@ export default function PC() {
         <div className="mainCanvas">
             <InvertedCircleLens
                 imageUrl="https://512pixels.net/wp-content/uploads/2025/08/26-Tahoe-Beach-Day-thumb.jpeg"
-                initialX={900} // 円の中心X座標
-                initialY={700} // 円の中心Y座標
-                width={300} // 横長に設定
-                height={200} // 縦幅
-                canvasWidth={2200} // Canvas（ウィンドウ）自体の幅は800px固定
-                canvasHeight={1080} // Canvas（ウィンドウ）自体の高さは600px固定
-                bgScale={1.1} // 背景画像を1.5倍にズーム
-                bgOffsetX={0} // 左に150pxずらす
+                initialX={900}
+                initialY={700}
+                width={300}
+                height={200}
+                canvasWidth={2200}
+                canvasHeight={1080}
+                bgScale={1.1}
+                bgOffsetX={0}
                 bgOffsetY={0}
             />
             {/* <div className="PCCanvas">
