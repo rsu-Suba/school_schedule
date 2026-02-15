@@ -136,18 +136,21 @@ a {
     height: 64px;
     position: absolute;
     border-radius: 9999px;
-    border: solid var(--glass-bg) 0.4px;
-    overflow: hidden;
-    box-shadow: 0 0 25px 2px rgba(0, 0, 0, 0.3);
+    border: solid var(--glass-bg) 1px;
+    /* overflow: hidden; */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
     background-color: rgba(255, 255, 255, 0.12);
 }
 
 .liquid-glass-effect {
     position: absolute;
-    inset: -50px;
+    inset: 0px;
     z-index: 0;
-    backdrop-filter: blur(7px) saturate(190%);
+    border-radius: 9999px;
+    overflow: hidden;
+    backdrop-filter: url(#pill-lens-distortion) blur(2px) saturate(250%);
+    -webkit-backdrop-filter: url(#pill-lens-distortion) blur(2px) saturate(180%);
+    box-shadow: 0 0 25px 2px rgba(0, 0, 0, 0.3);
     isolation: isolate;
     pointer-events: none;
 }
@@ -155,12 +158,15 @@ a {
 .liquid-glass-shine {
     position: absolute;
     inset: 0;
-    z-index: 2;
     border-radius: 9999px;
-    box-shadow:
-        inset 1px 1px 1px 0 rgba(255, 255, 255, 0.4),
-        inset -0.4px -0.4px 0.4px 0.4px rgba(255, 255, 255, 0.3);
     pointer-events: none;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.1) 45%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 
 .bottomFooter {
@@ -181,7 +187,9 @@ a {
     height: 100%;
     width: 43.3333%;
     z-index: 0;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+    /* transition: transform 0.3s cubic-bezier(0.3, 0, 0.5, 1); */
+    /* backdrop-filter: blur(2px) saturate(180%);
+    -webkit-backdrop-filter: blur(2px) saturate(180%); */
     pointer-events: none;
     display: flex;
     align-items: center;
@@ -192,8 +200,8 @@ a {
     content: "";
     width: calc(100% - 12px);
     height: calc(100% - 12px);
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(1px);
     border-radius: 9999px;
     border: solid var(--glass-border) 0.5px;
     box-shadow:

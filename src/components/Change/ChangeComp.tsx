@@ -71,7 +71,6 @@ export const InputSelector = (props: {
     otherValue: string;
     setOtherValue: State<string>;
 }) => {
-    console.log(props.subjectValue);
     const isOtherSubject = props.subjectValue === "その他";
     return (
         <>
