@@ -19,7 +19,19 @@ export default function PC() {
     // let nowtime: number = parseInt(getCustomDate(String(date), "HHmm"));
     return (
         <div className="mainCanvas">
-            <div className="PCCanvas">
+            <InvertedCircleLens
+                imageUrl="https://512pixels.net/wp-content/uploads/2025/08/26-Tahoe-Beach-Day-thumb.jpeg"
+                initialX={900} // 円の中心X座標
+                initialY={700} // 円の中心Y座標
+                width={300} // 横長に設定
+                height={200} // 縦幅
+                canvasWidth={2200} // Canvas（ウィンドウ）自体の幅は800px固定
+                canvasHeight={1080} // Canvas（ウィンドウ）自体の高さは600px固定
+                bgScale={1.1} // 背景画像を1.5倍にズーム
+                bgOffsetX={0} // 左に150pxずらす
+                bgOffsetY={0}
+            />
+            {/* <div className="PCCanvas">
 				<Update />
 				<div className="main" id="main">
 					<div className="mainCards">
@@ -40,7 +52,7 @@ export default function PC() {
 					<Calendar />
 				</div>
 			</div>
-			<Menu />
+			<Menu /> */}
         </div>
     );
 }
