@@ -569,3 +569,29 @@ input {
         display: block;
     }
 }
+
+.mainCanvas {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+.LiquidCanvas {
+    display: block;
+    pointer-events: none;
+    touch-action: none;
+}
+
+.LiquidGlassObj {
+    position: absolute;
+    border-radius: 9999px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1), inset 0 0 30px rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(0.4px) saturate(150%) brightness(105%);
+    pointer-events: auto;
+}
