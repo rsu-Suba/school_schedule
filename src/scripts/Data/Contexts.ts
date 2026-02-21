@@ -5,14 +5,15 @@ export default function useContexts() {
 	return {
 		InfoContexts: {
 			PlannedFeatures: "Technical Optimization.",
-			UpdateTitle: "Hello, Glass.",
-			UpdateVersion: "2.11.26",
+			UpdateTitle: "Liquid.",
+			UpdateVersion: "2.21.26",
 		},
 		UpdateContexts: {
-			date: "Feb 11",
-			title: "単位チェッカーに自動60点ボタンを追加",
+			date: "Feb 21",
+			title: "タブバーがLiquid Glass対応",
 			texts: [
-				"・単位チェッカーに自動で成績60点にするために必要な点を計算するボタンを追加しました✅️",
+				"・タブバーをLiquid Glass風にしました✅️",
+				"・重かったら戻します"
 			],
 		},
 		CardTitleContexts: {

@@ -1,22 +1,73 @@
-import React, { useState } from "react";
-import Tabselect from "@/scripts/TabSelector";
+import React, { useState, useEffect, useRef } from "react";
+import { TabSelector, initSwipeHandlers, initIndicatorDrag } from "@/scripts/TabSelector";
 import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Layout, Menu } from "antd";
 import type { MenuInfo } from "rc-menu/lib/interface";
-
+import { useTheme } from "@/ThemeContext";
+import { useLiquidGlass } from "@/scripts/Glass/useLiquidGlass";
 import "@/App.css";
 
 const { Footer } = Layout;
 
 export default function BottomNavigator() {
     const [value, setValue] = useState("0");
+    const [isMoving, setIsMoving] = useState(false);
+    const indicatorRef = useRef<HTMLDivElement>(null);
+
+    const theme = useTheme();
+    const isDarkMode = theme?.isDarkMode;
+    const primaryColor = theme?.primaryColor;
+
+    const { footerRef, canvasRef } = useLiquidGlass(value, isMoving, isDarkMode, primaryColor);
+
+    const triggerMove = (prev: string, next: string) => {
+        if (prev === next) return;
+        setIsMoving(true);
+        TabSelector(Number(next));
+        setValue(next);
+        setTimeout(() => setIsMoving(false), 400);
+    };
 
     const handleChange = (event: MenuInfo) => {
-        Tabselect(Number(event.key));
-        setValue(event.key);
+        triggerMove(value, event.key);
     };
+
+    useEffect(() => {
+        const cleanupSwipe = initSwipeHandlers((direction) => {
+            setValue((prev) => {
+                const nextValue = Math.min(Math.max(Number(prev) + direction, 0), 2);
+                const nextValueStr = String(nextValue);
+                if (nextValueStr !== prev) {
+                    setIsMoving(true);
+                    TabSelector(nextValue);
+                    setTimeout(() => setIsMoving(false), 400);
+                }
+                return nextValueStr;
+            });
+        });
+
+        const cleanupDrag =
+            indicatorRef.current && footerRef.current
+                ? initIndicatorDrag(indicatorRef.current, footerRef.current, (nextTab) => {
+                      const nextTabStr = String(nextTab);
+                      setValue((prev) => {
+                          if (prev !== nextTabStr) {
+                              setIsMoving(true);
+                              TabSelector(nextTab);
+                              setTimeout(() => setIsMoving(false), 400);
+                          }
+                          return nextTabStr;
+                      });
+                  })
+                : null;
+
+        return () => {
+            cleanupSwipe();
+            if (cleanupDrag) cleanupDrag();
+        };
+    }, []);
 
     const ButtonStyle: React.CSSProperties = {
         textAlign: "center",
@@ -30,30 +81,36 @@ export default function BottomNavigator() {
     const ButtonLabel: string[] = ["Timetable", "Schedule", "Other"];
     const Icons: React.ReactNode[] = [
         <ClassOutlinedIcon
+            key="0"
             style={{
                 fontSize: "26px",
                 ...(value === "0"
                     ? { color: "var(--main-color)", filter: "drop-shadow(0 0 8px var(--main-color))" }
                     : { color: "var(--text-sub-color)" }),
                 transition: "all 0.3s ease",
+                zIndex: "3",
             }}
         />,
         <CalendarMonthOutlinedIcon
+            key="1"
             style={{
                 fontSize: "26px",
                 ...(value === "1"
                     ? { color: "var(--main-color)", filter: "drop-shadow(0 0 8px var(--main-color))" }
                     : { color: "var(--text-sub-color)" }),
                 transition: "all 0.3s ease",
+                zIndex: "3",
             }}
         />,
         <InfoOutlinedIcon
+            key="2"
             style={{
                 fontSize: "26px",
                 ...(value === "2"
                     ? { color: "var(--main-color)", filter: "drop-shadow(0 0 8px var(--main-color))" }
                     : { color: "var(--text-sub-color)" }),
                 transition: "all 0.3s ease",
+                zIndex: "3",
             }}
         />,
     ];
@@ -63,6 +120,7 @@ export default function BottomNavigator() {
         BottomButtons.push(
             <Menu.Item key={String(i)} icon={Icons[i]} style={ButtonStyle}>
                 <div
+                    className="MenuButton"
                     style={{
                         ...(value === String(i)
                             ? {
@@ -71,9 +129,6 @@ export default function BottomNavigator() {
                                   textShadow: "0 0 10px rgba(var(--main-color-rgb), 0.5)",
                               }
                             : { color: "var(--text-sub-color)" }),
-                        fontSize: "12px",
-                        marginTop: "0px",
-                        transition: "all 0.3s ease",
                     }}
                 >
                     {ButtonLabel[i]}
@@ -83,88 +138,19 @@ export default function BottomNavigator() {
     }
 
     return (
-        <>
-            <svg style={{ position: "fixed", width: 0, height: 0, pointerEvents: "none" }} aria-hidden="true">
-                <defs>
-                    <filter
-                        id="glass-distortion"
-                        x="0%"
-                        y="0%"
-                        width="100%"
-                        height="100%"
-                        filterUnits="objectBoundingBox"
-                    >
-                        <feTurbulence
-                            type="fractalNoise"
-                            baseFrequency="0.01 0.01"
-                            numOctaves="1"
-                            seed="5"
-                            result="turbulence"
-                        />
-                        <feComponentTransfer in="turbulence" result="mapped">
-                            <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
-                            <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
-                            <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
-                        </feComponentTransfer>
-                        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
-                        <feSpecularLighting
-                            in="softMap"
-                            surfaceScale="5"
-                            specularConstant="1"
-                            specularExponent="100"
-                            lightingColor="white"
-                            result="specLight"
-                        >
-                            <fePointLight x="-200" y="-200" z="300" />
-                        </feSpecularLighting>
-                        <feComposite
-                            in="specLight"
-                            operator="arithmetic"
-                            k1="0"
-                            k2="1"
-                            k3="1"
-                            k4="0"
-                            result="litImage"
-                        />
-                        <feDisplacementMap
-                            in="SourceGraphic"
-                            in2="softMap"
-                            scale="15"
-                            xChannelSelector="R"
-                            yChannelSelector="G"
-                        />
-                    </filter>
-                </defs>
-            </svg>
-
-            <div className="liquid-glass-effect"></div>
-            <div className="liquid-glass-tint"></div>
-            <div className="liquid-glass-shine"></div>
-
-            <Footer className="bottomFooter">
+        <Footer className="bottomFooter" style={{ backgroundColor: "transparent", border: "none" }}>
+            <div className="footerRef" ref={footerRef}>
+                <canvas className="canvasRef" ref={canvasRef} />
+                <div className="LiquidGlassEffect" />
                 <div
                     className="nav-indicator"
-                    style={{
-                        transform: `translateX(${Number(value) * 85 - (Number(value) + 1) * 9.8}%)`,
-                    }}
-                ></div>
-                <Menu
-                    onClick={handleChange}
-                    selectedKeys={[value]}
-                    mode="horizontal"
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-around",
-                        width: "100%",
-                        height: "100%",
-                        backgroundColor: "transparent",
-                        border: "none",
-                        zIndex: 10,
-                    }}
-                >
+                    ref={indicatorRef}
+                    style={{ transform: `translateX(${Number(value) * 79.6}%) scaleX(${isMoving ? 1.2 : 1})` }}
+                />
+                <Menu onClick={handleChange} selectedKeys={[value]} mode="horizontal">
                     {BottomButtons}
                 </Menu>
-            </Footer>
-        </>
+            </div>
+        </Footer>
     );
 }
