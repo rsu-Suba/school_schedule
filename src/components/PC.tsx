@@ -9,7 +9,6 @@ import GradeChecker from "@/components/Grade/GradeChecker";
 import Update from "@/components/Update";
 import { useData } from "@/contexts/DataContext";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
-import GlassDOM from "./GlassDOM.tsx";
 
 export default function PC() {
     const {
@@ -21,30 +20,28 @@ export default function PC() {
     let nowtime: number = parseInt(getCustomDate(String(date), "HHmm"));
     return (
         <div className="mainCanvas">
-            <GlassDOM>
-                <div className="PCCanvas">
-                    <Update />
-                    <div className="main" id="main">
-                        <div className="mainCards">
-                            <Clock />
-                            <SubjectList
-                                recentNum={recentNum}
-                                nowtime={nowtime}
-                                mode={"main"}
-                                fetchedData={fetchedData!}
-                                isLoading={isLoading}
-                            />
-                            <ChangeInteg />
-                            <GradeChecker />
-                            <Timetable num={todayNum} />
-                        </div>
-                    </div>
-                    <div className="sche" id="sche">
-                        <Calendar />
+            <div className="PCCanvas">
+                <Update />
+                <div className="main" id="main">
+                    <div className="mainCards">
+                        <Clock />
+                        <SubjectList
+                            recentNum={recentNum}
+                            nowtime={nowtime}
+                            mode={"main"}
+                            fetchedData={fetchedData!}
+                            isLoading={isLoading}
+                        />
+                        <ChangeInteg />
+                        <GradeChecker />
+                        <Timetable num={todayNum} />
                     </div>
                 </div>
-                <Menu />
-            </GlassDOM>
+                <div className="sche" id="sche">
+                    <Calendar />
+                </div>
+            </div>
+            <Menu />
         </div>
     );
 }
