@@ -1,4 +1,4 @@
-import React, { useRef } from "react"; // ★ useRef を追加
+import { useRef } from "react";
 import "@/App.css";
 import Clock from "@/components/Layout/clock";
 import SubjectList from "@/components/Subject/SubjectList";
@@ -6,7 +6,7 @@ import Calendar from "@/components/Layout/calendar";
 import Other from "@/components/Layout/other";
 import ChangeInteg from "@/components/Change/ChangeInteg";
 import Timetable from "@/components/Subject/Timetable";
-import BottomNavigator from "@/components/Layout/Bottom"; // パスは適宜合わせてください
+import BottomNavigator from "@/components/Layout/Bottom";
 import GradeChecker from "@/components/Grade/GradeChecker";
 import Update from "@/components/Update";
 import { useData } from "@/contexts/DataContext";
