@@ -5,15 +5,14 @@ export default function useContexts() {
 	return {
 		InfoContexts: {
 			PlannedFeatures: "Technical Optimization.",
-			UpdateTitle: "Liquid.",
-			UpdateVersion: "2.21.26",
+			UpdateTitle: "2026 Update.",
+			UpdateVersion: "4.2.26",
 		},
 		UpdateContexts: {
-			date: "Feb 21",
-			title: "タブバーがLiquid Glass対応",
+			date: " Apr 2",
+			title: "2026 Updated",
 			texts: [
-				"・タブバーをLiquid Glass風にしました✅️",
-				"・重かったら戻します"
+				"・2026年度対応✅️"
 			],
 		},
 		CardTitleContexts: {

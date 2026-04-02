@@ -52,7 +52,7 @@ export const DateInput = (props: {
                 className="datePicker"
                 value={props.date}
                 minDate={dayjs()}
-                maxDate={dayjs("2026-03-31")}
+                maxDate={dayjs("2027-03-31")}
                 onChange={handleDateChange}
                 size="large"
             />
