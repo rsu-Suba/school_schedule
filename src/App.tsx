@@ -6,10 +6,11 @@ import { DataProvider } from "@/contexts/DataProvider";
 
 function App() {
 	const aspectRatio = AspectDetector();
+	const baseDate = new Date(); 
 
 	return (
 		<DataProvider>
-			{aspectRatio ? <Phone /> : <PC />}
+			{aspectRatio ? <Phone baseDate={baseDate} /> : <PC baseDate={baseDate} />}
 		</DataProvider>
 	);
 }

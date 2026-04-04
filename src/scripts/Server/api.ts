@@ -22,9 +22,6 @@ export const getData = async (
             .order("date", { ascending: true })
             .order("time", { ascending: true });
 
-        //const data = [[], []];
-        //const error = "";
-
         if (error) throw error;
 
         const transformed = transformData(data || []);

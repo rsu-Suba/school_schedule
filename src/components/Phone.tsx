@@ -11,14 +11,21 @@ import GradeChecker from "@/components/Grade/GradeChecker";
 import Update from "@/components/Update";
 import { useData } from "@/contexts/DataContext";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
+import dayjs from "dayjs";
+import jsonData from "@/assets/schedule.json";
+import { getDayStatus } from "@/scripts/Data/ScheduleProcessor";
+import type { NewScheduleData } from "@/scripts/Data/type";
 
-export default function Phone() {
+const jsonSche: NewScheduleData = jsonData as unknown as NewScheduleData;
+
+export default function Phone(props: { baseDate: Date }) {
     const {
         api: { fetchedData, isLoading },
     } = useData();
-    let date: Date = new Date();
-    let recentNum: number = date.getDay();
-    let todayNum: number = date.getDay();
+    let date: Date = props.baseDate;
+    let status = getDayStatus(dayjs(date), jsonSche);
+    let recentNum: number = status.appliedDay;
+    let todayNum: number = status.appliedDay;
     let nowtime: number = parseInt(getCustomDate(String(date), "HHmm"));
 
     const targetCanvasRef = useRef<HTMLDivElement>(null);
@@ -36,6 +43,7 @@ export default function Phone() {
                             mode={"main"}
                             fetchedData={fetchedData!}
                             isLoading={isLoading}
+                            baseDate={date}
                         />
                         <ChangeInteg />
                         <GradeChecker />

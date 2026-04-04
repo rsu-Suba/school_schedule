@@ -5,10 +5,10 @@ import { SubChangeSupporter } from "@/scripts/Subject/subChangeSupporter";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
 import getTodayDate from "@/scripts/Misc/getTodayDate";
 import IsExamDate from "@/scripts/Change/isExamDate";
-import type { jsonType, ScheduleJSON } from "@/scripts/Data/type";
+import type { jsonType, NewScheduleData } from "@/scripts/Data/type";
 
 const jsonTime: jsonType = jsonData.time;
-const jsonSche: ScheduleJSON = jsonScheData;
+const jsonSche: NewScheduleData = jsonScheData as unknown as NewScheduleData;
 
 const TimeListProp = React.memo((props: {
     text: string;
@@ -31,7 +31,7 @@ const TimeListProp = React.memo((props: {
     } else {
         const getDate: string = getTodayDate(props.isTomorrow ? 1 : 0);
         const date: string = getCustomDate(getDate, "YYYYMMDD");
-        if (jsonSche[date] === undefined) {
+        if (!jsonSche.events[date] && !jsonSche.overrides[date]) {
             return (
                 <p className="textbook" style={{ color: "rgba(0, 0, 0, 0.65" }}>
                     {SupportData.textbook}

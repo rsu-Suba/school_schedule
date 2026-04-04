@@ -1,314 +1,564 @@
 {
-   "20260407": {
-      "schedule": ["始業式", "対面式"],
-      "irregular": 0
-   },
-   "20260417": {
-      "schedule": ["健康診断"],
-      "irregular": 0
-   },
-   "20260428": {
-      "schedule": ["授業参観"],
-      "irregular": 0
-   },
-   "20260429": {
-      "schedule": ["昭和の日"],
-      "irregular": 1
-   },
-   "20260504": {
-      "schedule": ["みどりの日"],
-      "irregular": 1
-   },
-   "20260505": {
-      "schedule": ["こどもの日"],
-      "irregular": 1
-   },
-   "20260506": {
-      "schedule": ["憲法記念日振替"],
-      "irregular": 1
-   },
-    "20260507": {
-      "schedule": ["月曜授業"],
-      "irregular": 2
-   },
-   "20260521": {
-      "schedule": ["前期中間試験"],
-      "irregular": 0
-   },
-   "20260513": {
-    "schedule": ["TOEIC IP"],
-    "irregular": 0
-   },
-   "20260520": {
-    "schedule": ["学生総会"],
-    "irregular": 0
-   },
-   "20260522": {
-      "schedule": ["北斗祭準備 (午後)"],
-      "irregular": 0
-   },
-   "20260523": {
-      "schedule": ["北斗祭"],
-      "irregular": 2
-   },
-   "20260524": {
-      "schedule": ["北斗祭"],
-      "irregular": 2
-   },
-   "20260525": {
-      "schedule": ["北斗祭振替 (休講日)"],
-      "irregular": 1
-   },
-   "20260611": {
-      "schedule": ["前期中間試験"],
-      "irregular": 0
-   },
-   "20260612": {
-      "schedule": ["前期中間試験"],
-      "irregular": 0
-   },
-   "20260615": {
-      "schedule": ["前期中間試験"],
-      "irregular": 0
-   },
-   "20260616": {
-      "schedule": ["前期中間試験"],
-      "irregular": 0
-   },
-   "20260617": {
-      "schedule": ["前期中間試験"],
-      "irregular": 0
-   },
-   "20260623": {
-      "schedule": ["風紀検査"],
-      "irregular": 0
-   },
-   "20260709": {
-      "schedule": ["プチ運動会"],
-      "irregular": 2
-   },
-   "20260710": {
-      "schedule": ["木曜授業"],
-      "irregular": 2
-   },
-   "20260720": {
-      "schedule": ["海の日"],
-      "irregular": 1
-   },
-   "20260721": {
-      "schedule": ["月曜授業"],
-      "irregular": 2
-   },
-   "20260723": {
-      "schedule": ["補講"],
-      "irregular": 0
-   },
-   "20260724": {
-      "schedule": ["補講"],
-      "irregular": 0
-   },
-   "20260727": {
-      "schedule": ["前期末試験"],
-      "irregular": 0
-   },
-   "20260728": {
-      "schedule": ["前期末試験"],
-      "irregular": 0
-   },
-   "20260729": {
-      "schedule": ["前期末試験 (予備日)"],
-      "irregular": 2
-   },
-   "20260730": {
-      "schedule": ["前期末試験"],
-      "irregular": 0
-   },
-   "20260731": {
-      "schedule": ["前期末試験"],
-      "irregular": 0
-   },
-   "20260803": {
-      "schedule": ["前期末試験"],
-      "irregular": 0
-   },
-   "20260804": {
-      "schedule": ["前期末試験"],
-      "irregular": 0
-   },
-   "20260805": {
-      "schedule": ["全体集会", "大掃除"],
-      "irregular": 0
-   },
-   "20260806": {
-      "schedule": ["夏季休業(~9/13)"],
-      "irregular": 1
-   },
-   "20260921": {
-      "schedule": ["敬老の日"],
-      "irregular": 1
-   },
-   "20260922": {
-      "schedule": ["国民の休日"],
-      "irregular": 1
-   },
-   "20260923": {
-      "schedule": ["秋分の日"],
-      "irregular": 1
-   },
-   "20260924": {
-      "schedule": ["商船卒業式"],
-      "irregular": 1
-   },
-   "20260925": {
-      "schedule": ["特別時間割"],
-      "irregular": 2
-   },
-   "20260928": {
-      "schedule": ["特別時間割"],
-      "irregular": 2
-   },
-   "20261007": {
-      "schedule": ["防災訓練"],
-      "irregular": 0
-   },
-   "20261012": {
-      "schedule": ["スポーツの日"],
-      "irregular": 1
-   },
-   "20261014": {
-      "schedule": ["スポーツ大会"],
-      "irregular": 2
-   },
-   "20261020": {
-      "schedule": ["県外企業見学"],
-      "irregular": 2
-   },
-   "20261021": {
-      "schedule": ["県外企業見学"],
-      "irregular": 2
-   },
-   "20261022": {
-      "schedule": ["県外企業見学"],
-      "irregular": 2
-   },
-   "20261023": {
-      "schedule": ["県外企業見学"],
-      "irregular": 2
-   },
-   "20261028": {
-      "schedule": ["TOEIC IP (希望者)"],
-      "irregular": 0
-   },
-   "20261103": {
-      "schedule": ["文化の日"],
-      "irregular": 1
-   },
-   "20261105": {
-      "schedule": ["風紀検査"],
-      "irregular": 0
-   },
-   "20261118": {
-      "schedule": ["高専フェス"],
-      "irregular": 0
-   },
-   "20261119": {
-      "schedule": ["月曜授業"],
-      "irregular": 2
-   },
-   "20261123": {
-      "schedule": ["勤労感謝の日"],
-      "irregular": 1
-   },
-   "20261125": {
-      "schedule": ["後期中間試験"],
-      "irregular": 0
-   },
-   "20261126": {
-      "schedule": ["後期中間試験"],
-      "irregular": 0
-   },
-   "20261127": {
-      "schedule": ["後期中間試験"],
-      "irregular": 0
-   },
-   "20261130": {
-      "schedule": ["後期中間試験"],
-      "irregular": 0
-   },
-   "20261201": {
-      "schedule": ["後期中間試験"],
-      "irregular": 0
-   },
-   "20261209": {
-      "schedule": ["会長選挙"],
-      "irregular": 0
-   },
-   "20261230": {
-      "schedule": ["短縮授業(未確定)", "全体集会(未確定)", "大掃除(未確定)"],
-      "irregular": 0
-   },
-   "20261231": {
-      "schedule": ["冬季休業(~1/11)"],
-      "irregular": 1
-   },
-   "20260112": {
-      "schedule": ["授業開始", "月曜授業"],
-      "irregular": 2
-   },
-   "20260129": {
-      "schedule": ["補講"],
-      "irregular": 0
-   },
-   "20260201": {
-      "schedule": ["補講"],
-      "irregular": 0
-   },
-   "20260202": {
-      "schedule": ["学年末試験"],
-      "irregular": 0
-   },
-   "20260203": {
-      "schedule": ["学年末試験"],
-      "irregular": 0
-   },
-   "20260204": {
-      "schedule": ["学年末試験"],
-      "irregular": 0
-   },
-   "20260205": {
-      "schedule": ["学年末試験"],
-      "irregular": 0
-   },
-   "20260208": {
-      "schedule": ["学年末試験"],
-      "irregular": 0
-   },
-   "20260209": {
-      "schedule": ["学年末試験"],
-      "irregular": 0
-   },
-   "20260210": {
-      "schedule": ["学年末試験 (予備日)"],
-      "irregular": 0
-   },
-   "20260211": {
-      "schedule": ["建国記念日"],
-      "irregular": 1
-   },
-   "20260212": {
-      "schedule": ["休み"],
-      "irregular": 1
-   },
-   "20260215": {
-      "schedule": ["休み"],
-      "irregular": 1
-   },
-   "20260223": {
-      "schedule": ["天皇誕生日"],
-      "irregular": 1
-   },
-   "20260224": {
-      "schedule": ["終業式", "大掃除"],
-      "irregular": 0
+   "events": {
+      "20260112": [
+         {
+            "name": "授業開始",
+            "type": "event"
+         },
+         {
+            "name": "月曜授業",
+            "type": "event"
+         }
+      ],
+      "20260129": [
+         {
+            "name": "補講",
+            "type": "event"
+         }
+      ],
+      "20260201": [
+         {
+            "name": "補講",
+            "type": "event"
+         }
+      ],
+      "20260202": [
+         {
+            "name": "学年末試験",
+            "type": "exam"
+         }
+      ],
+      "20260203": [
+         {
+            "name": "学年末試験",
+            "type": "exam"
+         }
+      ],
+      "20260204": [
+         {
+            "name": "学年末試験",
+            "type": "exam"
+         }
+      ],
+      "20260205": [
+         {
+            "name": "学年末試験",
+            "type": "exam"
+         }
+      ],
+      "20260208": [
+         {
+            "name": "学年末試験",
+            "type": "exam"
+         }
+      ],
+      "20260209": [
+         {
+            "name": "学年末試験",
+            "type": "exam"
+         }
+      ],
+      "20260210": [
+         {
+            "name": "学年末試験 (予備日)",
+            "type": "exam"
+         }
+      ],
+      "20260211": [
+         {
+            "name": "建国記念日",
+            "type": "holiday"
+         }
+      ],
+      "20260212": [
+         {
+            "name": "休み",
+            "type": "holiday"
+         }
+      ],
+      "20260215": [
+         {
+            "name": "休み",
+            "type": "holiday"
+         }
+      ],
+      "20260223": [
+         {
+            "name": "天皇誕生日",
+            "type": "holiday"
+         }
+      ],
+      "20260224": [
+         {
+            "name": "終業式",
+            "type": "event"
+         },
+         {
+            "name": "大掃除",
+            "type": "event"
+         }
+      ],
+      "20260407": [
+         {
+            "name": "始業式",
+            "type": "event"
+         },
+         {
+            "name": "対面式",
+            "type": "event"
+         }
+      ],
+      "20260417": [
+         {
+            "name": "健康診断",
+            "type": "event"
+         }
+      ],
+      "20260428": [
+         {
+            "name": "授業参観",
+            "type": "event"
+         }
+      ],
+      "20260429": [
+         {
+            "name": "昭和の日",
+            "type": "holiday"
+         }
+      ],
+      "20260504": [
+         {
+            "name": "みどりの日",
+            "type": "holiday"
+         }
+      ],
+      "20260505": [
+         {
+            "name": "こどもの日",
+            "type": "holiday"
+         }
+      ],
+      "20260506": [
+         {
+            "name": "憲法記念日振替",
+            "type": "holiday"
+         }
+      ],
+      "20260507": [
+         {
+            "name": "月曜授業",
+            "type": "event"
+         }
+      ],
+      "20260513": [
+         {
+            "name": "TOEIC IP",
+            "type": "event"
+         }
+      ],
+      "20260520": [
+         {
+            "name": "学生総会",
+            "type": "event"
+         }
+      ],
+      "20260521": [
+         {
+            "name": "前期中間試験",
+            "type": "exam"
+         }
+      ],
+      "20260522": [
+         {
+            "name": "北斗祭準備 (午後)",
+            "type": "event"
+         }
+      ],
+      "20260523": [
+         {
+            "name": "北斗祭",
+            "type": "event"
+         }
+      ],
+      "20260524": [
+         {
+            "name": "北斗祭",
+            "type": "event"
+         }
+      ],
+      "20260525": [
+         {
+            "name": "北斗祭振替 (休講日)",
+            "type": "holiday"
+         }
+      ],
+      "20260611": [
+         {
+            "name": "前期中間試験",
+            "type": "exam"
+         }
+      ],
+      "20260612": [
+         {
+            "name": "前期中間試験",
+            "type": "exam"
+         }
+      ],
+      "20260615": [
+         {
+            "name": "前期中間試験",
+            "type": "exam"
+         }
+      ],
+      "20260616": [
+         {
+            "name": "前期中間試験",
+            "type": "exam"
+         }
+      ],
+      "20260617": [
+         {
+            "name": "前期中間試験",
+            "type": "exam"
+         }
+      ],
+      "20260623": [
+         {
+            "name": "風紀検査",
+            "type": "event"
+         }
+      ],
+      "20260709": [
+         {
+            "name": "プチ運動会",
+            "type": "event"
+         }
+      ],
+      "20260710": [
+         {
+            "name": "木曜授業",
+            "type": "event"
+         }
+      ],
+      "20260720": [
+         {
+            "name": "海の日",
+            "type": "holiday"
+         }
+      ],
+      "20260721": [
+         {
+            "name": "月曜授業",
+            "type": "event"
+         }
+      ],
+      "20260723": [
+         {
+            "name": "補講",
+            "type": "event"
+         }
+      ],
+      "20260724": [
+         {
+            "name": "補講",
+            "type": "event"
+         }
+      ],
+      "20260727": [
+         {
+            "name": "前期末試験",
+            "type": "exam"
+         }
+      ],
+      "20260728": [
+         {
+            "name": "前期末試験",
+            "type": "exam"
+         }
+      ],
+      "20260729": [
+         {
+            "name": "前期末試験 (予備日)",
+            "type": "exam"
+         }
+      ],
+      "20260730": [
+         {
+            "name": "前期末試験",
+            "type": "exam"
+         }
+      ],
+      "20260731": [
+         {
+            "name": "前期末試験",
+            "type": "exam"
+         }
+      ],
+      "20260803": [
+         {
+            "name": "前期末試験",
+            "type": "exam"
+         }
+      ],
+      "20260804": [
+         {
+            "name": "前期末試験",
+            "type": "exam"
+         }
+      ],
+      "20260805": [
+         {
+            "name": "全体集会",
+            "type": "event"
+         },
+         {
+            "name": "大掃除",
+            "type": "event"
+         }
+      ],
+      "20260806": [
+         {
+            "name": "夏季休業(~9/13)",
+            "type": "holiday"
+         }
+      ],
+      "20260921": [
+         {
+            "name": "敬老の日",
+            "type": "holiday"
+         }
+      ],
+      "20260922": [
+         {
+            "name": "国民の休日",
+            "type": "holiday"
+         }
+      ],
+      "20260923": [
+         {
+            "name": "秋分の日",
+            "type": "holiday"
+         }
+      ],
+      "20260924": [
+         {
+            "name": "商船卒業式",
+            "type": "holiday"
+         }
+      ],
+      "20260925": [
+         {
+            "name": "特別時間割",
+            "type": "event"
+         }
+      ],
+      "20260928": [
+         {
+            "name": "特別時間割",
+            "type": "event"
+         }
+      ],
+      "20261007": [
+         {
+            "name": "防災訓練",
+            "type": "event"
+         }
+      ],
+      "20261012": [
+         {
+            "name": "スポーツの日",
+            "type": "holiday"
+         }
+      ],
+      "20261014": [
+         {
+            "name": "スポーツ大会",
+            "type": "event"
+         }
+      ],
+      "20261020": [
+         {
+            "name": "県外企業見学",
+            "type": "event"
+         }
+      ],
+      "20261021": [
+         {
+            "name": "県外企業見学",
+            "type": "event"
+         }
+      ],
+      "20261022": [
+         {
+            "name": "県外企業見学",
+            "type": "event"
+         }
+      ],
+      "20261023": [
+         {
+            "name": "県外企業見学",
+            "type": "event"
+         }
+      ],
+      "20261028": [
+         {
+            "name": "TOEIC IP (希望者)",
+            "type": "event"
+         }
+      ],
+      "20261103": [
+         {
+            "name": "文化の日",
+            "type": "holiday"
+         }
+      ],
+      "20261105": [
+         {
+            "name": "風紀検査",
+            "type": "event"
+         }
+      ],
+      "20261118": [
+         {
+            "name": "高専フェス",
+            "type": "event"
+         }
+      ],
+      "20261119": [
+         {
+            "name": "月曜授業",
+            "type": "event"
+         }
+      ],
+      "20261123": [
+         {
+            "name": "勤労感謝の日",
+            "type": "holiday"
+         }
+      ],
+      "20261125": [
+         {
+            "name": "後期中間試験",
+            "type": "exam"
+         }
+      ],
+      "20261126": [
+         {
+            "name": "後期中間試験",
+            "type": "exam"
+         }
+      ],
+      "20261127": [
+         {
+            "name": "後期中間試験",
+            "type": "exam"
+         }
+      ],
+      "20261130": [
+         {
+            "name": "後期中間試験",
+            "type": "exam"
+         }
+      ],
+      "20261201": [
+         {
+            "name": "後期中間試験",
+            "type": "exam"
+         }
+      ],
+      "20261209": [
+         {
+            "name": "会長選挙",
+            "type": "event"
+         }
+      ],
+      "20261230": [
+         {
+            "name": "短縮授業(未確定)",
+            "type": "event"
+         },
+         {
+            "name": "全体集会(未確定)",
+            "type": "event"
+         },
+         {
+            "name": "大掃除(未確定)",
+            "type": "event"
+         }
+      ],
+      "20261231": [
+         {
+            "name": "冬季休業(~1/11)",
+            "type": "holiday"
+         }
+      ]
+   },
+   "periods": [
+      {
+         "start": "20260219",
+         "end": "20260406",
+         "name": "春休み",
+         "type": "holiday"
+      },
+      {
+         "start": "20260806",
+         "end": "20260913",
+         "name": "夏休み",
+         "type": "holiday"
+      },
+      {
+         "start": "20261231",
+         "end": "20270111",
+         "name": "冬休み",
+         "type": "holiday"
+      },
+      {
+         "start": "20270225",
+         "end": "20270331",
+         "name": "春休み",
+         "type": "holiday"
+      }
+   ],
+   "overrides": {
+      "20260112": {
+         "label": "月曜授業",
+         "asDay": 1,
+         "type": "substitution"
+      },
+      "20260507": {
+         "label": "月曜授業",
+         "asDay": 1,
+         "type": "substitution"
+      },
+      "20260523": {
+         "label": "北斗祭",
+         "asDay": 6,
+         "type": "special"
+      },
+      "20260524": {
+         "label": "北斗祭",
+         "asDay": 0,
+         "type": "special"
+      },
+      "20260710": {
+         "label": "木曜授業",
+         "asDay": 4,
+         "type": "substitution"
+      },
+      "20260721": {
+         "label": "月曜授業",
+         "asDay": 1,
+         "type": "substitution"
+      },
+      "20261014": {
+         "label": "スポーツ大会",
+         "asDay": 3,
+         "type": "special"
+      },
+      "20261119": {
+         "label": "月曜授業",
+         "asDay": 1,
+         "type": "substitution"
+      }
    }
 }

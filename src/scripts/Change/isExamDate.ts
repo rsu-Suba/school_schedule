@@ -1,22 +1,26 @@
 import jsonData from "@/assets/schedule.json";
-import type { ScheduleJSON } from "@/scripts/Data/type";
+import type { NewScheduleData } from "@/scripts/Data/type";
 
-const json: ScheduleJSON = jsonData;
+const json: NewScheduleData = jsonData as unknown as NewScheduleData;
 
 export default function IsExamDate(date: string) {
    let TestStrNum: number = -1;
    let resultStr: string = "";
-   if (json[date] !== undefined) {
+   const dayEvents = json.events[date] || [];
+   const examEvent = dayEvents.find(e => e.type === "exam");
+
+   if (examEvent) {
       const TestStr: string[] = ["中間試験", "期末試験", "学年末試験"];
       for (let i = 0; i < 3; i++) {
-         const isTestDay = json[date].schedule[0].includes(TestStr[i]);
-         if (isTestDay) {
+         if (examEvent.name.includes(TestStr[i])) {
             TestStrNum = i;
+            resultStr = TestStr[i];
+            break;
          }
       }
-
-      if (TestStrNum !== -1) {
-         resultStr = TestStr[TestStrNum];
+      if (TestStrNum === -1) {
+          resultStr = examEvent.name;
+          TestStrNum = 0;
       }
    }
    return { TestStrNum, resultStr };

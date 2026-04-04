@@ -3,6 +3,7 @@ import "@/App.css";
 import jsonData from "@/assets/main.json";
 import jsonScheData from "@/assets/schedule.json";
 import React, { useMemo } from "react";
+import dayjs from "dayjs";
 import { CardBase, CardInside, LoadSkeleton, SubList, SubIcon } from "@/components/Layout/CardComp";
 import TimeListProp from "@/components/Subject/TimeListProp";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
@@ -12,12 +13,13 @@ import { isChangeToday } from "@/scripts/Subject/subChangeSupporter";
 import useContexts from "@/scripts/Data/Contexts";
 import IsExamDate from "@/scripts/Change/isExamDate";
 import { ReloadOutlined } from "@ant-design/icons";
-import type { GASArrayType, jsonTimeScheduleType, ScheduleJSON } from "@/scripts/Data/type";
+import type { GASArrayType, jsonTimeScheduleType, NewScheduleData } from "@/scripts/Data/type";
+import { getDayStatus } from "@/scripts/Data/ScheduleProcessor";
 import { useTheme } from "@/ThemeContext";
 import { subsList_Array } from "@/scripts/Data/DataPack";
 
 const jsonTimeSchedule: jsonTimeScheduleType = jsonData.time_schedule;
-const jsonSche: ScheduleJSON = jsonScheData;
+const jsonSche: NewScheduleData = jsonScheData as unknown as NewScheduleData;
 
 const MemoizedSubList = React.memo(SubList);
 
@@ -28,20 +30,27 @@ export default function SubjectList(props: {
 	fetchedData: GASArrayType | null;
 	isLoading: boolean;
 	onRefresh?: () => void;
+	baseDate?: Date;
 }) {
 	const { CardTitleContexts, CardInsideContexts } = useContexts();
 	const theme = useTheme();
 	const isPerformanceMode = theme?.isPerformanceMode ?? true;
 
 	const changeInfo = useMemo(() => {
+		const baseDate = props.baseDate || new Date();
+		const change = isChangeToday(props.fetchedData, props.nowtime, props, baseDate);
+		const effectiveDate = dayjs(change.todaytext);
+		const currentStatus = getDayStatus(effectiveDate, jsonSche);
+
 		if (!props.fetchedData) {
 			if (props.mode == "main") {
 				return {
 					isChanged: false,
 					changeNum: 0,
-					day: new Date().getDay(),
+					day: currentStatus.appliedDay,
 					isTomorrow: false,
-					todaytext: "",
+					todaytext: change.todaytext,
+					status: currentStatus
 				};
 			} else {
 				return {
@@ -50,13 +59,18 @@ export default function SubjectList(props: {
 					day: props.recentNum,
 					isTomorrow: false,
 					todaytext: "",
+					status: null
 				};
 			}
 		}
-		return isChangeToday(props.fetchedData, props.nowtime, props);
-	}, [props.fetchedData, props.nowtime]);
+		
+		if (props.mode === "main") {
+			return { ...change, day: currentStatus.appliedDay, status: currentStatus };
+		}
+		return { ...change, status: null };
+	}, [props.fetchedData, props.nowtime, props.recentNum, props.mode, props.baseDate]);
 
-	const { isChanged, changeNum, day, isTomorrow, todaytext } = changeInfo;
+	const { isChanged, changeNum, day, isTomorrow, todaytext, status } = changeInfo;
 
 	const cardtext = useMemo(() => {
 		const data = props.fetchedData;
@@ -71,29 +85,20 @@ export default function SubjectList(props: {
 			timeList = 2;
 			loop--;
 		}
-		const SelectDate = getCustomDate(todaytext, "YYYYMMDD");
-		let irregular = 0;
-		if (props.mode === "main" && jsonSche[SelectDate]) {
-			irregular = jsonSche[SelectDate].irregular;
-		}
+		
+		const isHoliday = props.mode === "main" && status ? status.isHoliday : (day === 0 || day === 6);
+		const holidayName = status?.events.find(e => e.type === 'holiday')?.name || status?.periodName;
+
 		if (
-			day === 0 ||
-			day === 6 ||
-			(day === 5 && !isTomorrow && PastTimeChecker([timeList, loop], nowTime)) ||
-			irregular === 1
+			isHoliday ||
+			(day === 5 && !isTomorrow && PastTimeChecker([timeList, loop], nowTime))
 		) {
 			cards.push(
 				<MemoizedSubList key="holiday">
 					<h4>
 						{CardInsideContexts.Holiday}
-						{irregular === 1 && ` | ${jsonSche[SelectDate].schedule[0]}`}
+						{holidayName && ` | ${holidayName}`}
 					</h4>
-				</MemoizedSubList>
-			);
-		} else if (irregular === 2) {
-			cards.push(
-				<MemoizedSubList key="irregular">
-					<h4>{jsonSche[SelectDate].schedule[0]}</h4>
 				</MemoizedSubList>
 			);
 		} else {
@@ -154,6 +159,7 @@ export default function SubjectList(props: {
 		todaytext,
 		isTomorrow,
 		props.mode,
+		status,
 		CardInsideContexts.Holiday,
 	]);
 
@@ -166,8 +172,12 @@ export default function SubjectList(props: {
 	);
 
 	if (props.mode === "main") {
+		const displayTitle = status?.label 
+			? `${CardTitleContexts.SubjectList_Main} | ${status.label}`
+			: CardTitleContexts.SubjectList_Main;
+
 		return (
-			<CardBase title={CardTitleContexts.SubjectList_Main} SubjectUpdated={SubjectUpdated}>
+			<CardBase title={displayTitle} SubjectUpdated={SubjectUpdated}>
 				<CardInside>{props.isLoading ? <LoadSkeleton /> : <>{cardtext}</>}</CardInside>
 			</CardBase>
 		);

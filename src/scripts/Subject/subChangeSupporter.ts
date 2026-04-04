@@ -9,7 +9,6 @@ function SubChangeSupporter(props: { text: string; subjectName: string; timeSele
 	const subName = props.subjectName;
 	let textbook = "";
 
-	// Find the subject in jsonData.sub to get the textbook
 	for (const key in json) {
 		if (json[key].sub === subName) {
 			textbook = json[key].textbook;
@@ -26,26 +25,27 @@ function SubChangeSupporter(props: { text: string; subjectName: string; timeSele
 }
 
 function isChangeToday(
-	fetchedData: GASArrayType,
+	fetchedData: GASArrayType | null,
 	nowTime: number,
-	props: { recentNum: number; nowtime: number; mode: string }
+	props: { recentNum: number; nowtime: number; mode: string },
+	baseDate: Date = new Date()
 ) {
 	let isChanged: boolean = false;
 	let changeNum: number = 0;
 	let day: number = props.recentNum;
 	let isTomorrow: boolean = false;
-	let todaytext: string = getTodayDate();
+	let todaytext: string = getTodayDate(0, baseDate);
 	if (props.mode == "main") {
 		const EndTime: number = jsonTimeSchedule[day].class === 3 ? 1435 : 1615;
 		if (nowTime > EndTime) {
 			isTomorrow = true;
-			todaytext = getTodayDate(1);
+			todaytext = getTodayDate(1, baseDate);
 			day++;
 		}
 		if (day == 7) day = 0;
 	}
 
-	if (fetchedData[0]) {
+	if (fetchedData && fetchedData[0]) {
 		const todayTimestamp = new Date(todaytext).getTime();
 		for (let i = 0; i < fetchedData[0].length; i++) {
 			const itemTimestamp = (new Date(fetchedData[0][i][0]).getTime() - 32400000);
