@@ -1,27 +1,37 @@
-# School Schedule App
+# Schedule Hub
 
-This is a web application for managing school schedules.
+A modern, responsive school schedule management app.
 
-## Google Apps Script Setup
+## Features
+- **Frontend**: React 19, TypeScript, Vite
+- **UI**: Ant Design, Material UI icons
+- **Backend**: Supabase
+- **Other**: i18next, Day.js
 
-To improve performance, the app uses a Google Apps Script to fetch data from a Google Sheet. The script is designed to be fast and efficient, but it requires a one-time setup to enable a daily trigger for cleaning up old data.
+## Quick Start
 
-### Trigger Setup Instructions
+1. **Install**:
+   ```bash
+   npm install
+   ```
 
-1.  **Open the Google Apps Script Editor:**
-    *   Open the Google Sheet that is connected to this application.
-    *   Go to `Extensions > Apps Script`.
+2. **Setup Environment**:
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_SUPABASE_URL=your_supabase_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
-2.  **Select the function to run:**
-    *   In the Apps Script editor, go to `Edit > Current project's triggers`.
-    *   Click on the `+ Add Trigger` button in the bottom right corner.
+3. **Run**:
+   ```bash
+   npm run dev
+   ```
 
-3.  **Configure the trigger:**
-    *   Choose which function to run: `deleteOldRows`
-    *   Choose which deployment should run: `Head`
-    *   Select event source: `Time-driven`
-    *   Select type of time based trigger: `Day timer`
-    *   Select time of day: `2am - 3am` (or any other time that is convenient for you)
-    *   Click `Save`.
+4. **Build**:
+   ```bash
+   npm run build
+   ```
+   Build files are generated in the `docs` folder for GitHub Pages.
 
-This will set up a daily trigger to automatically clean up old data from the sheet, which will significantly improve the performance of the application.
+## License
+Private use only.

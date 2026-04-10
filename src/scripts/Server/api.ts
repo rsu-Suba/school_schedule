@@ -1,9 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 import type { State, GASArraySubType, GASArrayHWType, GASArrayType } from "@/scripts/Data/type";
 
-const supabaseUrl = "https://nvjtaxpouwjacgtcksvt.supabase.co";
-const supabaseKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52anRheHBvdXdqYWNndGNrc3Z0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkzODU1ODksImV4cCI6MjA3NDk2MTU4OX0.mbWi23X6AmdD4MTClKHCo3FAYq8rrjhGNf0MMwOJgiU";
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 const table = "Notes";
 
