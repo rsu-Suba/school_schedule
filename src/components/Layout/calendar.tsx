@@ -148,7 +148,7 @@ export default function DateCalendarServerRequest() {
                 dateFullCellRender={dateCellRender}
                 className="carddiv"
                 fullscreen={false}
-                validRange={[dayjs(), dayjs("2027-03-31")]}
+                validRange={[dayjs().subtract(1, "day"), dayjs("2027-03-31")]}
                 value={selectedDate}
                 onPanelChange={handlePanelChange}
                 onChange={handleDateChange}
