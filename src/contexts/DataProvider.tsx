@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { DataContext, DataContextType } from "./DataContext";
 import { getData, postData } from "@/scripts/Server/api";
+import { SUB_OTHER_ID } from "@/scripts/Data/DataPack";
 import type { GASArrayType, GASArrayHWType } from "@/scripts/Data/type";
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
@@ -78,7 +79,7 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
 			setTimeWorkState("0");
 		}
 
-        if (mode === 0 && sub === "15") {
+        if (mode === 0 && sub === String(SUB_OTHER_ID - 1)) {
             setOtherText("");
         }
 	};

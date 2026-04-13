@@ -1,7 +1,7 @@
 import React from "react";
 import { List } from "antd";
 import jsonData from "@/assets/main.json";
-import { subsList_Array } from "@/scripts/Data/DataPack";
+import { subsList_Array, SUB_OTHER_ID } from "@/scripts/Data/DataPack";
 import useContexts from "@/scripts/Data/Contexts";
 import IsExamDate from "@/scripts/Change/isExamDate";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
@@ -29,7 +29,7 @@ export const ChangeListMapper = (props: { mode: string; ListDate: string; data: 
 		return (
 			<>
 				{props.data.map((val: [number, number, string | null]) => {
-					const subjectName = val[1] === 16 && val[2] ? val[2] : subsList[val[1] - 1];
+					const subjectName = val[1] === SUB_OTHER_ID && val[2] ? val[2] : subsList[val[1] - 1];
 					return (
 						<div className="subProp">
 							<p className="scheText">{subjectName}</p>

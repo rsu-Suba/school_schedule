@@ -6,6 +6,8 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 const table = "Notes";
 
+import { SUB_OTHER_ID, SUB_DELETE_ID } from "@/scripts/Data/DataPack";
+
 export const getData = async (
     setSubData?: State<GASArraySubType>,
     setWorkData?: State<GASArrayHWType>,
@@ -85,14 +87,14 @@ export const postData = async ({
             const date = datePicker.value;
             const value = Number(sub) + 1;
 
-            if (value === 17) {
+            if (value === SUB_DELETE_ID) {
                 await supabase.from(table).delete().eq("date", date).eq("time", Number(time));
             } else {
                 const payload = {
                     date: date,
                     time: Number(time),
                     value: value,
-                    other_value: value === 16 ? textOther : null,
+                    other_value: value === SUB_OTHER_ID ? textOther : null,
                 };
                 await supabase.from(table).upsert(payload, { onConflict: "date, time" });
             }

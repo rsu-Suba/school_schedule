@@ -1,5 +1,5 @@
 import jsonData from "@/assets/main.json";
-import { subsList_Array } from "@/scripts/Data/DataPack";
+import { subsList_Array, SUB_OTHER_ID } from "@/scripts/Data/DataPack";
 import IsExamDate from "@/scripts/Change/isExamDate";
 import getCustomDate from "@/scripts/Misc/getCustomDate";
 import type { jsonTimeScheduleType, GASArrayType } from "@/scripts/Data/type";
@@ -43,11 +43,11 @@ export default function SubSelector(
 					if (IsExamDate(customDate).TestStrNum != -1) {
 						const testSubData = changeData[TestNum];
 						if (testSubData) {
-							subjectName = testSubData[1] === 16 && testSubData[2] ? testSubData[2] : subsList_Array[testSubData[1] - 1];
+							subjectName = testSubData[1] === SUB_OTHER_ID && testSubData[2] ? testSubData[2] : subsList_Array[testSubData[1] - 1];
 						}
 					} else {
 						if (changeSubData[0] != 0 && changeTime == timeSelector) {
-							subjectName = changeSubData[1] === 16 && changeSubData[2] ? changeSubData[2] : subsList_Array[changeSubData[1] - 1];
+							subjectName = changeSubData[1] === SUB_OTHER_ID && changeSubData[2] ? changeSubData[2] : subsList_Array[changeSubData[1] - 1];
 						}
 					}
 				}

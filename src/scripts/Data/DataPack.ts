@@ -14,6 +14,10 @@ export const times_Exam_Array: { value: string; label: string }[] = [
 	{ value: "7", label: "14:55~(50)" },
 	{ value: "8", label: "14:55~(90)" },
 ];
+export const SUB_VACANT_ID = 17;
+export const SUB_OTHER_ID = 18;
+export const SUB_DELETE_ID = 19;
+
 export const subsListOpt_Array: { value: string; label: string }[] = [
 	{ value: "1", label: "通信システム" },
 	{ value: "2", label: "オペレーティングシステム" },
@@ -31,9 +35,9 @@ export const subsListOpt_Array: { value: string; label: string }[] = [
 	{ value: "14", label: "総合英語IV" },
 	{ value: "15", label: "応用物理III" },
 	{ value: "16", label: "数学特講I" },
-	{ value: "17", label: "休み" },
-	{ value: "18", label: "その他" },
-	{ value: "19", label: "削除" },
+	{ value: String(SUB_VACANT_ID), label: "休み" },
+	{ value: String(SUB_OTHER_ID), label: "その他" },
+	{ value: String(SUB_DELETE_ID), label: "削除" },
 ];
 export const subsList_Array: string[] = [
 "通信システム",
@@ -80,7 +84,6 @@ export const subsListGradeOpt_Array: {
 }[] = [
 	{ value: "1", label: "通信システム", season: 1, midTest: true, HW: true, examPer: 70 },
 	{ value: "2", label: "オペレーティングシステム", season: 1, midTest: false, HW: true, examPer: 70 },
-	// { value: "3", label: "電子情報工学実験IV", season: 0, midTest: true, HW: true, examPer: 100 },
 	{ value: "3", label: "電気回路III", season: 1, midTest: false, HW: false, examPer: 100 },
 	{ value: "4", label: "中国語", season: 1, midTest: true, HW: true, examPer: 90 },
 	{ value: "5", label: "ロシア語", season: 1, midTest: true, HW: true, examPer: 75 },
