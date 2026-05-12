@@ -101,7 +101,8 @@ export const postData = async ({
         } else if (mode === 1) {
             setIsWorkPosting(true);
             const datePicker = document.getElementById("datepickerWork") as HTMLInputElement;
-            const payload = { date: datePicker.value, time: 9, value: textWork };
+            const timeValue = (Math.floor(Date.now() / 1000) % 10000) + 9;
+            const payload = { date: datePicker.value, time: timeValue, value: textWork };
             await supabase.from(table).insert([payload]).select();
             setWorkText("");
         } else if (mode === 2) {
@@ -125,7 +126,7 @@ function transformData(rows: any[]): GASArrayType {
 
 	rows.forEach((row) => {
 		const timestamp = new Date(row.date).getTime();
-		if (row.time !== 9) {
+		if (row.time < 9) {
 			normal.push({ timestamp, time: row.time, value: Number(row.value), other_value: row.other_value });
 		} else {
 			work.push({ id: row.id, timestamp, value: row.value });
